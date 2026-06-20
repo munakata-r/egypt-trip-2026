@@ -33,7 +33,10 @@ body {
 
 /* ── HERO ── */
 .hero {
-  background: var(--night);
+  background:
+    linear-gradient(rgba(15,10,3,0.55), rgba(15,10,3,0.85)),
+    url('images/pyramid.webp') center 30% / cover no-repeat,
+    var(--night);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -58,6 +61,7 @@ body {
     radial-gradient(1px 1px at 15% 50%, rgba(255,255,255,0.6) 0%, transparent 100%);
 }
 .hero-pyramid {
+  display: none;
   position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
   width: 0; height: 0;
   border-left: 280px solid transparent;
@@ -199,6 +203,11 @@ body {
 .tl-content { flex: 1; font-size: 13px; color: var(--sand-light); line-height: 1.6; padding-top: 2px; }
 .tl-content strong { color: white; font-weight: 600; }
 .tl-content .sub { font-size: 12px; color: rgba(200,169,126,0.75); margin-top: 2px; }
+.tl-imgs { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.tl-img {
+  width: calc(50% - 4px); height: 130px; object-fit: cover; border-radius: 6px;
+  border: 1px solid rgba(212,176,150,0.3); display: block; flex: 1 1 140px;
+}
 
 .badge {
   display: inline-block; font-family: 'Montserrat', sans-serif;
@@ -370,7 +379,7 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
           <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 着 — 全員合流</strong><div class="sub">入国審査・両替・SIMカード購入。空港からタクシーで約1時間</div></div></div>
           <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルに荷物を預ける</strong><div class="sub">部屋に入れなくてもOK。すぐ出発</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — コシャリ</strong><span class="badge b-food">現地飯</span><div class="sub">エジプト国民食。米・パスタ・豆・トマトソース。1食100円程度</div></div></div>
-          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">ラクダ乗り体験も可。入場料：大人250EGP。チャータータクシー推奨</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">ラクダ乗り体験も可。入場料：大人250EGP。チャータータクシー推奨</div><div class="tl-imgs"><img class="tl-img" src="images/pyramid.webp" alt="ギザのピラミッド" loading="lazy"><img class="tl-img" src="images/sphinx.jpg" alt="スフィンクス" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>グランド・エジプシャン博物館（GEM）</strong><div class="sub">ツタンカーメン黄金マスク等。所要2〜3時間。閉館21時</div></div></div>
           <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — コフタ・ターメイヤ</strong><span class="badge b-food">現地飯</span><div class="sub">ひき肉スパイスグリル・エジプト式ファラフェル</div></div></div>
           <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong><div class="sub">翌朝6時出発のため早めに</div></div></div>
@@ -435,8 +444,8 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
           <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>軽食</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">11:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール博物館（オプション）</strong><div class="sub">展示密度が高い穴場。所要1時間。入場200EGP</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — マフシー・モロヘイヤスープ</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿</strong><div class="sub">世界最大の神殿群。スフィンクス参道・大列柱室。所要2時間。入場450EGP</div></div></div>
-          <div class="tl-row"><span class="tl-time">17:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿</strong><div class="sub">ライトアップが美しい夜間開放（〜21時）。入場350EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿</strong><div class="sub">世界最大の神殿群。スフィンクス参道・大列柱室。所要2時間。入場450EGP</div><div class="tl-imgs"><img class="tl-img" src="images/horus-temple.jpg" alt="神殿内部の列柱" loading="lazy"><img class="tl-img" src="images/luxor-temple-2.avif" alt="ルクソールの神殿" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">17:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿</strong><div class="sub">ライトアップが美しい夜間開放（〜21時）。入場350EGP</div><div class="tl-imgs"><img class="tl-img" src="images/luxor-temple.jpg" alt="ルクソール神殿" loading="lazy"><img class="tl-img" src="images/luxor-temple-3.jpg" alt="ルクソール神殿" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿いレストラン</strong><span class="badge b-food">現地飯</span><div class="sub">ナイルパーチのグリルなど</div></div></div>
           <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong><div class="sub">翌朝7時出発</div></div></div>
         </div>
@@ -562,7 +571,7 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
           <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 着 — 全員合流</strong><div class="sub">入国・両替・SIM購入（約1〜1.5時間）</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルへ移動・チェックイン・休憩</strong><div class="sub">1〜2時間ゆっくり休んでリセット</div></div></div>
           <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>遅めランチ — コシャリ</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">15:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">夕方の涼しい時間帯に。夕日に染まるピラミッドはゆっくり2〜3時間</div></div></div>
+          <div class="tl-row"><span class="tl-time">15:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">夕方の涼しい時間帯に。夕日に染まるピラミッドはゆっくり2〜3時間</div><div class="tl-imgs"><img class="tl-img" src="images/pyramid.webp" alt="ギザのピラミッド" loading="lazy"><img class="tl-img" src="images/sphinx.jpg" alt="スフィンクス" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ケバブ・コフタ</strong><span class="badge b-food">現地飯</span><div class="sub">旅の乾杯を</div></div></div>
           <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong></div></div>
         </div>
@@ -622,10 +631,10 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
           <div class="tl-row"><span class="tl-time">09:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール着 — チャータータクシー手配</strong></div></div>
           <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルチェックイン・休憩</strong></div></div>
           <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — ルクソール東岸の地元食堂</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿 — たっぷり2.5時間</strong><div class="sub">急がずに各聖域をじっくり。オーディオガイド推奨</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿 — たっぷり2.5時間</strong><div class="sub">急がずに各聖域をじっくり。オーディオガイド推奨</div><div class="tl-imgs"><img class="tl-img" src="images/horus-temple.jpg" alt="神殿内部の列柱" loading="lazy"><img class="tl-img" src="images/luxor-temple-2.avif" alt="ルクソールの神殿" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿いカフェでひと休み</strong><div class="sub">ミント・ティーでまったり</div></div></div>
           <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿い</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿 ナイトビジット</strong><div class="sub">ライトアップされた幻想的な神殿。21時閉館</div></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿 ナイトビジット</strong><div class="sub">ライトアップされた幻想的な神殿。21時閉館</div><div class="tl-imgs"><img class="tl-img" src="images/luxor-temple.jpg" alt="ルクソール神殿" loading="lazy"><img class="tl-img" src="images/luxor-temple-3.jpg" alt="ルクソール神殿" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
         </div>
       </div>
