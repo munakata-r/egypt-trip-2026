@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エジプト旅行 2026 | 4人の旅</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --sand: #C8A97E;
+  --sand-light: #E8D5B5;
+  --sand-pale: #FAF4EB;
+  --night: #1A1209;
+  --night-mid: #2D2010;
+  --lapis: #1B4F8C;
+  --gold: #D4A017;
+  --gold-light: #F0C842;
+  --papyrus: #F5EDD8;
+  --text: #2D2010;
+  --text-light: #5C4A2A;
+  --divider: #D4B896;
+}
+
+body {
+  background: var(--sand-pale);
+  color: var(--text);
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--night);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 24px;
+}
+.hero-stars {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 60%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 70%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 30% 35%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 85%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 15% 50%, rgba(255,255,255,0.6) 0%, transparent 100%);
+}
+.hero-pyramid {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 280px solid transparent;
+  border-right: 280px solid transparent;
+  border-bottom: 200px solid rgba(40,28,10,0.9);
+  opacity: 0.6;
+}
+.hero-pyramid::after {
+  content: ''; position: absolute; bottom: -200px; left: -220px;
+  width: 0; height: 0;
+  border-left: 220px solid transparent;
+  border-right: 220px solid transparent;
+  border-bottom: 160px solid rgba(30,20,5,0.8);
+}
+.hero-content { position: relative; z-index: 2; text-align: center; }
+.hero-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.3em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 8vw, 96px); font-weight: 700;
+  color: var(--sand-light); line-height: 1.0; margin-bottom: 8px;
+}
+.hero-subtitle {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(20px, 3vw, 32px); color: var(--gold-light); margin-bottom: 32px;
+}
+.hero-meta {
+  font-family: 'Montserrat', sans-serif; font-size: 13px;
+  color: var(--sand); letter-spacing: 0.15em; margin-bottom: 48px;
+}
+.hero-stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-number {
+  font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 800;
+  color: var(--gold-light); display: block;
+}
+.stat-label { font-size: 11px; color: var(--sand); letter-spacing: 0.1em; }
+
+/* ── SECTION ── */
+.section { max-width: 860px; margin: 0 auto; padding: 64px 24px; }
+.section-label {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 800;
+  letter-spacing: 0.35em; text-transform: uppercase; color: var(--sand); margin-bottom: 8px;
+}
+.section-heading {
+  font-family: 'Playfair Display', serif; font-size: 28px; color: var(--night);
+  margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--divider);
+}
+
+/* ── FLIGHT CARDS ── */
+.flight-group { margin-bottom: 40px; }
+.flight-group-label {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--lapis); margin-bottom: 12px;
+}
+.flight-card {
+  background: white; border: 1px solid var(--divider); border-radius: 4px; overflow: hidden; margin-bottom: 8px;
+}
+.flight-leg {
+  display: grid; grid-template-columns: 1fr auto 1fr;
+  align-items: center; padding: 20px 24px; gap: 16px;
+}
+.flight-leg + .flight-leg { border-top: 1px dashed var(--divider); }
+.flight-airport { font-family: 'Montserrat', sans-serif; }
+.flight-code { font-size: 24px; font-weight: 800; color: var(--night); display: block; }
+.flight-time { font-size: 14px; font-weight: 600; color: var(--lapis); margin-top: 2px; display: block; }
+.flight-city { font-size: 11px; color: var(--text-light); margin-top: 2px; display: block; }
+.flight-middle { text-align: center; }
+.flight-number { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; color: var(--text-light); letter-spacing: 0.1em; display: block; margin-bottom: 4px; }
+.flight-arrow { color: var(--sand); font-size: 20px; display: block; }
+.flight-airport.right { text-align: right; }
+.flight-cost-row {
+  background: var(--papyrus); padding: 12px 24px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.flight-cost-label { font-size: 11px; color: var(--text-light); }
+.flight-cost-amount { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--night); font-size: 14px; }
+
+/* ── ITINERARY ── */
+.itinerary-bg { background: var(--night); padding: 64px 0; }
+.itinerary-bg .section-label { color: var(--gold); }
+.itinerary-bg .section-heading { color: var(--sand-light); border-color: rgba(212,176,150,0.3); }
+
+/* plan tabs */
+.plan-tabs { display: flex; gap: 0; margin-bottom: 32px; border-radius: 6px; overflow: hidden; border: 1px solid rgba(212,176,150,0.3); }
+.plan-tab-btn {
+  flex: 1; padding: 14px 20px; border: none; cursor: pointer;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600;
+  letter-spacing: 0.1em; transition: all 0.2s;
+  background: rgba(255,255,255,0.05); color: var(--sand);
+}
+.plan-tab-btn.active { background: var(--gold); color: var(--night); }
+.plan-tab-btn:first-child { border-right: 1px solid rgba(212,176,150,0.3); }
+
+.plan-panel { display: none; }
+.plan-panel.active { display: block; }
+
+/* day cards */
+.day-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(212,176,150,0.2);
+  border-radius: 4px; margin-bottom: 12px; overflow: hidden;
+}
+.day-header { display: flex; align-items: stretch; cursor: pointer; user-select: none; }
+.day-date-block {
+  background: var(--gold); color: var(--night);
+  padding: 16px 18px; min-width: 88px; text-align: center;
+  display: flex; flex-direction: column; justify-content: center; flex-shrink: 0;
+}
+.day-month { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.8; }
+.day-num { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; line-height: 1; margin: 2px 0; }
+.day-weekday { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.1em; }
+.day-info { padding: 14px 16px; flex: 1; }
+.day-theme { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--sand-light); margin-bottom: 4px; }
+.day-location { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+.day-chevron { padding: 14px 16px; display: flex; align-items: center; color: var(--sand); font-size: 18px; transition: transform 0.2s; }
+.day-chevron.open { transform: rotate(180deg); }
+
+.day-body { display: none; padding: 16px 20px 20px; border-top: 1px solid rgba(212,176,150,0.15); }
+.day-body.open { display: block; }
+
+.day-note {
+  font-size: 12px; color: rgba(200,169,126,0.8);
+  background: rgba(212,160,23,0.08); border-left: 2px solid var(--gold);
+  padding: 8px 12px; border-radius: 0 4px 4px 0; margin-bottom: 16px;
+}
+
+/* timeline */
+.tl-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+.tl-time {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+  color: var(--gold); min-width: 56px; padding-top: 3px; text-align: right; flex-shrink: 0;
+}
+.tl-dot-col { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.tl-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 5px; }
+.tl-vline { width: 1px; flex: 1; min-height: 12px; background: rgba(212,176,150,0.25); margin-top: 3px; }
+.tl-content { flex: 1; font-size: 13px; color: var(--sand-light); line-height: 1.6; padding-top: 2px; }
+.tl-content strong { color: white; font-weight: 600; }
+.tl-content .sub { font-size: 12px; color: rgba(200,169,126,0.75); margin-top: 2px; }
+
+.badge {
+  display: inline-block; font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.05em;
+  padding: 2px 7px; border-radius: 3px; margin-left: 6px; vertical-align: middle;
+}
+.b-flight { background: #1B4F8C; color: #B5D4F4; }
+.b-food   { background: #27500A; color: #C0DD97; }
+.b-tip    { background: #633806; color: #FAC775; }
+
+/* ── BUDGET ── */
+.budget-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 16px; }
+.budget-item { background: white; border: 1px solid var(--divider); border-radius: 4px; padding: 20px; }
+.budget-cat { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-light); margin-bottom: 8px; }
+.budget-amount { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--night); }
+.budget-note { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+.budget-total {
+  background: var(--night); color: white; border-radius: 4px; padding: 20px;
+  display: flex; justify-content: space-between; align-items: center; margin-top: 16px;
+}
+.budget-total-label { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); }
+.budget-total-amount { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; color: var(--gold-light); }
+
+/* ── MEMO ── */
+.memo-card { background: white; border: 1px solid var(--divider); border-radius: 4px; padding: 24px; margin-bottom: 16px; }
+.memo-card h3 { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--lapis); margin-bottom: 12px; }
+.memo-card ul { list-style: none; font-size: 14px; color: var(--text); }
+.memo-card ul li { padding: 6px 0; border-bottom: 1px solid var(--sand-pale); display: flex; align-items: flex-start; gap: 10px; }
+.memo-card ul li:last-child { border-bottom: none; }
+.memo-card ul li::before { content: '→'; color: var(--gold); font-family: 'Montserrat', sans-serif; flex-shrink: 0; }
+
+footer { background: var(--night-mid); text-align: center; padding: 32px 24px; color: var(--text-light); font-size: 12px; }
+.footer-title { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 20px; margin-bottom: 8px; }
+
+@media (max-width: 600px) {
+  .flight-leg { grid-template-columns: 1fr; text-align: center; }
+  .flight-airport.right { text-align: center; }
+  .hero-stats { gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-stars"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✈ 5人のエジプト探検</p>
+    <h1 class="hero-title">EGYPT</h1>
+    <p class="hero-subtitle">砂漠と遺跡の旅</p>
+    <p class="hero-meta">2026年10月8日（木）〜 10月17日（土）</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-number">9</span><span class="stat-label">泊10日</span></div>
+      <div class="stat"><span class="stat-number">5</span><span class="stat-label">人旅</span></div>
+      <div class="stat"><span class="stat-number">2</span><span class="stat-label">都市</span></div>
+    </div>
+  </div>
+  <div class="hero-pyramid"></div>
+</section>
+
+<!-- FLIGHTS -->
+<section class="section">
+  <p class="section-label">✈ フライト情報</p>
+  <h2 class="section-heading">確定済みフライト</h2>
+
+  <div class="flight-group">
+    <p class="flight-group-label">▶ 東京組 往路</p>
+    <div class="flight-card">
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">NRT</span><span class="flight-time">22:25</span><span class="flight-city">成田国際空港</span></div>
+        <div class="flight-middle"><span class="flight-number">QR807 / カタール航空</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">DOH</span><span class="flight-time">翌04:05</span><span class="flight-city">ドーハ・ハマド国際空港</span></div>
+      </div>
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">DOH</span><span class="flight-time">07:25</span><span class="flight-city">ドーハ・ハマド国際空港</span></div>
+        <div class="flight-middle"><span class="flight-number">QR1307 / カタール航空</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">CAI</span><span class="flight-time">11:00</span><span class="flight-city">カイロ国際空港</span></div>
+      </div>
+      <div class="flight-cost-row"><span class="flight-cost-label">10月8日(木) 出発</span></div>
+    </div>
+  </div>
+
+  <div class="flight-group">
+    <p class="flight-group-label">▶ 大阪組 往路</p>
+    <div class="flight-card">
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">KIX</span><span class="flight-time">23:45</span><span class="flight-city">関西国際空港</span></div>
+        <div class="flight-middle"><span class="flight-number">ドーハ乗継</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">CAI</span><span class="flight-time">翌11:05</span><span class="flight-city">カイロ国際空港</span></div>
+      </div>
+      <div class="flight-cost-row"><span class="flight-cost-label">10月8日(木) 出発 ※ドーハ04:35着・08:15発</span></div>
+    </div>
+  </div>
+
+  <div class="flight-group">
+    <p class="flight-group-label">▶ 国内線（カイロ ⇆ ルクソール）</p>
+    <div class="flight-card">
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">CAI</span><span class="flight-time">08:25</span><span class="flight-city">カイロ国際空港 T1</span></div>
+        <div class="flight-middle"><span class="flight-number">NP071 / ナイル航空</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">LXR</span><span class="flight-time">09:30</span><span class="flight-city">ルクソール国際空港</span></div>
+      </div>
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">LXR</span><span class="flight-time">10:30</span><span class="flight-city">ルクソール国際空港</span></div>
+        <div class="flight-middle"><span class="flight-number">NP072 / ナイル航空</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">CAI</span><span class="flight-time">11:35</span><span class="flight-city">カイロ国際空港 T1</span></div>
+      </div>
+      <div class="flight-cost-row"><span class="flight-cost-label">10/12出発 / 10/14帰着</span><span class="flight-cost-amount">¥54,920 / 人</span></div>
+    </div>
+  </div>
+
+  <div class="flight-group">
+    <p class="flight-group-label">▶ 復路（全員）</p>
+    <div class="flight-card">
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">CAI</span><span class="flight-time">14:05</span><span class="flight-city">カイロ国際空港</span></div>
+        <div class="flight-middle"><span class="flight-number">QR1304 / カタール航空</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">DOH</span><span class="flight-time">17:10</span><span class="flight-city">ドーハ・ハマド国際空港</span></div>
+      </div>
+      <div class="flight-leg">
+        <div class="flight-airport"><span class="flight-code">DOH</span><span class="flight-time">20:35</span><span class="flight-city">ドーハ・ハマド国際空港</span></div>
+        <div class="flight-middle"><span class="flight-number">QR808 / カタール航空</span><span class="flight-arrow">→</span><span class="flight-number">エコノミー</span></div>
+        <div class="flight-airport right"><span class="flight-code">NRT</span><span class="flight-time">翌12:55</span><span class="flight-city">成田国際空港</span></div>
+      </div>
+      <div class="flight-cost-row"><span class="flight-cost-label">10月16日(金) 出発 → 17日(土) 帰国</span><span class="flight-cost-amount">¥196,890 / 人（往復込）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section class="itinerary-bg">
+  <div class="section">
+    <p class="section-label">📅 旅程</p>
+    <h2 class="section-heading">10日間のスケジュール</h2>
+
+    <div class="plan-tabs">
+      <button class="plan-tab-btn active" onclick="switchPlan('packed')">⚡ 詰め込み型 — できる限り多く回る</button>
+      <button class="plan-tab-btn" onclick="switchPlan('relaxed')">☕ ゆったり型 — 厳選してじっくり楽しむ</button>
+    </div>
+
+    <!-- ======== 詰め込み型 ======== -->
+    <div id="packed" class="plan-panel active">
+
+      <!-- 10/8 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">8</span><span class="day-weekday">THU</span></div>
+          <div class="day-info"><p class="day-theme">出国日</p><p class="day-location">🇯🇵 日本 → エジプトへ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="tl-row"><span class="tl-time">〜22:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>成田空港 集合・チェックイン</strong><div class="sub">出発2時間前を目安に集合</div></div></div>
+          <div class="tl-row"><span class="tl-time">22:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>成田発</strong><span class="badge b-flight">QR807</span><div class="sub">東京組 / カタール航空 エコノミー</div></div></div>
+          <div class="tl-row"><span class="tl-time">23:45</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div></div><div class="tl-content"><strong>関西空港発</strong><div class="sub">大阪組 / ドーハ乗継でカイロへ</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/9 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">9</span><span class="day-weekday">FRI</span></div>
+          <div class="day-info"><p class="day-theme">カイロ到着 → ピラミッド → 博物館</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">機内泊明け。到着後すぐ動く詰め込みプラン。体力勝負の初日。</div>
+          <div class="tl-row"><span class="tl-time">04:05</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ドーハ着</strong>（東京組）乗継待ち約3時間<div class="sub">ラウンジ利用可能なら休憩推奨</div></div></div>
+          <div class="tl-row"><span class="tl-time">07:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ドーハ発</strong><span class="badge b-flight">QR1307</span></div></div>
+          <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 着 — 全員合流</strong><div class="sub">入国審査・両替・SIMカード購入。空港からタクシーで約1時間</div></div></div>
+          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルに荷物を預ける</strong><div class="sub">部屋に入れなくてもOK。すぐ出発</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — コシャリ</strong><span class="badge b-food">現地飯</span><div class="sub">エジプト国民食。米・パスタ・豆・トマトソース。1食100円程度</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">ラクダ乗り体験も可。入場料：大人250EGP。チャータータクシー推奨</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>グランド・エジプシャン博物館（GEM）</strong><div class="sub">ツタンカーメン黄金マスク等。所要2〜3時間。閉館21時</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — コフタ・ターメイヤ</strong><span class="badge b-food">現地飯</span><div class="sub">ひき肉スパイスグリル・エジプト式ファラフェル</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong><div class="sub">翌朝6時出発のため早めに</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/10 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">10</span><span class="day-weekday">SAT</span></div>
+          <div class="day-info"><p class="day-theme">砂漠キャンプツアー 出発</p><p class="day-location">🏜️ 砂漠</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">早朝出発でツアーを最大限満喫。白砂漠・黒砂漠コースが定番。</div>
+          <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ出発</strong><div class="sub">ツアー業者のジープ。バフレイヤ・オアシスまで約4時間</div></div></div>
+          <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>黒砂漠・クリスタル山</strong><div class="sub">玄武岩の黒い丘。クリスタルが散らばる独特の風景</div></div></div>
+          <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でランチ</strong><span class="badge b-food">現地飯</span><div class="sub">ベドウィン式。焚き火・鶏肉・野菜スープ</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>白砂漠 — キノコ岩・鶏岩</strong><div class="sub">石灰岩が風化した幻想的な白い岩群。夕日に染まる絶景</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠キャンプ泊</strong><div class="sub">テント・焚き火。砂漠の夜は冷え込む（10月は15℃前後）</div></div></div>
+          <div class="tl-row"><span class="tl-time">夜</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div></div><div class="tl-content"><strong>夕食＆星空観賞</strong><span class="badge b-food">現地飯</span><div class="sub">光害ゼロで天の川が見える</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/11 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">11</span><span class="day-weekday">SUN</span></div>
+          <div class="day-info"><p class="day-theme">砂漠帰着 → カイロ文化観光（複数スポット）</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">午前は砂漠の日の出を楽しみながら帰着。夕方まで文化観光を詰め込む。</div>
+          <div class="tl-row"><span class="tl-time">05:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠の日の出鑑賞</strong><div class="sub">白砂漠で迎える朝日は最高のハイライト</div></div></div>
+          <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>朝食 — キャンプ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">08:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロへ出発</strong><div class="sub">ジープで約4時間。移動中は仮眠推奨</div></div></div>
+          <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ着・ホテルに荷物を置く</strong></div></div>
+          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — フール＆アイシュ</strong><span class="badge b-food">現地飯</span><div class="sub">豆スープ＆パン。エジプトの定番軽食</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場</strong><div class="sub">香辛料・ランプ・お土産。値段交渉必須</div></div></div>
+          <div class="tl-row"><span class="tl-time">15:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>アル＝アズハル・モスク</strong><div class="sub">世界最古の大学モスク。無料見学可</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ムハンマド・アリー・モスク（シタデル）</strong><div class="sub">カイロ市内を一望。夕景が絶景</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ケバブ・ハンム（鳩料理）・コフタ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿い散歩 or 夜クルーズ</strong><div class="sub">翌朝5:30起床のため21時ごろ切り上げ</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/12 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">12</span><span class="day-weekday">MON</span></div>
+          <div class="day-info"><p class="day-theme">ルクソール移動 → カルナック → ルクソール神殿</p><p class="day-location">🏛️ ルクソール</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">国内線でルクソール入り。東岸の2大神殿を午後に集中攻略。</div>
+          <div class="tl-row"><span class="tl-time">05:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・ホテル朝食</strong></div></div>
+          <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 へ移動</strong><div class="sub">タクシーで30〜40分。7時着を目標に</div></div></div>
+          <div class="tl-row"><span class="tl-time">08:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ発</strong><span class="badge b-flight">NP071 ナイル航空</span><div class="sub">所要約1時間</div></div></div>
+          <div class="tl-row"><span class="tl-time">09:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール国際空港 着</strong><div class="sub">チャータータクシー手配（Uber不可）。1日チャーターが効率的</div></div></div>
+          <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソールホテル チェックイン・荷物預け</strong></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>軽食</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">11:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール博物館（オプション）</strong><div class="sub">展示密度が高い穴場。所要1時間。入場200EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — マフシー・モロヘイヤスープ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿</strong><div class="sub">世界最大の神殿群。スフィンクス参道・大列柱室。所要2時間。入場450EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">17:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿</strong><div class="sub">ライトアップが美しい夜間開放（〜21時）。入場350EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿いレストラン</strong><span class="badge b-food">現地飯</span><div class="sub">ナイルパーチのグリルなど</div></div></div>
+          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong><div class="sub">翌朝7時出発</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/13 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">13</span><span class="day-weekday">TUE</span></div>
+          <div class="day-info"><p class="day-theme">王家の谷 → ハトシェプスト → 貴族の墓 → フェルッカ</p><p class="day-location">🏛️ ルクソール西岸</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">西岸を丸一日かけて制覇。午前中の涼しいうちに遺跡を回り、午後はナイルで締める。</div>
+          <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・ホテル朝食</strong></div></div>
+          <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>チャータータクシーで西岸へ</strong><div class="sub">ローカルフェリーで渡河 → タクシー乗換</div></div></div>
+          <div class="tl-row"><span class="tl-time">08:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>王家の谷</strong><div class="sub">基本チケット3墓込み。KV62（ツタンカーメン）は別料金。所要1.5〜2時間</div></div></div>
+          <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハトシェプスト女王葬祭殿</strong><div class="sub">3段テラスの壮大な神殿。王家の谷から車で10分。入場300EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">11:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>メムノンの巨像（無料）</strong><div class="sub">道沿いに立つ2体の巨大像。5分で見られる</div></div></div>
+          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — 西岸ローカル食堂</strong><span class="badge b-food">現地飯</span><div class="sub">地元民の食堂でコフタ・サラダ</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>貴族の墓（オプション）</strong><div class="sub">鮮やかな壁画が残る穴場スポット</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川フェルッカクルーズ</strong><div class="sub">帆船で1〜2時間。日没を川の上で。1隻5人チャーター500〜800EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ハンム（ハト料理）に挑戦</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷物準備</strong><div class="sub">翌朝10:30発のため余裕あり</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/14 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">14</span><span class="day-weekday">WED</span></div>
+          <div class="day-info"><p class="day-theme">ルクソール発 → カイロ帰着 → 旧博物館 → コプト地区</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">午前中に移動完了。午後はカイロの未踏スポットを追加で攻略。</div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテル チェックアウト・空港へ</strong></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール発</strong><span class="badge b-flight">NP072 ナイル航空</span></div></div>
+          <div class="tl-row"><span class="tl-time">11:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 着</strong><div class="sub">タクシーでカイロ市内へ（約1時間）</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — コシャリ屋台</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>エジプト考古学博物館（旧博物館）</strong><div class="sub">本物のミイラ・副葬品。GEMとは別の見どころ</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>コプト地区（オールド・カイロ）</strong><div class="sub">初期キリスト教エジプトの遺産。ハンギング・チャーチなど</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿いレストラン</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/15 詰め込み -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">15</span><span class="day-weekday">THU</span></div>
+          <div class="day-info"><p class="day-theme">カイロ フリーday — 市場・タワー・昼クルーズ・アンティーク街</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">最終日はショッピングと食の深掘りデー。翌14:05発なので余裕あり。</div>
+          <div class="tl-row"><span class="tl-time">08:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>朝食 — エジプシャン・ブレックファスト</strong><span class="badge b-food">現地飯</span><div class="sub">フール・ターメイヤ・チーズ・アイシュ</div></div></div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場 本格散策</strong><div class="sub">パピルス・アラバスター・スパイス・ランプ。値切り交渉を楽しむ</div></div></div>
+          <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワー</strong><div class="sub">高さ187m。カイロ全景とピラミッドを一望。入場200EGP</div></div></div>
+          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — アブ・タレク（コシャリ専門店）</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川クルーズ（デイタイム）</strong><div class="sub">フェルッカでカイロの摩天楼とピラミッドを同時に</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ズアイラ通り・アンティーク街</strong><div class="sub">ヴィンテージ雑貨・エジプト工芸品</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル・クルーズ船ディナー</strong><span class="badge b-food">現地飯</span><div class="sub">旅の締めくくり。ウードの生演奏あり</div></div></div>
+          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷造り・就寝</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/16 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">16</span><span class="day-weekday">FRI</span></div>
+          <div class="day-info"><p class="day-theme">帰国日 → ドーハ乗継</p><p class="day-location">🇪🇬 カイロ → ドーハ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・朝食・チェックアウト</strong></div></div>
+          <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港へ出発</strong><div class="sub">出発2時間前を目安</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:05</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ発</strong><span class="badge b-flight">QR1304</span></div></div>
+          <div class="tl-row"><span class="tl-time">17:10</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ドーハ着</strong>　乗継 約3時間25分</div></div>
+          <div class="tl-row"><span class="tl-time">20:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div></div><div class="tl-content"><strong>ドーハ発</strong><span class="badge b-flight">QR808</span></div></div>
+        </div>
+      </div>
+
+      <!-- 10/17 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">17</span><span class="day-weekday">SAT</span></div>
+          <div class="day-info"><p class="day-theme">帰国！ お疲れ様でした</p><p class="day-location">🇯🇵 成田着</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="tl-row"><span class="tl-time">12:55</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div></div><div class="tl-content"><strong>成田国際空港 着 🎉</strong><div class="sub">入国審査 → 荷物受取 → 解散</div></div></div>
+        </div>
+      </div>
+    </div><!-- /packed -->
+
+    <!-- ======== ゆったり型 ======== -->
+    <div id="relaxed" class="plan-panel">
+
+      <!-- 10/8 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">8</span><span class="day-weekday">THU</span></div>
+          <div class="day-info"><p class="day-theme">出国日</p><p class="day-location">🇯🇵 日本 → エジプトへ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="tl-row"><span class="tl-time">〜22:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>成田空港 集合・チェックイン</strong></div></div>
+          <div class="tl-row"><span class="tl-time">22:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>成田発</strong><span class="badge b-flight">QR807</span><div class="sub">東京組</div></div></div>
+          <div class="tl-row"><span class="tl-time">23:45</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div></div><div class="tl-content"><strong>関西空港発</strong><div class="sub">大阪組</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/9 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">9</span><span class="day-weekday">FRI</span></div>
+          <div class="day-info"><p class="day-theme">カイロ到着 → ピラミッドをじっくり</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">到着後は体を慣らすことを優先。ピラミッドに集中して深く楽しむ。博物館は翌日以降へ。</div>
+          <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 着 — 全員合流</strong><div class="sub">入国・両替・SIM購入（約1〜1.5時間）</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルへ移動・チェックイン・休憩</strong><div class="sub">1〜2時間ゆっくり休んでリセット</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>遅めランチ — コシャリ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">15:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">夕方の涼しい時間帯に。夕日に染まるピラミッドはゆっくり2〜3時間</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ケバブ・コフタ</strong><span class="badge b-food">現地飯</span><div class="sub">旅の乾杯を</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/10 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">10</span><span class="day-weekday">SAT</span></div>
+          <div class="day-info"><p class="day-theme">砂漠キャンプツアー 出発</p><p class="day-location">🏜️ 砂漠</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">砂漠での時間はのんびりと。昼寝・写真タイムを惜しまない。</div>
+          <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ出発</strong><div class="sub">1時間遅めスタート。道中の景色も楽しむ</div></div></div>
+          <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>黒砂漠・クリスタル山</strong><div class="sub">写真タイムをたっぷりとる</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でランチ＆昼寝</strong><span class="badge b-food">現地飯</span><div class="sub">砂の上で昼寝。誰にも邪魔されない最高の昼休み</div></div></div>
+          <div class="tl-row"><span class="tl-time">15:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>白砂漠でゆっくり散策・写真</strong></div></div>
+          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>キャンプ設営・焚き火</strong></div></div>
+          <div class="tl-row"><span class="tl-time">夜</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div></div><div class="tl-content"><strong>夕食＆星空観賞</strong><span class="badge b-food">現地飯</span><div class="sub">天の川をゆっくり眺める夜</div></div></div>
+        </div>
+      </div>
+
+      <!-- 10/11 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">11</span><span class="day-weekday">SUN</span></div>
+          <div class="day-info"><p class="day-theme">砂漠帰着 → 午後から1〜2スポット散策</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">午前中はゆっくり砂漠を楽しんで帰着。午後は1〜2スポットに絞って深く楽しむ。</div>
+          <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠の日の出鑑賞</strong></div></div>
+          <div class="tl-row"><span class="tl-time">07:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>朝食 — キャンプ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロへ出発</strong><div class="sub">車内でゆっくり休憩・仮眠</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテル着・シャワー・休憩</strong><div class="sub">1時間ゆっくり回復</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — 地元カフェ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場をぶらぶら</strong><div class="sub">紅茶（カルカデ）をもらいながら店主と話す。急がない</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>アル＝アズハル・モスクで夕暮れ</strong><div class="sub">マグリブ（日没）の礼拝を外から体感</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — じっくり本格エジプト料理</strong><span class="badge b-food">現地飯</span><div class="sub">複数の料理をコースで</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/12 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">12</span><span class="day-weekday">MON</span></div>
+          <div class="day-info"><p class="day-theme">ルクソール移動 → カルナック → 夜の神殿</p><p class="day-location">🏛️ ルクソール</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">移動後は1スポットに絞って深く。ルクソール神殿のライトアップを夜のメインに。</div>
+          <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・朝食</strong></div></div>
+          <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 へ移動</strong></div></div>
+          <div class="tl-row"><span class="tl-time">08:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ発</strong><span class="badge b-flight">NP071 ナイル航空</span></div></div>
+          <div class="tl-row"><span class="tl-time">09:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール着 — チャータータクシー手配</strong></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルチェックイン・休憩</strong></div></div>
+          <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — ルクソール東岸の地元食堂</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿 — たっぷり2.5時間</strong><div class="sub">急がずに各聖域をじっくり。オーディオガイド推奨</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿いカフェでひと休み</strong><div class="sub">ミント・ティーでまったり</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿い</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿 ナイトビジット</strong><div class="sub">ライトアップされた幻想的な神殿。21時閉館</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/13 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">13</span><span class="day-weekday">TUE</span></div>
+          <div class="day-info"><p class="day-theme">王家の谷 → ゆっくりランチ → フェルッカ</p><p class="day-location">🏛️ ルクソール西岸</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">西岸は2スポットに絞り、食事とナイルクルーズに時間と体力を使う。</div>
+          <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・ゆっくり朝食</strong></div></div>
+          <div class="tl-row"><span class="tl-time">08:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>チャータータクシーで西岸へ</strong></div></div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>王家の谷 — じっくり2.5時間</strong><div class="sub">5〜6墓ゆっくり見学。ツタンカーメン墓は別料金追加で必見</div></div></div>
+          <div class="tl-row"><span class="tl-time">11:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハトシェプスト女王葬祭殿</strong><div class="sub">テラスからの眺めをゆっくり楽しむ</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — ローカル食堂でゆっくり2時間</strong><span class="badge b-food">現地飯</span><div class="sub">色々な料理を注文して試す。店主にスパイスの話を聞く</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川フェルッカクルーズ — 2時間</strong><div class="sub">夕日の中のナイルをゆっくり漂う</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ルクソール最後の夜をじっくり</strong><span class="badge b-food">現地飯</span><div class="sub">コース料理でエジプシャンディナー満喫</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷物まとめ</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/14 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">14</span><span class="day-weekday">WED</span></div>
+          <div class="day-info"><p class="day-theme">ルクソール発 → カイロ帰着 → 散歩＆ディナークルーズ</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">移動日は無理をせず。夕食をメインイベントに。</div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>チェックアウト・空港へ</strong></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール発</strong><span class="badge b-flight">NP072 ナイル航空</span></div></div>
+          <div class="tl-row"><span class="tl-time">11:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 着</strong></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルチェックイン・シャワー・休憩</strong><div class="sub">1.5〜2時間ゆっくりリセット</div></div></div>
+          <div class="tl-row"><span class="tl-time">15:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>遅めランチ — カイロのカフェ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿い散歩＆コルニーシュ</strong><div class="sub">急がずカイロの街を感じる</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川ディナークルーズ</strong><span class="badge b-food">現地飯</span><div class="sub">船上から見るカイロ夜景。生演奏付きプランも。旅のご褒美ディナー</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/15 ゆったり -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">15</span><span class="day-weekday">THU</span></div>
+          <div class="day-info"><p class="day-theme">カイロ フリーday — GEM博物館＋市場＋タワー</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="day-note">ゆったり型の真骨頂。朝食だけで2時間使ってもいい。</div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>朝食 — カイロのカフェでゆっくり</strong><span class="badge b-food">現地飯</span><div class="sub">フール・チーズ・アイシュ。エジプシャンコーヒー＆ミントティーも</div></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>グランド・エジプシャン博物館（GEM）</strong><div class="sub">3〜4時間たっぷり。ツタンカーメン黄金マスクなど世界一の規模を堪能</div></div></div>
+          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — じっくり2時間ランチ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場でお土産購入</strong><div class="sub">最終日前日なので余裕を持って選べる</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワーで夕景</strong><div class="sub">沈む夕日とカイロ全景。ピラミッドも見える</div></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — エジプト料理フルコース</strong><span class="badge b-food">現地飯</span><div class="sub">5人でゆっくり旅を振り返りながら</div></div></div>
+          <div class="tl-row"><span class="tl-time">22:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷造り・就寝</strong></div></div>
+        </div>
+      </div>
+
+      <!-- 10/16 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">16</span><span class="day-weekday">FRI</span></div>
+          <div class="day-info"><p class="day-theme">帰国日 → ドーハ乗継</p><p class="day-location">🇪🇬 カイロ → ドーハ</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・朝食・チェックアウト</strong></div></div>
+          <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港へ出発</strong></div></div>
+          <div class="tl-row"><span class="tl-time">14:05</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ発</strong><span class="badge b-flight">QR1304</span></div></div>
+          <div class="tl-row"><span class="tl-time">17:10</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ドーハ着</strong>　乗継 約3時間25分</div></div>
+          <div class="tl-row"><span class="tl-time">20:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div></div><div class="tl-content"><strong>ドーハ発</strong><span class="badge b-flight">QR808</span></div></div>
+        </div>
+      </div>
+
+      <!-- 10/17 -->
+      <div class="day-card">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">17</span><span class="day-weekday">SAT</span></div>
+          <div class="day-info"><p class="day-theme">帰国！ お疲れ様でした</p><p class="day-location">🇯🇵 成田着</p></div>
+          <div class="day-chevron">▼</div>
+        </div>
+        <div class="day-body">
+          <div class="tl-row"><span class="tl-time">12:55</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div></div><div class="tl-content"><strong>成田国際空港 着 🎉</strong><div class="sub">入国審査 → 荷物受取 → 解散。お疲れ様でした！</div></div></div>
+        </div>
+      </div>
+    </div><!-- /relaxed -->
+
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section class="section">
+  <p class="section-label">💰 予算</p>
+  <h2 class="section-heading">確定費用まとめ</h2>
+  <div class="budget-grid">
+    <div class="budget-item">
+      <p class="budget-cat">✈ 国際線（往復）</p>
+      <p class="budget-amount">¥196,890</p>
+      <p class="budget-note">カタール航空 成田⇆カイロ / 人</p>
+    </div>
+    <div class="budget-item">
+      <p class="budget-cat">✈ 国内線（往復）</p>
+      <p class="budget-amount">¥54,920</p>
+      <p class="budget-note">ナイル航空 カイロ⇆ルクソール / 人</p>
+    </div>
+    <div class="budget-item">
+      <p class="budget-cat">🏨 ホテル</p>
+      <p class="budget-amount">未定</p>
+      <p class="budget-note">カイロ + ルクソール各宿泊</p>
+    </div>
+    <div class="budget-item">
+      <p class="budget-cat">🎟️ アクティビティ等</p>
+      <p class="budget-amount">未定</p>
+      <p class="budget-note">砂漠ツアー・入場料など</p>
+    </div>
+  </div>
+  <div class="budget-total">
+    <span class="budget-total-label">フライト合計 / 人</span>
+    <span class="budget-total-amount">¥251,810</span>
+  </div>
+</section>
+
+<!-- MEMO -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">📝 グループメモ</p>
+  <h2 class="section-heading">集合・ロジスティクス</h2>
+  <div class="memo-card">
+    <h3>フライト集合</h3>
+    <ul>
+      <li>東京組：10/8(木) 22:25 成田発 QR807</li>
+      <li>大阪組：10/8(木) 23:45 関空発（ドーハ乗継）</li>
+      <li>10/9(金) 11:00 カイロにて全員合流</li>
+    </ul>
+  </div>
+  <div class="memo-card">
+    <h3>ルクソールの注意点</h3>
+    <ul>
+      <li>Uberは使えない → チャータータクシーが基本</li>
+      <li>10/12(月) カイロ空港 T1 に7時頃到着目安（NP071 08:25発）</li>
+      <li>10/14(水) NP072 10:30発 → 11:35カイロ着</li>
+    </ul>
+  </div>
+  <div class="memo-card">
+    <h3>未定 / 要調整</h3>
+    <ul>
+      <li>カイロ・ルクソール各ホテル手配</li>
+      <li>砂漠キャンプツアーの詳細・予約</li>
+      <li>各神殿の入場チケット事前予約確認</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-title">Egypt 2026</p>
+  <p>5人の冒険 · 2026年10月8日〜17日</p>
+</footer>
+
+<script>
+function switchPlan(plan) {
+  document.getElementById('packed').classList.toggle('active', plan === 'packed');
+  document.getElementById('relaxed').classList.toggle('active', plan === 'relaxed');
+  document.querySelectorAll('.plan-tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && plan === 'packed') || (i === 1 && plan === 'relaxed'));
+  });
+}
+function toggleDay(header) {
+  var body = header.nextElementSibling;
+  var chev = header.querySelector('.day-chevron');
+  var open = body.classList.contains('open');
+  body.classList.toggle('open', !open);
+  chev.classList.toggle('open', !open);
+}
+</script>
+</body>
+</html>
