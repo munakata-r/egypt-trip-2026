@@ -345,7 +345,30 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   .hero-stars, .hero-wing { animation: none !important; }
   body.anim-on .reveal { opacity: 1 !important; transform: none !important; }
 }
+
+/* ── MAP（その日の移動マップ） ── */
+.day-map-label {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 6px; margin-bottom: 8px;
+}
+.day-map {
+  height: 220px; width: 100%; border-radius: 6px; overflow: hidden;
+  margin-bottom: 16px; border: 1px solid rgba(212,176,150,0.3); background: #0d0a05;
+}
+.leaflet-container { font-family: 'Noto Sans JP', sans-serif; background: #e8e2d5; }
+.leaflet-div-icon { background: transparent; border: none; }
+.mk-badge {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--gold); color: #1A1209;
+  font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 13px;
+  border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.45);
+}
+@media (max-width: 600px) { .day-map { height: 200px; } }
 </style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
 
@@ -941,7 +964,66 @@ function toggleDay(header) {
   var open = body.classList.contains('open');
   body.classList.toggle('open', !open);
   chev.classList.toggle('open', !open);
+  if (!open) { var m = body.querySelector('.day-map'); if (m) dayMapInit(m); }
 }
+
+// ── その日の移動マップ（Leaflet + OpenStreetMap / APIキー不要） ──
+var DAY_ROUTES = {
+  '9':  [[30.1219,31.4056,'カイロ国際空港 着'],[29.9773,31.1325,'ギザのピラミッド＆スフィンクス'],[29.9939,31.1196,'グランド・エジプシャン博物館（GEM）']],
+  '10': [[30.0444,31.2357,'カイロ 出発'],[28.10,28.70,'黒砂漠・クリスタル山'],[27.20,28.18,'白砂漠 キャンプ泊']],
+  '11': [[27.20,28.18,'白砂漠'],[30.0444,31.2357,'カイロ 夕方帰着']],
+  '12': [[30.1219,31.4056,'カイロ空港'],[25.6710,32.7066,'ルクソール空港'],[25.7188,32.6573,'カルナック神殿'],[25.6997,32.6390,'ルクソール神殿']],
+  '13': [[25.7402,32.6014,'王家の谷'],[25.7380,32.6065,'ハトシェプスト女王葬祭殿'],[25.7205,32.6107,'メムノンの巨像'],[25.7000,32.6350,'ナイル川 フェルッカ']],
+  '14': [[25.6710,32.7066,'ルクソール空港'],[30.1219,31.4056,'カイロ空港'],[30.0478,31.2336,'エジプト考古学博物館'],[30.0058,31.2300,'コプト地区（ハンギング・チャーチ）']],
+  '15': [[30.0477,31.2622,'ハン・エル＝ハリーリ市場'],[30.0459,31.2243,'カイロ・タワー'],[30.0444,31.2357,'ナイル川クルーズ']]
+};
+function dayMapInit(container) {
+  if (container.dataset.init || !window.L) return;
+  container.dataset.init = '1';
+  var pts = DAY_ROUTES[container.dataset.route];
+  if (!pts) return;
+  var map = L.map(container, { scrollWheelZoom: false, zoomControl: true });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 19
+  }).addTo(map);
+  var latlngs = [];
+  pts.forEach(function (p, i) {
+    latlngs.push([p[0], p[1]]);
+    var icon = L.divIcon({ className: 'mk', html: '<span class="mk-badge">' + (i + 1) + '</span>', iconSize: [26, 26], iconAnchor: [13, 13] });
+    L.marker([p[0], p[1]], { icon: icon }).addTo(map).bindPopup((i + 1) + '. ' + p[2]);
+  });
+  if (latlngs.length > 1) {
+    L.polyline(latlngs, { color: '#D4A017', weight: 3, opacity: 0.9, dashArray: '6 7' }).addTo(map);
+    map.fitBounds(L.latLngBounds(latlngs).pad(0.25));
+  } else {
+    map.setView(latlngs[0], 13);
+  }
+  setTimeout(function () { map.invalidateSize(); }, 200);
+}
+// 各日程カードにマップ枠を用意（DAY_ROUTES がある日のみ）
+(function () {
+  document.querySelectorAll('.day-card').forEach(function (card) {
+    var numEl = card.querySelector('.day-num');
+    var body = card.querySelector('.day-body');
+    if (!numEl || !body) return;
+    var num = numEl.textContent.trim();
+    if (!DAY_ROUTES[num]) return;
+    var label = document.createElement('p');
+    label.className = 'day-map-label';
+    label.innerHTML = '🗺️ この日の移動';
+    var mapDiv = document.createElement('div');
+    mapDiv.className = 'day-map';
+    mapDiv.dataset.route = num;
+    var note = body.querySelector('.day-note');
+    if (note && note.nextSibling) {
+      body.insertBefore(label, note.nextSibling);
+      body.insertBefore(mapDiv, label.nextSibling);
+    } else {
+      body.insertBefore(mapDiv, body.firstChild);
+      body.insertBefore(label, mapDiv);
+    }
+  });
+})();
 
 // スクロールで浮き上がる演出
 (function () {
