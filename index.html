@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>エジプト旅行 2026 | 4人の旅</title>
+<title>エジプト旅行 2026 | 5人の旅</title>
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#160e09">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Egypt 2026">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@400;600;800&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -461,6 +469,44 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
 .pack-reset { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-light); background: none; border: none; cursor: pointer; text-decoration: underline; margin-top: 14px; }
 .pack-done-msg { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 16px; margin-top: 12px; display: none; }
 .pack-done-msg.show { display: block; }
+
+/* ── 全行程アニメ地図 ── */
+.trip-map-wrap { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid var(--divider); box-shadow: 0 8px 28px rgba(40,28,10,0.18); }
+#trip-map { height: 440px; width: 100%; background: #16243b; }
+.trip-replay {
+  position: absolute; z-index: 500; right: 12px; bottom: 12px;
+  font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+  background: var(--gold); color: var(--night); border: none; border-radius: 22px;
+  padding: 9px 18px; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.trip-replay:hover { background: var(--gold-light); }
+.trip-traveler { font-size: 26px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5)); transition: transform 0.1s linear; }
+.trip-stop-badge {
+  background: var(--lapis); color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800;
+  width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.trip-legend { font-size: 12px; color: var(--text-light); margin-top: 12px; display: flex; gap: 18px; flex-wrap: wrap; }
+.trip-legend span b { color: var(--gold); }
+
+/* ── アラビア語フレーズ集 ── */
+.phrase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 16px; }
+.phrase-card {
+  background: #fff; border: 1px solid var(--divider); border-radius: 8px; padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 4px; position: relative;
+}
+.phrase-jp { font-size: 13px; color: var(--text-light); font-weight: 400; }
+.phrase-ar { font-size: 26px; font-weight: 700; color: var(--night); direction: rtl; line-height: 1.3; }
+.phrase-roma { font-family: 'Montserrat', sans-serif; font-size: 13px; font-style: italic; color: var(--lapis); }
+.phrase-play {
+  position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%;
+  border: none; background: var(--sand-pale); color: var(--gold); font-size: 17px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.phrase-play:hover { background: var(--gold); color: #fff; }
+.phrase-play.speaking { background: var(--gold); color: #fff; animation: phrasePulse 0.9s ease-in-out infinite; }
+@keyframes phrasePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+.phrase-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -595,6 +641,21 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
       </div>
       <div class="flight-cost-row"><span class="flight-cost-label">10月16日(金) 出発 → 17日(土) 帰国</span><span class="flight-cost-amount">¥196,890 / 人（往復込）</span></div>
     </div>
+  </div>
+</section>
+
+<!-- 全行程アニメ地図 -->
+<section class="section">
+  <p class="section-label">🗺️ 旅の全体像</p>
+  <h2 class="section-heading">全行程をたどる</h2>
+  <div class="trip-map-wrap">
+    <div id="trip-map"></div>
+    <button class="trip-replay" id="tripReplay">▶ 旅をたどる</button>
+  </div>
+  <div class="trip-legend">
+    <span><b>✈️ 飛行機</b> カイロ ⇆ ルクソール</span>
+    <span><b>🚙 車</b> カイロ ⇆ 砂漠</span>
+    <span>① カイロ → ② 白砂漠 → ③ カイロ → ④ ルクソール → ⑤ カイロ</span>
   </div>
 </section>
 
@@ -1067,6 +1128,14 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   </div>
 </section>
 
+<!-- アラビア語フレーズ集 -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🗣️ 現地で使える</p>
+  <h2 class="section-heading">エジプト・アラビア語フレーズ集</h2>
+  <div class="phrase-grid" id="phraseGrid"></div>
+  <p class="phrase-note">🔊 をタップすると音声で読み上げます（端末にアラビア語の音声が入っている場合）。市場での値段交渉やチップのお礼にどうぞ。</p>
+</section>
+
 <!-- 持ち物チェックリスト -->
 <section class="section" style="padding-top:0">
   <p class="section-label">🎒 出発前チェック</p>
@@ -1363,6 +1432,126 @@ function dayMapInit(container) {
   });
   update();
 })();
+
+// ── 全行程アニメ地図（Leaflet） ──
+(function () {
+  var el = document.getElementById('trip-map');
+  if (!el || !window.L) return;
+  // ② 白砂漠 / ④ ルクソール を主要経由地に、全体ルートをアニメ表示
+  var STOPS = [
+    { ll: [30.0444, 31.2357], name: 'カイロ' },
+    { ll: [27.20, 28.18], name: '白砂漠' },
+    { ll: [30.0444, 31.2357], name: 'カイロ' },
+    { ll: [25.6872, 32.6396], name: 'ルクソール' },
+    { ll: [30.0444, 31.2357], name: 'カイロ' }
+  ];
+  var MODES = ['🚙', '🚙', '✈️', '✈️']; // 各区間の移動手段
+  var map = L.map(el, { scrollWheelZoom: false, zoomControl: true, attributionControl: true });
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 18
+  }).addTo(map);
+  var all = STOPS.map(function (s) { return s.ll; });
+  // 停車地マーカー（番号バッジ）
+  STOPS.forEach(function (s, i) {
+    var seen = STOPS.slice(0, i).some(function (p) { return p.name === s.name; });
+    if (seen) return; // 同一都市の重複バッジは省く（番号は経路順で付与）
+    var badge = L.divIcon({ className: 'trip-stop', html: '<div class="trip-stop-badge">' + (i + 1) + '</div>', iconSize: [24, 24], iconAnchor: [12, 12] });
+    L.marker(s.ll, { icon: badge }).addTo(map).bindPopup((i + 1) + '. ' + s.name);
+  });
+  map.fitBounds(L.latLngBounds(all).pad(0.25));
+  // 旅人マーカー
+  var traveler = L.marker(all[0], {
+    icon: L.divIcon({ className: 'trip-traveler-icon', html: '<div class="trip-traveler" id="travelerGlyph">🚙</div>', iconSize: [30, 30], iconAnchor: [15, 15] }),
+    zIndexOffset: 1000, interactive: false
+  }).addTo(map);
+  var drawn = L.polyline([], { color: '#F0C842', weight: 3.5, opacity: 0.95 }).addTo(map);
+  var raf = null;
+  function lerp(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]; }
+  function animate() {
+    if (raf) cancelAnimationFrame(raf);
+    drawn.setLatLngs([all[0]]);
+    var seg = 0, segStart = null, perSeg = 1400;
+    var glyph = document.getElementById('travelerGlyph');
+    function step(ts) {
+      if (segStart === null) segStart = ts;
+      var t = Math.min((ts - segStart) / perSeg, 1);
+      var pos = lerp(all[seg], all[seg + 1], t);
+      traveler.setLatLng(pos);
+      if (glyph) glyph.textContent = MODES[seg];
+      drawn.setLatLngs(all.slice(0, seg + 1).concat([pos]));
+      if (t >= 1) {
+        seg++; segStart = null;
+        if (seg >= all.length - 1) { drawn.setLatLngs(all); raf = null; return; }
+      }
+      raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+  }
+  document.getElementById('tripReplay').addEventListener('click', animate);
+  // 表示されたら自動で一度再生
+  setTimeout(function () { map.invalidateSize(); }, 200);
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { map.invalidateSize(); setTimeout(animate, 300); io.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    io.observe(el);
+  }
+})();
+
+// ── アラビア語フレーズ集（Web Speech APIで読み上げ） ──
+(function () {
+  var grid = document.getElementById('phraseGrid');
+  if (!grid) return;
+  var PHRASES = [
+    { jp: 'こんにちは（あいさつ）', ar: 'السلام عليكم', roma: 'as-salāmu ʿalaykum' },
+    { jp: 'ありがとう', ar: 'شكراً', roma: 'shukran' },
+    { jp: 'どういたしまして', ar: 'عفواً', roma: 'ʿafwan' },
+    { jp: 'はい / いいえ', ar: 'أيوة / لأ', roma: 'aywa / laʾ' },
+    { jp: 'いくらですか？', ar: 'بكام؟', roma: 'bikām?' },
+    { jp: '高すぎます', ar: 'غالي قوي', roma: 'ghāli ʾawi' },
+    { jp: 'まけてください', ar: 'اعمل خصم', roma: 'iʿmel khasm' },
+    { jp: 'いりません', ar: 'لا، شكراً', roma: 'laʾ, shukran' },
+    { jp: 'おいしい！', ar: 'لذيذ', roma: 'lazīz' },
+    { jp: 'きれいですね', ar: 'جميل', roma: 'gamīl' },
+    { jp: '〜はどこ？', ar: 'فين...؟', roma: 'fein...?' },
+    { jp: 'トイレ', ar: 'الحمام', roma: 'il-hammām' },
+    { jp: 'お会計お願いします', ar: 'الحساب لو سمحت', roma: 'il-hisāb law samaht' },
+    { jp: '助けて！', ar: 'ساعدني', roma: 'sāʿidni' },
+    { jp: 'さようなら', ar: 'مع السلامة', roma: 'maʿa s-salāma' }
+  ];
+  var synth = window.speechSynthesis;
+  PHRASES.forEach(function (p) {
+    var card = document.createElement('div'); card.className = 'phrase-card';
+    card.innerHTML =
+      '<span class="phrase-jp">' + p.jp + '</span>' +
+      '<span class="phrase-ar">' + p.ar + '</span>' +
+      '<span class="phrase-roma">' + p.roma + '</span>' +
+      '<button class="phrase-play" aria-label="再生">🔊</button>';
+    var btn = card.querySelector('.phrase-play');
+    btn.addEventListener('click', function () {
+      if (!synth) { alert('この端末は音声読み上げに対応していません'); return; }
+      synth.cancel();
+      var u = new SpeechSynthesisUtterance(p.ar);
+      u.lang = 'ar-EG'; u.rate = 0.85;
+      var arVoice = synth.getVoices().find(function (v) { return /^ar/i.test(v.lang); });
+      if (arVoice) u.voice = arVoice;
+      u.onstart = function () { btn.classList.add('speaking'); };
+      u.onend = u.onerror = function () { btn.classList.remove('speaking'); };
+      synth.speak(u);
+    });
+    grid.appendChild(card);
+  });
+  if (synth && synth.onvoiceschanged === null) { synth.onvoiceschanged = function () {}; }
+})();
+
+// ── PWA: Service Worker 登録 ──
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function (e) { console.warn('SW登録失敗', e); });
+  });
+}
 </script>
 </body>
 </html>
