@@ -686,6 +686,46 @@ body.theme-night .cartouche { background: linear-gradient(#241a0d, #17110a); }
 body.theme-night .day-card { box-shadow: none; }
 body.theme-night .egy-topband { opacity: 0.5; }
 @media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }
+
+/* ── 旅のハイライト統計 ── */
+.hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-top: 16px; }
+.hl-item {
+  background: linear-gradient(160deg, #20304d, #16243b); color: #EAF0FA;
+  border: 1px solid rgba(212,176,150,0.22); border-radius: 10px; padding: 22px 18px; text-align: center; position: relative; overflow: hidden;
+}
+.hl-item::after {
+  content: ''; position: absolute; right: -24px; top: -24px; width: 96px; height: 96px;
+  background: radial-gradient(circle, rgba(240,200,66,0.16), transparent 70%);
+}
+.hl-ico { font-size: 24px; line-height: 1; }
+.hl-num {
+  font-family: 'Montserrat', sans-serif; font-size: 34px; font-weight: 800; color: var(--gold-light);
+  line-height: 1.1; margin: 8px 0 2px; font-variant-numeric: tabular-nums;
+}
+.hl-num .hl-suffix { font-size: 15px; font-weight: 700; color: var(--sand-light); margin-left: 2px; }
+.hl-label { font-size: 12px; color: #C7D3E6; letter-spacing: 0.04em; }
+body.theme-night .hl-item { background: linear-gradient(160deg, #1a2438, #11192b); }
+
+/* ── 日の出・日の入り ── */
+.sun-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+.sun-card {
+  border-radius: 10px; padding: 20px 22px; color: #3a2a10; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #FCE7C0, #F3C77A); border: 1px solid rgba(180,130,40,0.3);
+}
+.sun-card::before {
+  content: ''; position: absolute; right: -30px; bottom: -40px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,220,120,0.9), rgba(255,200,90,0) 70%);
+}
+.sun-city { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #8a5a12; }
+.sun-when { font-size: 12px; color: #7a5a22; margin-bottom: 14px; }
+.sun-times { display: flex; gap: 18px; position: relative; z-index: 1; }
+.sun-block { display: flex; flex-direction: column; gap: 2px; }
+.sun-block .sun-ico { font-size: 22px; }
+.sun-block .sun-lbl { font-size: 11px; font-weight: 700; color: #8a5a12; }
+.sun-block .sun-val { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: #5a3d0a; font-variant-numeric: tabular-nums; }
+.sun-tip { font-size: 12px; color: #6a4a18; margin-top: 12px; position: relative; z-index: 1; }
+.sun-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+body.theme-night .sun-card { color: #2a1d08; }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -757,6 +797,18 @@ body.theme-night .egy-topband { opacity: 0.5; }
   </div>
 </section>
 
+<!-- 日の出・日の入り -->
+<section class="section" style="padding-top:24px">
+  <p class="section-label">🌅 旅のマジックアワー</p>
+  <h2 class="section-heading">日の出・日の入り（旅行日）</h2>
+  <div class="sun-grid" id="sunGrid">
+    <div class="sun-card" data-lat="30.044" data-lng="31.236" data-date="2026-10-09" data-city="カイロ" data-when="10/9 ピラミッド観光" data-tip="🏜️ 昼は強い日差し。朝夕の柔らかい光が撮影のゴールデンアワー"></div>
+    <div class="sun-card" data-lat="27.20" data-lng="28.18" data-date="2026-10-10" data-city="白砂漠" data-when="10/10 砂漠キャンプ泊" data-tip="🌌 日の入り後は満天の星。寒暖差が大きいので防寒を"></div>
+    <div class="sun-card" data-lat="25.687" data-lng="32.640" data-date="2026-10-13" data-city="ルクソール" data-when="10/13 西岸・気球" data-tip="🎈 熱気球は日の出前に離陸。早起きで王家の谷を空から"></div>
+  </div>
+  <p class="sun-note">時刻は現地（エジプト）時間。天文計算に基づく目安です（出典: sunrise-sunset.org）。</p>
+</section>
+
 <!-- FLIGHTS -->
 <section class="section">
   <p class="section-label">✈ フライト情報</p>
@@ -823,6 +875,20 @@ body.theme-night .egy-topband { opacity: 0.5; }
       </div>
       <div class="flight-cost-row"><span class="flight-cost-label">10月16日(金) 出発 → 17日(土) 帰国</span><span class="flight-cost-amount">¥196,890 / 人（往復込）</span></div>
     </div>
+  </div>
+</section>
+
+<!-- 旅のハイライト統計 -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">📊 旅のスケール</p>
+  <h2 class="section-heading">数字で見るエジプト10日間</h2>
+  <div class="hl-grid" id="hlGrid">
+    <div class="hl-item"><div class="hl-ico">✈️</div><div class="hl-num" data-to="24000" data-suffix="km">0</div><div class="hl-label">総飛行距離（往復）</div></div>
+    <div class="hl-item"><div class="hl-ico">🏛️</div><div class="hl-num" data-to="16" data-suffix="箇所">0</div><div class="hl-label">訪問スポット</div></div>
+    <div class="hl-item"><div class="hl-ico">🗿</div><div class="hl-num" data-to="3" data-suffix="件">0</div><div class="hl-label">世界遺産エリア</div></div>
+    <div class="hl-item"><div class="hl-ico">📅</div><div class="hl-num" data-to="10" data-suffix="日間">0</div><div class="hl-label">旅の日数</div></div>
+    <div class="hl-item"><div class="hl-ico">👣</div><div class="hl-num" data-to="150000" data-suffix="歩">0</div><div class="hl-label">推定歩数</div></div>
+    <div class="hl-item"><div class="hl-ico">📷</div><div class="hl-num" data-to="2000" data-suffix="枚">0</div><div class="hl-label">予想撮影枚数</div></div>
   </div>
 </section>
 
@@ -2093,6 +2159,63 @@ function dayMapInit(container) {
     var night = !document.body.classList.contains('theme-night');
     apply(night);
     try { localStorage.setItem(KEY, night ? 'night' : 'day'); } catch (e) {}
+  });
+})();
+
+// ── 旅のハイライト統計（スクロールでカウントアップ） ──
+(function () {
+  var grid = document.getElementById('hlGrid');
+  if (!grid) return;
+  var nums = grid.querySelectorAll('.hl-num');
+  function animateNum(el) {
+    var to = +el.dataset.to, suffix = el.dataset.suffix || '';
+    var dur = 1400, steps = 36, i = 0;
+    function fmt(v) { return Math.round(v).toLocaleString() + (suffix ? '<span class="hl-suffix">' + suffix + '</span>' : ''); }
+    var iv = setInterval(function () {
+      i++;
+      var p = Math.min(i / steps, 1);
+      var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      el.innerHTML = fmt(to * eased);
+      if (p >= 1) clearInterval(iv);
+    }, dur / steps);
+  }
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    nums.forEach(function (el) { el.innerHTML = (+el.dataset.to).toLocaleString() + (el.dataset.suffix ? '<span class="hl-suffix">' + el.dataset.suffix + '</span>' : ''); });
+    return;
+  }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { animateNum(e.target); io.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  nums.forEach(function (el) { io.observe(el); });
+})();
+
+// ── 日の出・日の入り（sunrise-sunset.org・APIキー不要 / 現地時間表示） ──
+(function () {
+  var cards = document.querySelectorAll('.sun-card');
+  if (!cards.length) return;
+  function toCairo(iso) {
+    try { return new Date(iso).toLocaleTimeString('en-GB', { timeZone: 'Africa/Cairo', hour: '2-digit', minute: '2-digit' }); }
+    catch (e) { return '--:--'; }
+  }
+  cards.forEach(function (card) {
+    card.innerHTML =
+      '<p class="sun-city">' + card.dataset.city + '</p>' +
+      '<p class="sun-when">' + card.dataset.when + '</p>' +
+      '<div class="sun-times">' +
+        '<div class="sun-block"><span class="sun-ico">🌅</span><span class="sun-lbl">日の出</span><span class="sun-val" data-r="sr">--:--</span></div>' +
+        '<div class="sun-block"><span class="sun-ico">🌇</span><span class="sun-lbl">日の入り</span><span class="sun-val" data-r="ss">--:--</span></div>' +
+      '</div>' +
+      '<p class="sun-tip">' + card.dataset.tip + '</p>';
+    var url = 'https://api.sunrise-sunset.org/json?lat=' + card.dataset.lat + '&lng=' + card.dataset.lng +
+      '&date=' + card.dataset.date + '&formatted=0';
+    fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j || j.status !== 'OK') throw 0;
+      card.querySelector('[data-r=sr]').textContent = toCairo(j.results.sunrise);
+      card.querySelector('[data-r=ss]').textContent = toCairo(j.results.sunset);
+    }).catch(function () {
+      card.querySelector('.sun-tip').insertAdjacentHTML('beforebegin', '<p class="sun-tip" style="color:#a05">時刻を取得できませんでした</p>');
+    });
   });
 })();
 
