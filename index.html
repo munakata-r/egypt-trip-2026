@@ -611,6 +611,81 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
 .quiz-next { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; background: var(--gold); color: var(--night); border: none; border-radius: 22px; padding: 10px 22px; cursor: pointer; }
 .quiz-next:hover { background: var(--gold-light); }
 .quiz-next:disabled { opacity: 0.4; cursor: default; }
+
+/* ── 遺跡の3Dモデル ── */
+.model-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 16px; }
+.model-card { background: #0f0a04; border: 1px solid var(--divider); border-radius: 8px; overflow: hidden; box-shadow: 0 6px 20px rgba(40,28,10,0.15); }
+.model-frame { position: relative; aspect-ratio: 4 / 3; background: #0f0a04; }
+.model-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.model-cap { padding: 12px 16px; }
+.model-name { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--night); }
+.model-sub { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+.model-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+.model-note a { color: var(--lapis); }
+
+/* ── 役割ルーレット ── */
+.roulette { background: var(--papyrus); border: 1px solid var(--divider); border-radius: 6px; padding: 26px 24px; }
+.rl-names { width: 100%; font-family: 'Noto Sans JP', sans-serif; font-size: 15px; padding: 12px 14px; border: 1px solid var(--sand); border-radius: 6px; background: #fff; color: var(--text); resize: vertical; min-height: 56px; }
+.rl-names:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.18); }
+.rl-hint { font-size: 12px; color: var(--text-light); margin: 6px 0 16px; }
+.rl-spin { display: block; width: 100%; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 0.1em; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--night); border: none; border-radius: 30px; padding: 14px; cursor: pointer; box-shadow: 0 4px 14px rgba(212,160,23,0.35); }
+.rl-spin:hover { filter: brightness(1.05); }
+.rl-spin:disabled { opacity: 0.6; cursor: default; }
+.rl-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 20px; }
+.rl-row { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--divider); border-radius: 8px; padding: 14px 16px; }
+.rl-row.flash { animation: rlFlash 0.4s ease; }
+@keyframes rlFlash { 0% { background: #FFF7DF; transform: scale(1.03); } 100% { background: #fff; transform: scale(1); } }
+.rl-role-ico { font-size: 26px; line-height: 1; }
+.rl-role-name { font-size: 12px; color: var(--text-light); font-family: 'Montserrat', sans-serif; font-weight: 700; letter-spacing: 0.08em; }
+.rl-person { font-size: 18px; font-weight: 700; color: var(--night); font-variant-numeric: tabular-nums; }
+.rl-person.rolling { color: var(--gold); }
+
+/* ── 昼⇄夜トグル ── */
+.theme-toggle {
+  position: fixed; right: 16px; bottom: 16px; z-index: 800;
+  width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(212,160,23,0.5); cursor: pointer;
+  background: rgba(26,18,9,0.9); color: var(--gold-light); font-size: 22px; line-height: 1;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.3s;
+}
+.theme-toggle:hover { transform: scale(1.08); }
+
+/* 夜モード（CSS変数の上書き＋ハードコード白面の個別上書き） */
+body.theme-night {
+  --sand-pale: #0e0a05; --text: #ece0c8; --text-light: #b09c78;
+  --papyrus: #1a1308; --divider: #3a2c16;
+  background: radial-gradient(ellipse at 50% -10%, #1a2540 0%, #0e0a05 60%);
+}
+body.theme-night .theme-toggle { background: rgba(245,237,216,0.92); color: #1a1209; }
+body.theme-night .section-heading { color: var(--sand-light); border-color: rgba(212,176,150,0.25); }
+body.theme-night .memo-card,
+body.theme-night .budget-item,
+body.theme-night .phrase-card,
+body.theme-night .sos-card,
+body.theme-night .quiz-card,
+body.theme-night .fx-tool,
+body.theme-night .glyph-tool,
+body.theme-night .roulette,
+body.theme-night .rl-row,
+body.theme-night .model-card { background: #17110a; border-color: rgba(212,176,150,0.18); color: var(--text); }
+body.theme-night .quiz-opt,
+body.theme-night .rl-names,
+body.theme-night .fx-input,
+body.theme-night .glyph-input { background: #241a0e; border-color: rgba(212,176,150,0.25); color: #f0e6d2; }
+body.theme-night .budget-amount,
+body.theme-night .quiz-q,
+body.theme-night .phrase-ar,
+body.theme-night .sos-name,
+body.theme-night .model-name,
+body.theme-night .rl-person,
+body.theme-night .memo-card h3 { color: #f3ead4; }
+body.theme-night .budget-cat,
+body.theme-night .memo-card ul li { color: var(--text); }
+body.theme-night .memo-card ul li { border-bottom-color: rgba(212,176,150,0.12); }
+body.theme-night .cartouche { background: linear-gradient(#241a0d, #17110a); }
+body.theme-night .day-card { box-shadow: none; }
+body.theme-night .egy-topband { opacity: 0.5; }
+@media (prefers-reduced-motion: reduce) { .theme-toggle { transition: none; } }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -764,6 +839,36 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
     <span><b>🚙 車</b> カイロ ⇆ 砂漠</span>
     <span>① カイロ → ② 白砂漠 → ③ カイロ → ④ ルクソール → ⑤ カイロ</span>
   </div>
+</section>
+
+<!-- 遺跡の3Dモデル -->
+<section class="section">
+  <p class="section-label">🏺 ぐりぐり回せる</p>
+  <h2 class="section-heading">遺跡を3Dで予習</h2>
+  <div class="model-grid">
+    <div class="model-card">
+      <div class="model-frame">
+        <iframe title="ツタンカーメンの黄金のマスク" loading="lazy" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen
+          src="https://sketchfab.com/models/992c57047cdf4412b970ad798d5ad0c9/embed?ui_theme=dark&autospin=0.3&preload=1"></iframe>
+      </div>
+      <div class="model-cap"><p class="model-name">ツタンカーメンの黄金のマスク</p><p class="model-sub">GEM（10/9 訪問予定）</p></div>
+    </div>
+    <div class="model-card">
+      <div class="model-frame">
+        <iframe title="ギザの大ピラミッド" loading="lazy" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen
+          src="https://sketchfab.com/models/99bb947b9a9f4884ba249aec1be779eb/embed?ui_theme=dark&autospin=0.3&preload=1"></iframe>
+      </div>
+      <div class="model-cap"><p class="model-name">ギザの大ピラミッド</p><p class="model-sub">クフ王のピラミッド（10/9 訪問予定）</p></div>
+    </div>
+    <div class="model-card">
+      <div class="model-frame">
+        <iframe title="ギザの大スフィンクス" loading="lazy" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen
+          src="https://sketchfab.com/models/c126509af31142a9a0d116e264e7b629/embed?ui_theme=dark&autospin=0.3&preload=1"></iframe>
+      </div>
+      <div class="model-cap"><p class="model-name">ギザの大スフィンクス</p><p class="model-sub">ピラミッド隣（10/9 訪問予定）</p></div>
+    </div>
+  </div>
+  <p class="model-note">ドラッグで回転・ピンチ/スクロールで拡大。3Dモデルは <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a> のクリエイターによる公開作品です。</p>
 </section>
 
 <!-- ITINERARY -->
@@ -1323,6 +1428,18 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   </div>
 </section>
 
+<!-- 役割ルーレット -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🎯 旅の担当決め</p>
+  <h2 class="section-heading">役割ルーレット</h2>
+  <div class="roulette">
+    <textarea class="rl-names" id="rlNames" rows="2" placeholder="メンバーの名前を1行ずつ or カンマ区切りで入力"></textarea>
+    <p class="rl-hint">名前を入れて「回す」を押すと、各役割をランダムに割り当てます。</p>
+    <button class="rl-spin" id="rlSpin">🎲 ルーレットを回す</button>
+    <div class="rl-results" id="rlResults"></div>
+  </div>
+</section>
+
 <!-- 持ち物チェックリスト -->
 <section class="section" style="padding-top:0">
   <p class="section-label">🎒 出発前チェック</p>
@@ -1360,6 +1477,8 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
     </ul>
   </div>
 </section>
+
+<button class="theme-toggle" id="themeToggle" title="昼 / 夜を切り替え" aria-label="昼夜切り替え">🌙</button>
 
 <div class="egy-topband"></div>
 
@@ -1900,6 +2019,81 @@ function dayMapInit(container) {
     render();
   });
   render();
+})();
+
+// ── 役割ルーレット（担当決め） ──
+(function () {
+  var spin = document.getElementById('rlSpin');
+  if (!spin) return;
+  var namesEl = document.getElementById('rlNames'), resEl = document.getElementById('rlResults');
+  var ROLES = [
+    ['💰', '会計係'], ['🧭', 'ナビ係'], ['📷', '写真係'], ['💵', 'チップ係'], ['⏰', '時間管理係']
+  ];
+  function parseNames() {
+    return namesEl.value.split(/[\n,、]+/).map(function (s) { return s.trim(); }).filter(Boolean);
+  }
+  function shuffle(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+  var spinning = false;
+  function run() {
+    if (spinning) return;
+    var names = parseNames();
+    if (names.length < 2) { namesEl.focus(); namesEl.style.borderColor = '#C0392B'; return; }
+    namesEl.style.borderColor = '';
+    var roles = ROLES.slice(0, Math.min(ROLES.length, Math.max(names.length, 2)));
+    // 行を用意
+    resEl.innerHTML = '';
+    var rows = roles.map(function (role) {
+      var row = document.createElement('div'); row.className = 'rl-row';
+      row.innerHTML = '<span class="rl-role-ico">' + role[0] + '</span>' +
+        '<div><div class="rl-role-name">' + role[1] + '</div><div class="rl-person rolling">…</div></div>';
+      resEl.appendChild(row);
+      return row;
+    });
+    var finalNames = shuffle(names);
+    spinning = true; spin.disabled = true;
+    var ticker = setInterval(function () {
+      rows.forEach(function (row) {
+        var p = row.querySelector('.rl-person');
+        if (p.classList.contains('rolling')) p.textContent = names[Math.floor(Math.random() * names.length)];
+      });
+    }, 70);
+    // 1つずつ確定
+    rows.forEach(function (row, i) {
+      setTimeout(function () {
+        var p = row.querySelector('.rl-person');
+        p.classList.remove('rolling');
+        p.textContent = finalNames[i] || '—';
+        row.classList.add('flash');
+        setTimeout(function () { row.classList.remove('flash'); }, 400);
+        if (i === rows.length - 1) { clearInterval(ticker); spinning = false; spin.disabled = false; }
+      }, 700 + i * 550);
+    });
+  }
+  spin.addEventListener('click', run);
+})();
+
+// ── 昼⇄夜トグル（localStorage保存） ──
+(function () {
+  var btn = document.getElementById('themeToggle');
+  if (!btn) return;
+  var KEY = 'egypt2026-theme';
+  function apply(night) {
+    document.body.classList.toggle('theme-night', night);
+    btn.textContent = night ? '☀️' : '🌙';
+    btn.title = night ? '昼に戻す' : '夜にする';
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  apply(saved === 'night');
+  btn.addEventListener('click', function () {
+    var night = !document.body.classList.contains('theme-night');
+    apply(night);
+    try { localStorage.setItem(KEY, night ? 'night' : 'day'); } catch (e) {}
+  });
 })();
 
 // ── PWA: Service Worker 登録 ──
