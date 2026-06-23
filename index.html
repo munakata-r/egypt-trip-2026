@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>エジプト旅行 2026 | 4人の旅</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@400;600;800&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -373,6 +373,94 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   border: 1px solid rgba(212,160,23,0.55); box-shadow: 0 1px 3px rgba(0,0,0,0.45);
 }
 @media (max-width: 600px) { .day-map { height: 200px; } }
+/* ── 出発カウントダウン（ヒーロー内） ── */
+.hero-countdown { margin-top: 40px; }
+.hero-countdown-label {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--sand); margin-bottom: 14px;
+}
+.cd-grid { display: flex; gap: 12px; justify-content: center; }
+.cd-cell {
+  background: rgba(20,14,5,0.45); border: 1px solid rgba(212,160,23,0.35);
+  border-radius: 8px; padding: 12px 8px; min-width: 72px; backdrop-filter: blur(3px);
+}
+.cd-num {
+  font-family: 'Montserrat', sans-serif; font-size: 34px; font-weight: 800;
+  color: var(--gold-light); line-height: 1; font-variant-numeric: tabular-nums;
+}
+.cd-unit {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-top: 6px;
+}
+.cd-departed { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: var(--gold-light); }
+
+/* ── 現地のいま（時刻＋天気） ── */
+.now-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
+.now-card {
+  background: linear-gradient(160deg, #20304d, #16243b); color: #EAF0FA;
+  border: 1px solid rgba(212,176,150,0.25); border-radius: 8px; padding: 22px 24px;
+  position: relative; overflow: hidden;
+}
+.now-card::after {
+  content: ''; position: absolute; right: -30px; top: -30px; width: 130px; height: 130px;
+  background: radial-gradient(circle, rgba(240,200,66,0.18), transparent 70%);
+}
+.now-city { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-light); }
+.now-time { font-family: 'Montserrat', sans-serif; font-size: 40px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; margin: 4px 0 2px; }
+.now-date { font-size: 12px; color: #B9C6DC; }
+.now-weather { display: flex; align-items: center; gap: 12px; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); }
+.now-icon { font-size: 34px; line-height: 1; }
+.now-temp { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; }
+.now-cond { font-size: 12px; color: #C7D3E6; }
+.now-jp { margin-left: auto; text-align: right; font-size: 11px; color: #9FB0CA; }
+
+/* ── 名前をヒエログリフに ── */
+.glyph-tool { background: var(--papyrus); border: 1px solid var(--divider); border-radius: 6px; padding: 28px 24px; }
+.glyph-input-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.glyph-input {
+  flex: 1; min-width: 180px; font-family: 'Montserrat', sans-serif; font-size: 16px;
+  padding: 12px 14px; border: 1px solid var(--sand); border-radius: 6px; background: #fff; color: var(--text);
+}
+.glyph-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.18); }
+.glyph-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.glyph-chip {
+  font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; cursor: pointer;
+  background: #fff; border: 1px solid var(--sand); color: var(--text-light);
+  border-radius: 20px; padding: 5px 14px;
+}
+.glyph-chip:hover { background: var(--gold); color: var(--night); border-color: var(--gold); }
+/* カルトゥーシュ枠 */
+.cartouche {
+  margin-top: 22px; display: flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 110px; padding: 16px 26px; border: 4px solid var(--gold); border-radius: 60px;
+  background: linear-gradient(#fffdf6, #f3e8cf); box-shadow: inset 0 2px 8px rgba(120,90,20,0.12);
+  position: relative; flex-wrap: wrap;
+}
+.cartouche::before {
+  content: ''; position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  width: 10px; height: 56px; background: var(--gold); border-radius: 6px;
+}
+.cartouche-glyphs {
+  font-family: 'Noto Sans Egyptian Hieroglyphs', serif; font-size: 46px; line-height: 1.1;
+  color: #3a2c10; letter-spacing: 4px; padding-left: 18px;
+}
+.cartouche-empty { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; color: var(--text-light); font-weight: 400; }
+.glyph-legend { font-size: 12px; color: var(--text-light); margin-top: 14px; line-height: 1.7; }
+
+/* ── 持ち物チェックリスト ── */
+.pack-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.pack-progress-wrap { flex: 1; min-width: 160px; height: 10px; background: var(--sand-light); border-radius: 6px; overflow: hidden; }
+.pack-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.35s ease; }
+.pack-progress-pct { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--gold); font-size: 15px; min-width: 46px; text-align: right; }
+.pack-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+.pack-group h3 { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lapis); margin-bottom: 10px; }
+.pack-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 6px; cursor: pointer; font-size: 14px; user-select: none; }
+.pack-item:hover { background: rgba(212,160,23,0.08); }
+.pack-item input { width: 18px; height: 18px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+.pack-item.done span { text-decoration: line-through; color: var(--text-light); }
+.pack-reset { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--text-light); background: none; border: none; cursor: pointer; text-decoration: underline; margin-top: 14px; }
+.pack-done-msg { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 16px; margin-top: 12px; display: none; }
+.pack-done-msg.show { display: block; }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -398,11 +486,48 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">人旅</span></div>
       <div class="stat"><span class="stat-number">2</span><span class="stat-label">都市</span></div>
     </div>
+    <div class="hero-countdown" id="countdown">
+      <p class="hero-countdown-label">✈ 成田出発まで</p>
+      <div class="cd-grid">
+        <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">Days</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">Hours</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">Min</div></div>
+        <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-unit">Sec</div></div>
+      </div>
+    </div>
   </div>
   <div class="hero-pyramid"></div>
 </section>
 
 <div class="egy-divider"><span class="egy-line"></span><svg class="egy-eye" viewBox="0 0 130 80" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 26 Q48 8 92 22"/><path d="M14 44 Q46 24 90 40"/><path d="M14 44 Q34 56 60 52"/><path d="M44 54 L38 74"/><path d="M90 40 q26 4 30 30 q-12 6 -18 -8"/></g><circle cx="46" cy="42" r="7.5" fill="currentColor"/></svg><span class="egy-line"></span></div>
+
+<!-- 現地のいま -->
+<section class="section" style="padding-bottom:24px">
+  <p class="section-label">🌍 現地のいま</p>
+  <h2 class="section-heading">エジプトは今この瞬間</h2>
+  <div class="now-grid">
+    <div class="now-card" data-tz="Africa/Cairo" data-lat="30.044" data-lon="31.236">
+      <p class="now-city">Cairo · カイロ</p>
+      <p class="now-time" data-role="time">--:--:--</p>
+      <p class="now-date" data-role="date">読み込み中…</p>
+      <div class="now-weather">
+        <span class="now-icon" data-role="icon">⏳</span>
+        <div><span class="now-temp" data-role="temp">--°</span><div class="now-cond" data-role="cond">天気を取得中</div></div>
+        <div class="now-jp" data-role="diff"></div>
+      </div>
+    </div>
+    <div class="now-card" data-tz="Africa/Cairo" data-lat="25.687" data-lon="32.640">
+      <p class="now-city">Luxor · ルクソール</p>
+      <p class="now-time" data-role="time">--:--:--</p>
+      <p class="now-date" data-role="date">読み込み中…</p>
+      <div class="now-weather">
+        <span class="now-icon" data-role="icon">⏳</span>
+        <div><span class="now-temp" data-role="temp">--°</span><div class="now-cond" data-role="cond">天気を取得中</div></div>
+        <div class="now-jp" data-role="diff"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FLIGHTS -->
 <section class="section">
@@ -926,6 +1051,38 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   </div>
 </section>
 
+<!-- 名前をヒエログリフに -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">𓂀 ファラオの遊び</p>
+  <h2 class="section-heading">あなたの名前を古代エジプト文字で</h2>
+  <div class="glyph-tool">
+    <div class="glyph-input-row">
+      <input class="glyph-input" id="glyphInput" type="text" maxlength="14" placeholder="名前をローマ字で入力（例: YUTA）" autocomplete="off">
+    </div>
+    <div class="glyph-chips" id="glyphChips"></div>
+    <div class="cartouche">
+      <div class="cartouche-glyphs" id="cartouche"><span class="cartouche-empty">↑ 名前を入力するとここに刻まれます</span></div>
+    </div>
+    <p class="glyph-legend">王の名前を囲む楕円の枠＝<strong>カルトゥーシュ</strong>。アルファベットを音に近い1文字ヒエログリフに置き換えた“観光地スタイル”です。仲間の名前を入れて見せ合おう。</p>
+  </div>
+</section>
+
+<!-- 持ち物チェックリスト -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🎒 出発前チェック</p>
+  <h2 class="section-heading">持ち物チェックリスト</h2>
+  <div class="memo-card">
+    <div class="pack-head">
+      <div class="pack-progress-wrap"><div class="pack-progress-bar" id="packBar"></div></div>
+      <span class="pack-progress-pct" id="packPct">0%</span>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);">チェックはこの端末に自動保存されます（各自のスマホでどうぞ）。</p>
+    <div class="pack-cols" id="packCols"></div>
+    <p class="pack-done-msg" id="packDone">𓅓 準備万端！ いってらっしゃい 🐫</p>
+    <button class="pack-reset" id="packReset">すべてリセット</button>
+  </div>
+</section>
+
 <section class="section" style="padding-top:0">
   <p class="section-label">📸 写真クレジット</p>
   <h2 class="section-heading">画像の出典</h2>
@@ -1052,6 +1209,159 @@ function dayMapInit(container) {
     });
   }, { threshold: 0.08 });
   els.forEach(function (el) { io.observe(el); });
+})();
+
+// ── 出発カウントダウン（成田 10/8 22:25 JST = 13:25 UTC） ──
+(function () {
+  var target = Date.UTC(2026, 9, 8, 13, 25, 0);
+  var d = document.getElementById('cd-d'), h = document.getElementById('cd-h'),
+      m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
+  if (!d) return;
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      document.getElementById('countdown').innerHTML =
+        '<p class="cd-departed">🛫 旅は始まった — Have a great trip!</p>';
+      clearInterval(iv); return;
+    }
+    var sec = Math.floor(diff / 1000);
+    d.textContent = Math.floor(sec / 86400);
+    h.textContent = pad(Math.floor(sec / 3600) % 24);
+    m.textContent = pad(Math.floor(sec / 60) % 60);
+    s.textContent = pad(sec % 60);
+  }
+  tick(); var iv = setInterval(tick, 1000);
+})();
+
+// ── 現地のいま（時刻＝Intl / 天気＝open-meteo・APIキー不要） ──
+(function () {
+  var cards = document.querySelectorAll('.now-card');
+  if (!cards.length) return;
+  var WMO = {
+    0:['☀️','快晴'],1:['🌤️','晴れ'],2:['⛅','晴れときどき曇り'],3:['☁️','曇り'],
+    45:['🌫️','霧'],48:['🌫️','霧'],51:['🌦️','霧雨'],53:['🌦️','霧雨'],55:['🌦️','霧雨'],
+    61:['🌧️','雨'],63:['🌧️','雨'],65:['🌧️','強い雨'],80:['🌦️','にわか雨'],81:['🌦️','にわか雨'],
+    82:['⛈️','激しいにわか雨'],95:['⛈️','雷雨'],96:['⛈️','雷雨'],99:['⛈️','雷雨']
+  };
+  function tzDiff(tz) {
+    // 日本との時差（時間）を動的に算出
+    var now = new Date();
+    function off(zone) {
+      var s = now.toLocaleString('en-US', { timeZone: zone, hour12: false });
+      return (new Date(s) - now) / 3600000;
+    }
+    return Math.round(off(tz) - off('Asia/Tokyo'));
+  }
+  cards.forEach(function (card) {
+    var tz = card.dataset.tz;
+    var timeEl = card.querySelector('[data-role=time]'),
+        dateEl = card.querySelector('[data-role=date]'),
+        diffEl = card.querySelector('[data-role=diff]');
+    var diff = tzDiff(tz);
+    diffEl.textContent = '日本より' + (diff >= 0 ? '+' : '') + diff + 'h';
+    function clock() {
+      var now = new Date();
+      timeEl.textContent = now.toLocaleTimeString('en-GB', { timeZone: tz });
+      dateEl.textContent = now.toLocaleDateString('ja-JP', { timeZone: tz, month: 'long', day: 'numeric', weekday: 'short' });
+    }
+    clock(); setInterval(clock, 1000);
+    // 天気
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + card.dataset.lat +
+      '&longitude=' + card.dataset.lon + '&current=temperature_2m,weather_code&timezone=Africa%2FCairo';
+    fetch(url).then(function (r) { return r.json(); }).then(function (j) {
+      var c = j.current; if (!c) throw 0;
+      var w = WMO[c.weather_code] || ['🌡️', '—'];
+      card.querySelector('[data-role=icon]').textContent = w[0];
+      card.querySelector('[data-role=temp]').textContent = Math.round(c.temperature_2m) + '°';
+      card.querySelector('[data-role=cond]').textContent = w[1];
+    }).catch(function () {
+      card.querySelector('[data-role=icon]').textContent = '🌡️';
+      card.querySelector('[data-role=temp]').textContent = '—';
+      card.querySelector('[data-role=cond]').textContent = '天気を取得できませんでした';
+    });
+  });
+})();
+
+// ── 名前をヒエログリフに（カルトゥーシュ） ──
+(function () {
+  var input = document.getElementById('glyphInput');
+  if (!input) return;
+  var out = document.getElementById('cartouche');
+  var MAP = {
+    A:'𓄿', B:'𓃀', C:'𓎡', D:'𓂧', E:'𓇋', F:'𓆑', G:'𓎼', H:'𓎛', I:'𓇋', J:'𓆓',
+    K:'𓎡', L:'𓃭', M:'𓅓', N:'𓈖', O:'𓍯', P:'𓊪', Q:'𓈎', R:'𓂋', S:'𓋴', T:'𓏏',
+    U:'𓅱', V:'𓆑', W:'𓅱', X:'𓐍', Y:'𓇌', Z:'𓊃', ' ':' '
+  };
+  function render() {
+    var raw = input.value.toUpperCase();
+    var glyphs = '';
+    for (var i = 0; i < raw.length; i++) { if (MAP[raw[i]]) glyphs += MAP[raw[i]]; }
+    if (!glyphs.trim()) {
+      out.innerHTML = '<span class="cartouche-empty">↑ 名前を入力するとここに刻まれます</span>';
+    } else {
+      out.textContent = glyphs;
+    }
+  }
+  input.addEventListener('input', render);
+  var chipWrap = document.getElementById('glyphChips');
+  ['EGYPT', 'PHARAOH', 'クリア'].forEach(function (label) {
+    var b = document.createElement('button');
+    b.className = 'glyph-chip'; b.textContent = label;
+    b.addEventListener('click', function () {
+      input.value = (label === 'クリア') ? '' : label; render(); input.focus();
+    });
+    chipWrap.appendChild(b);
+  });
+})();
+
+// ── 持ち物チェックリスト（localStorage保存） ──
+(function () {
+  var cols = document.getElementById('packCols');
+  if (!cols) return;
+  var LIST = {
+    '必携書類': ['パスポート（残存6ヶ月以上）', 'eVisa / 入国カード', 'フライト予約控え', '海外旅行保険証', 'クレジットカード', '米ドル現金（チップ用）'],
+    '電子機器': ['スマホ＋充電器', 'モバイルバッテリー', '変換プラグ（Cタイプ）', 'カメラ / GoPro', 'eSIM・現地SIM'],
+    '砂漠・遺跡対策': ['日焼け止め', 'サングラス', '帽子 / 手ぬぐい', 'リップ・保湿', 'ウェットティッシュ', '常備薬・胃腸薬'],
+    '服・その他': ['薄手の長袖（朝晩冷える）', '歩きやすい靴', 'モスク用の羽織り', 'エコバッグ', '南京錠']
+  };
+  var KEY = 'egypt2026-packing';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  var bar = document.getElementById('packBar'), pct = document.getElementById('packPct'),
+      doneMsg = document.getElementById('packDone');
+  var total = 0, boxes = [];
+  Object.keys(LIST).forEach(function (group) {
+    var g = document.createElement('div'); g.className = 'pack-group';
+    var h = document.createElement('h3'); h.textContent = group; g.appendChild(h);
+    LIST[group].forEach(function (item) {
+      total++;
+      var id = group + '::' + item;
+      var lab = document.createElement('label'); lab.className = 'pack-item';
+      var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!saved[id];
+      var sp = document.createElement('span'); sp.textContent = item;
+      lab.appendChild(cb); lab.appendChild(sp); g.appendChild(lab);
+      if (cb.checked) lab.classList.add('done');
+      cb.addEventListener('change', function () {
+        saved[id] = cb.checked; lab.classList.toggle('done', cb.checked);
+        localStorage.setItem(KEY, JSON.stringify(saved)); update();
+      });
+      boxes.push(cb);
+    });
+    cols.appendChild(g);
+  });
+  function update() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    var p = Math.round(n / total * 100);
+    bar.style.width = p + '%'; pct.textContent = p + '%';
+    doneMsg.classList.toggle('show', n === total);
+  }
+  document.getElementById('packReset').addEventListener('click', function () {
+    saved = {}; localStorage.removeItem(KEY);
+    boxes.forEach(function (b) { b.checked = false; b.closest('.pack-item').classList.remove('done'); });
+    update();
+  });
+  update();
 })();
 </script>
 </body>
