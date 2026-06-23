@@ -774,6 +774,63 @@ body.theme-night .toc-panel { background: #17110a; }
 .toc-list li a.current { background: rgba(212,160,23,0.16); border-left-color: var(--gold); color: var(--night); font-weight: 600; }
 body.theme-night .toc-list li a.current { color: #f3ead4; }
 @media (max-width: 600px) { .toc-fab { padding: 0 16px; font-size: 12px; height: 48px; } }
+
+/* ── チケット・開館時間の早見表 ── */
+.tkt-wrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--divider); border-radius: 8px; -webkit-overflow-scrolling: touch; }
+.tkt-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 540px; }
+.tkt-table th {
+  background: var(--sand-light); color: var(--night); font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 11px 12px; text-align: left; white-space: nowrap;
+}
+.tkt-table td { padding: 11px 12px; border-top: 1px solid var(--divider); vertical-align: top; color: var(--text); }
+.tkt-table tr:nth-child(even) td { background: rgba(212,160,23,0.05); }
+.tkt-name { font-weight: 600; color: var(--night); }
+.tkt-price { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--gold); white-space: nowrap; }
+.tkt-free { color: #2E7D32; font-weight: 700; }
+.tkt-hour { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tkt-memo { font-size: 12px; color: var(--text-light); }
+.tkt-note { font-size: 12px; color: var(--text-light); margin-top: 12px; line-height: 1.7; }
+body.theme-night .tkt-table th { background: #2a2010; color: #f0e6d2; }
+body.theme-night .tkt-name { color: #f3ead4; }
+body.theme-night .tkt-table tr:nth-child(even) td { background: rgba(212,160,23,0.07); }
+
+/* ── 印刷用しおりボタン ── */
+.print-cta { text-align: center; margin: 8px 0 4px; }
+.print-btn {
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+  background: none; border: 1px solid var(--gold); color: var(--gold); border-radius: 24px;
+  padding: 11px 24px; cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+.print-btn:hover { background: var(--gold); color: var(--night); }
+body.theme-night .print-btn { color: var(--gold-light); border-color: var(--gold-light); }
+
+/* ── 印刷（PDF保存）レイアウト ── */
+@media print {
+  html { scroll-behavior: auto; }
+  body, body.theme-night { background: #fff !important; color: #000 !important; }
+  /* インタラクティブ/装飾セクションは印刷しない */
+  .hero, .cine-band, .egy-divider, .egy-topband, .theme-toggle, .toc-fab, .toc-overlay,
+  .day-map, .day-map-label, .day-chevron, .print-cta, .leaflet-container { display: none !important; }
+  section:has(.now-grid), section:has(.sun-grid), section:has(.vid-grid),
+  section:has(.hl-grid), section:has(.quiz-card), section:has(.roulette),
+  section:has(.glyph-tool), section:has(.phrase-grid), section:has(.fx-tool) { display: none !important; }
+  /* 旅程は全日展開して印刷 */
+  .day-body { display: block !important; }
+  .day-card, .flight-card, .budget-item, .tr-row { break-inside: avoid; }
+  /* 装飾を簡素化 */
+  .section { max-width: none !important; padding: 10px 0 !important; }
+  .itinerary-bg { background: #fff !important; padding: 0 !important; }
+  .itinerary-bg .section-heading, .section-heading { color: #000 !important; border-color: #999 !important; }
+  .itinerary-bg .section-label, .section-label { color: #666 !important; }
+  .flight-card, .memo-card, .budget-item, .sos-card, .day-card, .tkt-wrap, .pack-cols, .now-card {
+    box-shadow: none !important; border-color: #bbb !important; background: #fff !important; color: #000 !important;
+  }
+  .tkt-table th { background: #eee !important; color: #000 !important; }
+  .tkt-table tr:nth-child(even) td { background: #f6f6f6 !important; }
+  a { color: #000 !important; text-decoration: none; }
+  .sos-tel, .budget-amount, .budget-total-amount, .tkt-price { color: #000 !important; }
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1432,6 +1489,33 @@ body.theme-night .toc-list li a.current { color: #f3ead4; }
   </div>
 </section>
 
+<!-- チケット・開館時間 早見表 -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🏷️ 現地リファレンス</p>
+  <h2 class="section-heading">チケット・開館時間 早見表</h2>
+  <div class="tkt-wrap">
+    <table class="tkt-table">
+      <thead>
+        <tr><th>名所</th><th>入場料（目安）</th><th>開館時間</th><th>メモ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="tkt-name">ギザのピラミッド（敷地）</td><td class="tkt-price">540 EGP</td><td class="tkt-hour">7:00–17:00</td><td class="tkt-memo">内部は別料金（クフ王 約900EGP）</td></tr>
+        <tr><td class="tkt-name">グランド・エジプシャン博物館（GEM）</td><td class="tkt-price">1,200 EGP</td><td class="tkt-hour">8:30–18:00</td><td class="tkt-memo">大型展示・所要2〜3時間</td></tr>
+        <tr><td class="tkt-name">王家の谷</td><td class="tkt-price">750 EGP</td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">3墓まで／ツタンカーメン墓は別途</td></tr>
+        <tr><td class="tkt-name">ハトシェプスト女王葬祭殿</td><td class="tkt-price">360 EGP</td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">日陰が少ない・午前推奨</td></tr>
+        <tr><td class="tkt-name">カルナック神殿</td><td class="tkt-price">450 EGP</td><td class="tkt-hour">6:00–17:30</td><td class="tkt-memo">広大・所要2時間ほど</td></tr>
+        <tr><td class="tkt-name">ルクソール神殿</td><td class="tkt-price">400 EGP</td><td class="tkt-hour">6:00–22:00</td><td class="tkt-memo">夜のライトアップが◎</td></tr>
+        <tr><td class="tkt-name">メムノンの巨像</td><td class="tkt-free">無料</td><td class="tkt-hour">終日</td><td class="tkt-memo">道路沿い・短時間</td></tr>
+        <tr><td class="tkt-name">エジプト考古学博物館（タハリール）</td><td class="tkt-price">550 EGP</td><td class="tkt-hour">9:00–19:00</td><td class="tkt-memo">旧博物館・ミイラ室は別途</td></tr>
+        <tr><td class="tkt-name">ハンギング・チャーチ（コプト）</td><td class="tkt-free">無料</td><td class="tkt-hour">9:00–16:00</td><td class="tkt-memo">露出に配慮した服装で</td></tr>
+        <tr><td class="tkt-name">ハン・エル＝ハリーリ市場</td><td class="tkt-free">無料</td><td class="tkt-hour">店舗による</td><td class="tkt-memo">夕方〜夜が賑わう</td></tr>
+        <tr><td class="tkt-name">カイロ・タワー</td><td class="tkt-price">300 EGP</td><td class="tkt-hour">9:00–24:00</td><td class="tkt-memo">夜景スポット</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tkt-note">⚠️ 料金・時間は2025年時点の目安です。エジプトの入場料は改定が多く、現地で変わる場合があります。学生割引（国際学生証）あり。円換算は「💱 お金」セクションのレートでどうぞ。</p>
+</section>
+
 <!-- MEMO -->
 <section class="section" style="padding-top:0">
   <p class="section-label">📝 グループメモ</p>
@@ -1605,6 +1689,10 @@ body.theme-night .toc-list li a.current { color: #f3ead4; }
     </div>
     <ul class="toc-list" id="tocList"></ul>
   </nav>
+</div>
+
+<div class="print-cta">
+  <button class="print-btn" id="printBtn">🖨 しおりを印刷 / PDFで保存</button>
 </div>
 
 <div class="egy-topband"></div>
@@ -2286,6 +2374,12 @@ function dayMapInit(container) {
     }, { rootMargin: '-30% 0px -60% 0px' });
     entries.forEach(function (e) { if (e.el) io.observe(e.el); });
   }
+})();
+
+// ── 印刷用しおり（PDF保存） ──
+(function () {
+  var btn = document.getElementById('printBtn');
+  if (btn) btn.addEventListener('click', function () { window.print(); });
 })();
 
 // ── PWA: Service Worker 登録 ──
