@@ -507,6 +507,75 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
 .phrase-play.speaking { background: var(--gold); color: #fff; animation: phrasePulse 0.9s ease-in-out infinite; }
 @keyframes phrasePulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
 .phrase-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+
+/* ── 通貨換算＋チップ早見表 ── */
+.fx-tool { background: var(--papyrus); border: 1px solid var(--divider); border-radius: 6px; padding: 24px; }
+.fx-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.fx-field { display: flex; flex-direction: column; gap: 4px; }
+.fx-field label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
+.fx-input { width: 150px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; padding: 10px 12px; border: 1px solid var(--sand); border-radius: 6px; background: #fff; color: var(--night); }
+.fx-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.18); }
+.fx-swap { font-size: 22px; color: var(--gold); background: none; border: none; cursor: pointer; padding: 6px; align-self: flex-end; }
+.fx-rate { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+.fx-rate b { color: var(--lapis); }
+.fx-tip-title { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lapis); margin: 20px 0 8px; }
+.fx-tips { list-style: none; font-size: 14px; }
+.fx-tips li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--divider); }
+.fx-tips li:last-child { border-bottom: none; }
+.fx-tips .fx-amt { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--gold); white-space: nowrap; }
+.fx-tips .fx-yen { color: var(--text-light); font-size: 12px; }
+
+/* ── 緊急情報カード ── */
+.sos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 16px; }
+.sos-card { background: #fff; border: 1px solid var(--divider); border-left: 4px solid #C0392B; border-radius: 6px; padding: 16px 18px; }
+.sos-card.info { border-left-color: var(--lapis); }
+.sos-label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
+.sos-name { font-size: 15px; font-weight: 600; color: var(--night); margin: 2px 0 4px; }
+.sos-tel { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: #C0392B; text-decoration: none; }
+.sos-card.info .sos-tel { color: var(--lapis); font-size: 16px; }
+.sos-ar { font-size: 15px; color: var(--text); direction: rtl; margin-top: 4px; line-height: 1.5; }
+.sos-sub { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+.sos-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+
+/* ── 写真ライトボックス ── */
+.tl-img { cursor: zoom-in; }
+.lb-overlay {
+  position: fixed; inset: 0; z-index: 9999; background: rgba(10,7,3,0.94);
+  display: none; align-items: center; justify-content: center; flex-direction: column;
+}
+.lb-overlay.open { display: flex; }
+.lb-img { max-width: 92vw; max-height: 80vh; border-radius: 6px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+.lb-cap { color: var(--sand-light); font-size: 14px; margin-top: 14px; text-align: center; padding: 0 16px; }
+.lb-count { color: var(--sand); font-family: 'Montserrat', sans-serif; font-size: 12px; letter-spacing: 0.1em; margin-top: 4px; }
+.lb-btn {
+  position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.12);
+  color: #fff; border: none; width: 52px; height: 52px; border-radius: 50%; font-size: 26px; cursor: pointer;
+}
+.lb-btn:hover { background: var(--gold); color: var(--night); }
+.lb-prev { left: 16px; } .lb-next { right: 16px; }
+.lb-close { position: absolute; top: 18px; right: 20px; background: none; border: none; color: #fff; font-size: 34px; cursor: pointer; line-height: 1; }
+@media (max-width: 600px) { .lb-btn { width: 42px; height: 42px; font-size: 20px; } }
+
+/* ── エジプト雑学クイズ ── */
+.quiz-card { background: var(--papyrus); border: 1px solid var(--divider); border-radius: 6px; padding: 26px 24px; }
+.quiz-meta { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: var(--gold); }
+.quiz-q { font-size: 18px; font-weight: 600; color: var(--night); margin: 8px 0 18px; line-height: 1.6; }
+.quiz-opts { display: flex; flex-direction: column; gap: 10px; }
+.quiz-opt {
+  text-align: left; font-size: 15px; font-family: 'Noto Sans JP', sans-serif; color: var(--text);
+  background: #fff; border: 1px solid var(--sand); border-radius: 6px; padding: 12px 16px; cursor: pointer; transition: background 0.15s;
+}
+.quiz-opt:hover:not(:disabled) { background: rgba(212,160,23,0.1); border-color: var(--gold); }
+.quiz-opt.correct { background: #E6F4E6; border-color: #4CAF50; color: #2E7D32; font-weight: 600; }
+.quiz-opt.wrong { background: #FBE9E7; border-color: #E57373; color: #C62828; }
+.quiz-opt:disabled { cursor: default; }
+.quiz-exp { font-size: 14px; color: var(--text-light); margin-top: 16px; line-height: 1.7; display: none; }
+.quiz-exp.show { display: block; }
+.quiz-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+.quiz-score { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--lapis); }
+.quiz-next { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; background: var(--gold); color: var(--night); border: none; border-radius: 22px; padding: 10px 22px; cursor: pointer; }
+.quiz-next:hover { background: var(--gold-light); }
+.quiz-next:disabled { opacity: 0.4; cursor: default; }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1082,6 +1151,28 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   </div>
 </section>
 
+<!-- 通貨換算 -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">💱 お金</p>
+  <h2 class="section-heading">通貨換算＆チップ早見表</h2>
+  <div class="fx-tool">
+    <div class="fx-row">
+      <div class="fx-field">
+        <label id="fxLeftLabel">日本円 (JPY)</label>
+        <input class="fx-input" id="fxLeft" type="number" inputmode="decimal" value="1000">
+      </div>
+      <button class="fx-swap" id="fxSwap" title="入れ替え">⇄</button>
+      <div class="fx-field">
+        <label id="fxRightLabel">エジプトポンド (EGP)</label>
+        <input class="fx-input" id="fxRight" type="number" inputmode="decimal" value="0">
+      </div>
+    </div>
+    <p class="fx-rate" id="fxRate">レート取得中…</p>
+    <p class="fx-tip-title">💵 チップ（バクシーシ）の目安</p>
+    <ul class="fx-tips" id="fxTips"></ul>
+  </div>
+</section>
+
 <!-- MEMO -->
 <section class="section" style="padding-top:0">
   <p class="section-label">📝 グループメモ</p>
@@ -1112,6 +1203,48 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   </div>
 </section>
 
+<!-- 緊急情報カード -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🆘 もしもの時</p>
+  <h2 class="section-heading">緊急連絡先カード</h2>
+  <div class="sos-grid">
+    <div class="sos-card">
+      <p class="sos-label">Police · 警察</p>
+      <p class="sos-name">エジプト警察</p>
+      <a class="sos-tel" href="tel:122">122</a>
+    </div>
+    <div class="sos-card">
+      <p class="sos-label">Ambulance · 救急</p>
+      <p class="sos-name">救急車</p>
+      <a class="sos-tel" href="tel:123">123</a>
+    </div>
+    <div class="sos-card">
+      <p class="sos-label">Tourist Police · 観光警察</p>
+      <p class="sos-name">観光警察</p>
+      <a class="sos-tel" href="tel:126">126</a>
+    </div>
+    <div class="sos-card info">
+      <p class="sos-label">Embassy · 大使館</p>
+      <p class="sos-name">在エジプト日本国大使館（カイロ）</p>
+      <a class="sos-tel" href="tel:+20227285500">+20 2 2728 5500</a>
+      <p class="sos-sub">81 Corniche El Nil, Maadi, Cairo</p>
+    </div>
+    <div class="sos-card info">
+      <p class="sos-label">Taxi用 · ホテル名（アラビア語）</p>
+      <p class="sos-name">運転手に見せる用（未定→確定後に差し替え）</p>
+      <p class="sos-ar">الفندق في القاهرة</p>
+      <p class="sos-sub">「カイロのホテルへ」/ ホテル確定後に住所を記入</p>
+    </div>
+    <div class="sos-card info">
+      <p class="sos-label">Useful · 助けて</p>
+      <p class="sos-name">緊急時に見せるアラビア語</p>
+      <p class="sos-ar">ساعدني من فضلك — مستشفى</p>
+      <p class="sos-sub">「助けてください — 病院」</p>
+    </div>
+  </div>
+  <p class="sos-note">📵 このページはPWAでオフラインでも開けます。SIMが繋がらない時の備えに。番号・住所は出発前に最新情報を必ず確認してください。</p>
+</section>
+
 <!-- 名前をヒエログリフに -->
 <section class="section" style="padding-top:0">
   <p class="section-label">𓂀 ファラオの遊び</p>
@@ -1134,6 +1267,22 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
   <h2 class="section-heading">エジプト・アラビア語フレーズ集</h2>
   <div class="phrase-grid" id="phraseGrid"></div>
   <p class="phrase-note">🔊 をタップすると音声で読み上げます（端末にアラビア語の音声が入っている場合）。市場での値段交渉やチップのお礼にどうぞ。</p>
+</section>
+
+<!-- エジプト雑学クイズ -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🏛️ 出発前の予習</p>
+  <h2 class="section-heading">エジプト雑学クイズ</h2>
+  <div class="quiz-card">
+    <p class="quiz-meta" id="quizMeta">Q1 / 8</p>
+    <p class="quiz-q" id="quizQ">読み込み中…</p>
+    <div class="quiz-opts" id="quizOpts"></div>
+    <p class="quiz-exp" id="quizExp"></p>
+    <div class="quiz-foot">
+      <span class="quiz-score" id="quizScore">正解 0 / 0</span>
+      <button class="quiz-next" id="quizNext" disabled>次の問題 →</button>
+    </div>
+  </div>
 </section>
 
 <!-- 持ち物チェックリスト -->
@@ -1544,6 +1693,153 @@ function dayMapInit(container) {
     grid.appendChild(card);
   });
   if (synth && synth.onvoiceschanged === null) { synth.onvoiceschanged = function () {}; }
+})();
+
+// ── 通貨換算＋チップ早見表（ライブレート / open.er-api.com・キー不要） ──
+(function () {
+  var left = document.getElementById('fxLeft'), right = document.getElementById('fxRight');
+  if (!left) return;
+  var rateEl = document.getElementById('fxRate'), tipsEl = document.getElementById('fxTips');
+  var leftLabel = document.getElementById('fxLeftLabel'), rightLabel = document.getElementById('fxRightLabel');
+  var JPY_PER_EGP = 3.1; // フォールバック（おおよそ）
+  var jpyLeft = true;    // true: 左=JPY 右=EGP
+  // チップ目安（EGP）
+  var TIPS = [
+    ['ホテルの枕銭 / 1泊', 20], ['ポーター / 1個', 20], ['レストラン会計', null],
+    ['ガイド / 1日', 200], ['ドライバー / 1日', 100], ['トイレ係', 5]
+  ];
+  function fmtYen(egp) { return '≈ ¥' + Math.round(egp * JPY_PER_EGP).toLocaleString(); }
+  function renderTips() {
+    tipsEl.innerHTML = '';
+    TIPS.forEach(function (t) {
+      var li = document.createElement('li');
+      var amt = t[1] == null ? '会計の5〜10%' : (t[1] + ' EGP');
+      var yen = t[1] == null ? '' : ' <span class="fx-yen">' + fmtYen(t[1]) + '</span>';
+      li.innerHTML = '<span>' + t[0] + '</span><span class="fx-amt">' + amt + yen + '</span>';
+      tipsEl.appendChild(li);
+    });
+  }
+  function recalc(from) {
+    var rate = jpyLeft ? (1 / JPY_PER_EGP) : JPY_PER_EGP; // 左→右 の倍率
+    if (from === 'right') {
+      var v = parseFloat(right.value) || 0; left.value = +(v / rate).toFixed(2);
+    } else {
+      var v2 = parseFloat(left.value) || 0; right.value = +(v2 * rate).toFixed(2);
+    }
+  }
+  function setLabels() {
+    leftLabel.textContent = jpyLeft ? '日本円 (JPY)' : 'エジプトポンド (EGP)';
+    rightLabel.textContent = jpyLeft ? 'エジプトポンド (EGP)' : '日本円 (JPY)';
+  }
+  left.addEventListener('input', function () { recalc('left'); });
+  right.addEventListener('input', function () { recalc('right'); });
+  document.getElementById('fxSwap').addEventListener('click', function () {
+    jpyLeft = !jpyLeft; setLabels();
+    var tmp = left.value; left.value = right.value; right.value = tmp;
+  });
+  setLabels(); renderTips(); recalc('left');
+  // ライブレート取得（JPYベース → EGP）
+  fetch('https://open.er-api.com/v6/latest/JPY').then(function (r) { return r.json(); }).then(function (j) {
+    if (j && j.rates && j.rates.EGP) {
+      JPY_PER_EGP = 1 / j.rates.EGP;
+      var d = j.time_last_update_utc ? new Date(j.time_last_update_utc).toLocaleDateString('ja-JP') : '';
+      rateEl.innerHTML = '1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>　（1万円 ≈ ' + Math.round(10000 / JPY_PER_EGP).toLocaleString() + ' EGP）<br>レート更新: ' + d + ' ・ ライブ取得';
+    } else { throw 0; }
+    renderTips(); recalc('left');
+  }).catch(function () {
+    rateEl.innerHTML = '1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>（参考値・オフライン）';
+  });
+})();
+
+// ── 写真ライトボックス ──
+(function () {
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('.tl-img'));
+  if (!imgs.length) return;
+  var ov = document.createElement('div');
+  ov.className = 'lb-overlay';
+  ov.innerHTML =
+    '<button class="lb-close" aria-label="閉じる">×</button>' +
+    '<button class="lb-btn lb-prev" aria-label="前へ">‹</button>' +
+    '<img class="lb-img" alt="">' +
+    '<button class="lb-btn lb-next" aria-label="次へ">›</button>' +
+    '<p class="lb-cap"></p><p class="lb-count"></p>';
+  document.body.appendChild(ov);
+  var imgEl = ov.querySelector('.lb-img'), capEl = ov.querySelector('.lb-cap'), cntEl = ov.querySelector('.lb-count');
+  var idx = 0;
+  function show(i) {
+    idx = (i + imgs.length) % imgs.length;
+    imgEl.src = imgs[idx].src; imgEl.alt = imgs[idx].alt || '';
+    capEl.textContent = imgs[idx].alt || '';
+    cntEl.textContent = (idx + 1) + ' / ' + imgs.length;
+  }
+  function open(i) { show(i); ov.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function close() { ov.classList.remove('open'); document.body.style.overflow = ''; }
+  imgs.forEach(function (im, i) { im.addEventListener('click', function () { open(i); }); });
+  ov.querySelector('.lb-close').addEventListener('click', close);
+  ov.querySelector('.lb-prev').addEventListener('click', function () { show(idx - 1); });
+  ov.querySelector('.lb-next').addEventListener('click', function () { show(idx + 1); });
+  ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!ov.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
+
+// ── エジプト雑学クイズ ──
+(function () {
+  var qEl = document.getElementById('quizQ');
+  if (!qEl) return;
+  var QUIZ = [
+    { q: 'ギザの大ピラミッド（クフ王）は約何年前に造られた？', o: ['約2,500年前', '約4,500年前', '約6,500年前'], a: 1, e: '紀元前2500年頃、今から約4,500年前。エジプト文明の中でもかなり古い時代の建造物です。' },
+    { q: '「ツタンカーメンの黄金のマスク」は何でできている？', o: ['純金と宝石', '金メッキの木', '青銅'], a: 0, e: '約11kgの純金にラピスラズリなどの宝石を象嵌。新博物館GEMで本物が見られます。' },
+    { q: 'ヒエログリフ解読の鍵となった石碑は？', o: ['ロゼッタ・ストーン', 'パレルモ石', 'メルエンプタハ碑文'], a: 0, e: '1799年発見のロゼッタ・ストーン。同じ内容が3種の文字で刻まれ、解読の決め手に。' },
+    { q: 'ナイル川の全長は約何km？世界最長級の川です', o: ['約2,200km', '約4,200km', '約6,700km'], a: 2, e: '約6,650km。アマゾン川と世界一を争う長さ。エジプトはまさに「ナイルの賜物」。' },
+    { q: '王家の谷があるのはどの都市？', o: ['カイロ', 'アスワン', 'ルクソール'], a: 2, e: 'ルクソール西岸。ツタンカーメン王墓をはじめ60以上の王墓が眠ります。' },
+    { q: 'エジプトの通貨「ポンド」を現地で何と呼ぶ？', o: ['ディナール', 'ジニー（ギニー）', 'ディルハム'], a: 1, e: 'アラビア語で「ginēh（ジニー）」。1ポンド=100ピアストル。' },
+    { q: '古代エジプトで神聖視され、復活の象徴とされた昆虫は？', o: ['スカラベ（フンコロガシ）', 'カブトムシ', 'サソリ'], a: 0, e: 'スカラベ＝フンコロガシ。太陽を転がす姿が再生・復活の象徴とされ、お守りに。' },
+    { q: 'エジプトの国民食「コシャリ」の主な材料は？', o: ['米・パスタ・豆', '羊肉とクスクス', '魚介とサフラン'], a: 0, e: '米・マカロニ・レンズ豆にトマトソースと揚げ玉ねぎ。1食100円程度の庶民の味。' }
+  ];
+  var optsEl = document.getElementById('quizOpts'), expEl = document.getElementById('quizExp'),
+      metaEl = document.getElementById('quizMeta'), scoreEl = document.getElementById('quizScore'),
+      nextBtn = document.getElementById('quizNext');
+  var cur = 0, score = 0, answered = 0, locked = false;
+  function render() {
+    var item = QUIZ[cur];
+    locked = false;
+    metaEl.textContent = 'Q' + (cur + 1) + ' / ' + QUIZ.length;
+    qEl.textContent = item.q;
+    expEl.classList.remove('show'); expEl.textContent = '';
+    nextBtn.disabled = true;
+    optsEl.innerHTML = '';
+    item.o.forEach(function (opt, i) {
+      var b = document.createElement('button');
+      b.className = 'quiz-opt'; b.textContent = opt;
+      b.addEventListener('click', function () { pick(i, b, item); });
+      optsEl.appendChild(b);
+    });
+  }
+  function pick(i, btn, item) {
+    if (locked) return;
+    locked = true; answered++;
+    var all = optsEl.querySelectorAll('.quiz-opt');
+    all.forEach(function (b, j) {
+      b.disabled = true;
+      if (j === item.a) b.classList.add('correct');
+    });
+    if (i === item.a) { score++; } else { btn.classList.add('wrong'); }
+    expEl.textContent = '💡 ' + item.e; expEl.classList.add('show');
+    scoreEl.textContent = '正解 ' + score + ' / ' + answered;
+    nextBtn.disabled = false;
+    if (cur === QUIZ.length - 1) nextBtn.textContent = '最初から ↻';
+  }
+  nextBtn.addEventListener('click', function () {
+    cur = (cur + 1) % QUIZ.length;
+    if (cur === 0) { nextBtn.textContent = '次の問題 →'; }
+    render();
+  });
+  render();
 })();
 
 // ── PWA: Service Worker 登録 ──
