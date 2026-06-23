@@ -1,5 +1,5 @@
 /* エジプト旅行2026 — Service Worker（オフライン対応） */
-const CACHE = 'egypt2026-v11';
+const CACHE = 'egypt2026-v12';
 /* 同一オリジンのコアファイルを事前キャッシュ（相対パス＝サブディレクトリ配信に対応） */
 const CORE = [
   './',
@@ -8,7 +8,8 @@ const CORE = [
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/apple-touch-icon.png',
-  './images/pyramid.webp'
+  './images/pyramid.webp',
+  './images/hero-ruins.jpg'
 ];
 
 self.addEventListener('install', (e) => {
