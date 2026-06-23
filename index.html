@@ -382,25 +382,60 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
 }
 @media (max-width: 600px) { .day-map { height: 200px; } }
 /* ── 出発カウントダウン（ヒーロー内） ── */
-.hero-countdown { margin-top: 40px; }
+.hero-countdown { margin-top: 36px; position: relative; }
+.hero-countdown::before {
+  content: ''; position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%);
+  width: 360px; height: 220px; max-width: 96vw; pointer-events: none; z-index: -1;
+  background: radial-gradient(ellipse at center, rgba(240,200,66,0.16), transparent 70%);
+}
 .hero-countdown-label {
-  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600;
-  letter-spacing: 0.25em; text-transform: uppercase; color: var(--sand); margin-bottom: 14px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 16px;
 }
-.cd-grid { display: flex; gap: 12px; justify-content: center; }
-.cd-cell {
-  background: rgba(20,14,5,0.45); border: 1px solid rgba(212,160,23,0.35);
-  border-radius: 8px; padding: 12px 8px; min-width: 72px; backdrop-filter: blur(3px);
+.hero-countdown-label .cd-tminus {
+  display: inline-block; margin-right: 10px; padding: 2px 8px; border: 1px solid rgba(212,160,23,0.5);
+  border-radius: 4px; color: var(--gold); font-size: 10px; letter-spacing: 0.2em;
 }
-.cd-num {
-  font-family: 'Montserrat', sans-serif; font-size: 34px; font-weight: 800;
-  color: var(--gold-light); line-height: 1; font-variant-numeric: tabular-nums;
+.cd-grid { --dh: 1.18em; display: flex; gap: 10px; justify-content: center; align-items: flex-start; }
+.cd-unit-group { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+.cd-digits { display: flex; gap: 5px; }
+.cd-digit {
+  position: relative; width: 0.74em; height: var(--dh); overflow: hidden; border-radius: 8px;
+  font-family: 'Montserrat', sans-serif; font-size: 46px; font-weight: 800;
+  color: var(--gold-light);
+  background: linear-gradient(#211705 0%, #120c04 52%, #0c0802 100%);
+  border: 1px solid rgba(212,160,23,0.4);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.65), inset 0 -2px 4px rgba(212,160,23,0.06), 0 4px 12px rgba(0,0,0,0.45);
 }
+.cd-digit::after { /* flip-clock 風の中央ヒンジ線 */
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px;
+  background: rgba(0,0,0,0.55); box-shadow: 0 1px 0 rgba(212,160,23,0.12); z-index: 2;
+}
+.cd-reel { display: flex; flex-direction: column; transition: transform 0.62s cubic-bezier(0.18, 0.9, 0.2, 1); will-change: transform; }
+.cd-reel span { height: var(--dh); line-height: var(--dh); text-align: center; font-variant-numeric: tabular-nums; }
 .cd-unit {
-  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600;
-  letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-top: 6px;
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--sand);
+}
+.cd-sep {
+  font-family: 'Montserrat', sans-serif; font-size: 38px; font-weight: 800; color: var(--gold);
+  line-height: var(--dh); height: var(--dh); display: flex; align-items: center;
+  animation: cdBlink 1s steps(1, end) infinite;
+}
+@keyframes cdBlink { 50% { opacity: 0.2; } }
+.cd-unit-group.sec .cd-digit { animation: cdPulse 1s ease-out infinite; }
+@keyframes cdPulse {
+  0% { box-shadow: inset 0 2px 5px rgba(0,0,0,0.65), 0 0 0 rgba(240,200,66,0.5), 0 4px 12px rgba(0,0,0,0.45); }
+  18% { box-shadow: inset 0 2px 5px rgba(0,0,0,0.65), 0 0 14px rgba(240,200,66,0.55), 0 4px 12px rgba(0,0,0,0.45); }
+  100% { box-shadow: inset 0 2px 5px rgba(0,0,0,0.65), 0 0 0 rgba(240,200,66,0), 0 4px 12px rgba(0,0,0,0.45); }
 }
 .cd-departed { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: var(--gold-light); }
+@media (max-width: 600px) {
+  .cd-grid { gap: 6px; }
+  .cd-digit { font-size: 34px; }
+  .cd-digits { gap: 3px; }
+  .cd-sep { font-size: 28px; }
+}
 
 /* ── 現地のいま（時刻＋天気） ── */
 .now-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 16px; }
@@ -602,12 +637,15 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
       <div class="stat"><span class="stat-number">2</span><span class="stat-label">都市</span></div>
     </div>
     <div class="hero-countdown" id="countdown">
-      <p class="hero-countdown-label">✈ 成田出発まで</p>
-      <div class="cd-grid">
-        <div class="cd-cell"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">Days</div></div>
-        <div class="cd-cell"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">Hours</div></div>
-        <div class="cd-cell"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">Min</div></div>
-        <div class="cd-cell"><div class="cd-num" id="cd-s">--</div><div class="cd-unit">Sec</div></div>
+      <p class="hero-countdown-label"><span class="cd-tminus">T-MINUS</span>✈ 成田出発まで</p>
+      <div class="cd-grid" id="cdGrid">
+        <div class="cd-unit-group"><div class="cd-digits" data-unit="d"></div><div class="cd-unit">Days</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit-group"><div class="cd-digits" data-unit="h"></div><div class="cd-unit">Hours</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit-group"><div class="cd-digits" data-unit="m"></div><div class="cd-unit">Min</div></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit-group sec"><div class="cd-digits" data-unit="s"></div><div class="cd-unit">Sec</div></div>
       </div>
     </div>
   </div>
@@ -1429,13 +1467,33 @@ function dayMapInit(container) {
   els.forEach(function (el) { io.observe(el); });
 })();
 
-// ── 出発カウントダウン（成田 10/8 22:25 JST = 13:25 UTC） ──
+// ── 出発カウントダウン（成田 10/8 22:25 JST = 13:25 UTC）flip-clock 風 ──
 (function () {
   var target = Date.UTC(2026, 9, 8, 13, 25, 0);
-  var d = document.getElementById('cd-d'), h = document.getElementById('cd-h'),
-      m = document.getElementById('cd-m'), s = document.getElementById('cd-s');
-  if (!d) return;
-  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  var grid = document.getElementById('cdGrid');
+  if (!grid) return;
+  var groups = {};
+  grid.querySelectorAll('.cd-digits').forEach(function (g) { groups[g.dataset.unit] = g; });
+  // 各桁を「0〜9 の縦リール」で作る → 桁が変わると translateY で回転
+  function setUnit(container, str) {
+    // 桁数が変わったら作り直し
+    if (container.children.length !== str.length) {
+      container.innerHTML = '';
+      for (var i = 0; i < str.length; i++) {
+        var tile = document.createElement('div'); tile.className = 'cd-digit';
+        var reel = document.createElement('div'); reel.className = 'cd-reel';
+        for (var n = 0; n <= 9; n++) { var sp = document.createElement('span'); sp.textContent = n; reel.appendChild(sp); }
+        tile.appendChild(reel); container.appendChild(tile);
+      }
+    }
+    for (var j = 0; j < str.length; j++) {
+      var reelEl = container.children[j].firstChild;
+      var digit = +str[j];
+      reelEl.style.transform = 'translateY(calc(' + digit + ' * var(--dh) * -1))';
+    }
+  }
+  function pad(n, w) { n = '' + n; while (n.length < w) n = '0' + n; return n; }
+  var dayWidth = 2;
   function tick() {
     var diff = target - Date.now();
     if (diff <= 0) {
@@ -1444,10 +1502,12 @@ function dayMapInit(container) {
       clearInterval(iv); return;
     }
     var sec = Math.floor(diff / 1000);
-    d.textContent = Math.floor(sec / 86400);
-    h.textContent = pad(Math.floor(sec / 3600) % 24);
-    m.textContent = pad(Math.floor(sec / 60) % 60);
-    s.textContent = pad(sec % 60);
+    var days = Math.floor(sec / 86400);
+    dayWidth = Math.max(2, ('' + days).length);
+    setUnit(groups.d, pad(days, dayWidth));
+    setUnit(groups.h, pad(Math.floor(sec / 3600) % 24, 2));
+    setUnit(groups.m, pad(Math.floor(sec / 60) % 60, 2));
+    setUnit(groups.s, pad(sec % 60, 2));
   }
   tick(); var iv = setInterval(tick, 1000);
 })();
