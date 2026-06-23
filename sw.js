@@ -1,5 +1,5 @@
 /* エジプト旅行2026 — Service Worker（オフライン対応） */
-const CACHE = 'egypt2026-v5';
+const CACHE = 'egypt2026-v6';
 /* 同一オリジンのコアファイルを事前キャッシュ（相対パス＝サブディレクトリ配信に対応） */
 const CORE = [
   './',
