@@ -726,6 +726,42 @@ body.theme-night .hl-item { background: linear-gradient(160deg, #1a2438, #11192b
 .sun-tip { font-size: 12px; color: #6a4a18; margin-top: 12px; position: relative; z-index: 1; }
 .sun-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
 body.theme-night .sun-card { color: #2a1d08; }
+
+/* ── 行き先プレビュー動画（YouTubeファサード） ── */
+.vid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 16px; }
+.vid-card { background: #0f0a04; border: 1px solid var(--divider); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 20px rgba(40,28,10,0.15); }
+.vid-frame { position: relative; aspect-ratio: 16 / 9; background: #0f0a04 center/cover no-repeat; cursor: pointer; }
+.vid-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vid-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.vid-frame::after {
+  content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.35));
+  pointer-events: none; transition: background 0.2s;
+}
+.vid-frame.playing::after { display: none; }
+.vid-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+  width: 64px; height: 64px; border-radius: 50%; background: rgba(212,160,23,0.92); color: #1a1209;
+  display: flex; align-items: center; justify-content: center; font-size: 26px; padding-left: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4); transition: transform 0.15s; pointer-events: none;
+}
+.vid-frame:hover .vid-play { transform: translate(-50%, -50%) scale(1.1); }
+.vid-cap { padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.vid-name { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--night); }
+.vid-sub { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+.vid-link { font-size: 11px; color: var(--lapis); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+.vid-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+body.theme-night .vid-card { background: #100b05; }
+body.theme-night .vid-name { color: #f3ead4; }
+
+/* ── シネマティック動画バンド ── */
+.cine-band { position: relative; width: 100%; height: 340px; overflow: hidden; background: #0c0802; }
+.cine-band video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cine-band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(12,8,2,0.7), rgba(12,8,2,0.25) 45%, rgba(12,8,2,0.7)); }
+.cine-inner { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+.cine-eyebrow { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.cine-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 5vw, 44px); font-weight: 700; color: var(--sand-light); line-height: 1.2; text-shadow: 0 2px 14px rgba(0,0,0,0.6); }
+.cine-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(14px, 2.4vw, 20px); color: var(--gold-light); margin-top: 8px; }
+@media (max-width: 600px) { .cine-band { height: 260px; } }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -935,6 +971,43 @@ body.theme-night .sun-card { color: #2a1d08; }
     </div>
   </div>
   <p class="model-note">ドラッグで回転・ピンチ/スクロールで拡大。3Dモデルは <a href="https://sketchfab.com" target="_blank" rel="noopener">Sketchfab</a> のクリエイターによる公開作品です。</p>
+</section>
+
+<!-- 行き先プレビュー動画 -->
+<section class="section">
+  <p class="section-label">🎬 旅の予告編</p>
+  <h2 class="section-heading">行き先プレビュー（動画）</h2>
+  <div class="vid-grid">
+    <div class="vid-card">
+      <div class="vid-frame" data-yt="9ardAUgW6iw">
+        <img loading="lazy" src="https://i.ytimg.com/vi/9ardAUgW6iw/hqdefault.jpg" alt="ギザのピラミッド 空撮">
+        <span class="vid-play">▶</span>
+      </div>
+      <div class="vid-cap"><div><p class="vid-name">ギザのピラミッド（空撮）</p><p class="vid-sub">10/9 訪問予定</p></div><a class="vid-link" href="https://www.youtube.com/watch?v=9ardAUgW6iw" target="_blank" rel="noopener">YouTube ↗</a></div>
+    </div>
+    <div class="vid-card">
+      <div class="vid-frame" data-yt="kKWS0efndOY">
+        <img loading="lazy" src="https://i.ytimg.com/vi/kKWS0efndOY/hqdefault.jpg" alt="カルナック神殿 ルクソール">
+        <span class="vid-play">▶</span>
+      </div>
+      <div class="vid-cap"><div><p class="vid-name">カルナック神殿・ルクソール</p><p class="vid-sub">10/12 訪問予定</p></div><a class="vid-link" href="https://www.youtube.com/watch?v=kKWS0efndOY" target="_blank" rel="noopener">YouTube ↗</a></div>
+    </div>
+    <div class="vid-card">
+      <div class="vid-frame" data-yt="vgBpr-7AUjg">
+        <img loading="lazy" src="https://i.ytimg.com/vi/vgBpr-7AUjg/hqdefault.jpg" alt="白砂漠 バハレイヤ">
+        <span class="vid-play">▶</span>
+      </div>
+      <div class="vid-cap"><div><p class="vid-name">白砂漠（バハレイヤ）</p><p class="vid-sub">10/10 キャンプ泊</p></div><a class="vid-link" href="https://www.youtube.com/watch?v=vgBpr-7AUjg" target="_blank" rel="noopener">YouTube ↗</a></div>
+    </div>
+    <div class="vid-card">
+      <div class="vid-frame" data-yt="iGDNEJ9UwA0">
+        <img loading="lazy" src="https://i.ytimg.com/vi/iGDNEJ9UwA0/hqdefault.jpg" alt="ナイル川 フェルッカ">
+        <span class="vid-play">▶</span>
+      </div>
+      <div class="vid-cap"><div><p class="vid-name">ナイル川・フェルッカ</p><p class="vid-sub">10/13 西岸・川下り</p></div><a class="vid-link" href="https://www.youtube.com/watch?v=iGDNEJ9UwA0" target="_blank" rel="noopener">YouTube ↗</a></div>
+    </div>
+  </div>
+  <p class="vid-note">▶ をタップで再生（YouTube）。各動画は権利者のYouTube公開作品です。リンクから元動画を開けます。</p>
 </section>
 
 <!-- ITINERARY -->
@@ -1326,7 +1399,17 @@ body.theme-night .sun-card { color: #2a1d08; }
   </div>
 </section>
 
-<div class="egy-divider"><span class="egy-line"></span><svg class="egy-eye" viewBox="0 0 130 80" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 26 Q48 8 92 22"/><path d="M14 44 Q46 24 90 40"/><path d="M14 44 Q34 56 60 52"/><path d="M44 54 L38 74"/><path d="M90 40 q26 4 30 30 q-12 6 -18 -8"/></g><circle cx="46" cy="42" r="7.5" fill="currentColor"/></svg><span class="egy-line"></span></div>
+<!-- シネマティック動画バンド -->
+<div class="cine-band">
+  <video autoplay muted loop playsinline preload="metadata" poster="images/pyramid.webp">
+    <source src="images/hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="cine-inner">
+    <p class="cine-eyebrow">9 Nights · 10 Days</p>
+    <p class="cine-title">星降る砂漠と、4500年の遺跡へ</p>
+    <p class="cine-sub">— 5人のエジプト —</p>
+  </div>
+</div>
 
 <!-- BUDGET -->
 <section class="section">
@@ -2215,6 +2298,24 @@ function dayMapInit(container) {
       card.querySelector('[data-r=ss]').textContent = toCairo(j.results.sunset);
     }).catch(function () {
       card.querySelector('.sun-tip').insertAdjacentHTML('beforebegin', '<p class="sun-tip" style="color:#a05">時刻を取得できませんでした</p>');
+    });
+  });
+})();
+
+// ── 行き先プレビュー動画（クリックで埋め込み再生・facade方式） ──
+(function () {
+  var frames = document.querySelectorAll('.vid-frame[data-yt]');
+  frames.forEach(function (frame) {
+    frame.addEventListener('click', function () {
+      if (frame.classList.contains('playing')) return;
+      var id = frame.dataset.yt;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1';
+      iframe.title = 'preview video';
+      iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+      iframe.setAttribute('allowfullscreen', '');
+      frame.classList.add('playing');
+      frame.appendChild(iframe);
     });
   });
 })();
