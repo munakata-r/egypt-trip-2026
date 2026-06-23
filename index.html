@@ -832,6 +832,40 @@ body.theme-night .print-btn { color: var(--gold-light); border-color: var(--gold
   a { color: #000 !important; text-decoration: none; }
   .sos-tel, .budget-amount, .budget-total-amount, .tkt-price, .tkt-yen { color: #000 !important; }
 }
+
+/* ── 現地グルメ図鑑 ── */
+.food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-top: 16px; }
+.food-card { background: #fff; border: 1px solid var(--divider); border-radius: 10px; padding: 18px 16px; text-align: center; }
+.food-emoji { font-size: 40px; line-height: 1; }
+.food-name { font-size: 15px; font-weight: 700; color: var(--night); margin-top: 8px; }
+.food-roma { font-family: 'Montserrat', sans-serif; font-size: 11px; font-style: italic; color: var(--lapis); margin-top: 1px; }
+.food-desc { font-size: 12px; color: var(--text-light); margin-top: 8px; line-height: 1.6; }
+.food-tag { display: inline-block; margin-top: 10px; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; color: var(--gold); background: rgba(212,160,23,0.12); border-radius: 12px; padding: 3px 10px; }
+body.theme-night .food-card { background: #17110a; border-color: rgba(212,176,150,0.18); }
+body.theme-night .food-name { color: #f3ead4; }
+
+/* ── 出発前TODO（期限付き） ── */
+.todo-card { background: var(--papyrus); border: 1px solid var(--divider); border-radius: 6px; padding: 22px 22px 18px; }
+.todo-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+.todo-progress-wrap { flex: 1; min-width: 160px; height: 10px; background: var(--sand-light); border-radius: 6px; overflow: hidden; }
+.todo-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 0.35s ease; }
+.todo-progress-pct { font-family: 'Montserrat', sans-serif; font-weight: 800; color: var(--gold); font-size: 15px; min-width: 46px; text-align: right; }
+.todo-list { list-style: none; margin-top: 14px; }
+.todo-item { display: flex; align-items: center; gap: 12px; padding: 11px 6px; border-bottom: 1px solid var(--divider); cursor: pointer; user-select: none; }
+.todo-item:last-child { border-bottom: none; }
+.todo-item input { width: 18px; height: 18px; accent-color: var(--gold); cursor: pointer; flex-shrink: 0; }
+.todo-main { flex: 1; min-width: 0; }
+.todo-task { font-size: 14.5px; color: var(--text); }
+.todo-item.done .todo-task { text-decoration: line-through; color: var(--text-light); }
+.todo-due { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+.todo-chip { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; white-space: nowrap; padding: 4px 10px; border-radius: 12px; flex-shrink: 0; }
+.todo-chip.ok { color: #2E7D32; background: rgba(76,175,80,0.14); }
+.todo-chip.warn { color: #B26A00; background: rgba(212,160,23,0.16); }
+.todo-chip.urgent { color: #C0392B; background: rgba(192,57,43,0.12); }
+.todo-item.done .todo-chip { opacity: 0.4; }
+.todo-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
+body.theme-night .todo-card { background: #17110a; }
+body.theme-night .todo-task { color: var(--text); }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1613,6 +1647,27 @@ body.theme-night .print-btn { color: var(--gold-light); border-color: var(--gold
   <p class="phrase-note">🔊 をタップすると音声で読み上げます（端末にアラビア語の音声が入っている場合）。市場での値段交渉やチップのお礼にどうぞ。</p>
 </section>
 
+<!-- 現地グルメ図鑑 -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">🍽️ 食べておきたい</p>
+  <h2 class="section-heading">現地グルメ図鑑</h2>
+  <div class="food-grid">
+    <div class="food-card"><div class="food-emoji">🍝</div><p class="food-name">コシャリ</p><p class="food-roma">Koshari</p><p class="food-desc">米・パスタ・豆にトマトソースと揚げ玉ねぎ。国民食。</p><span class="food-tag">~50 EGP</span></div>
+    <div class="food-card"><div class="food-emoji">🧆</div><p class="food-name">ターメイヤ</p><p class="food-roma">Ta'meya</p><p class="food-desc">そら豆のエジプト式ファラフェル。朝食の定番。</p><span class="food-tag">軽食</span></div>
+    <div class="food-card"><div class="food-emoji">🫘</div><p class="food-name">フール</p><p class="food-roma">Ful medames</p><p class="food-desc">そら豆の煮込み。パンと一緒に朝ごはんで。</p><span class="food-tag">朝食</span></div>
+    <div class="food-card"><div class="food-emoji">🍢</div><p class="food-name">コフタ</p><p class="food-roma">Kofta</p><p class="food-desc">スパイスの効いたひき肉のグリル串。</p><span class="food-tag">肉料理</span></div>
+    <div class="food-card"><div class="food-emoji">🥬</div><p class="food-name">モロヘイヤ</p><p class="food-roma">Molokhia</p><p class="food-desc">とろみのある緑のスープ。ご飯やパンと。</p><span class="food-tag">スープ</span></div>
+    <div class="food-card"><div class="food-emoji">🫑</div><p class="food-name">マハシ</p><p class="food-roma">Mahshi</p><p class="food-desc">米を詰めた野菜の煮込み。家庭の味。</p><span class="food-tag">家庭料理</span></div>
+    <div class="food-card"><div class="food-emoji">🌯</div><p class="food-name">シャワルマ</p><p class="food-roma">Shawarma</p><p class="food-desc">回転焼きの肉をパンに巻いた定番サンド。</p><span class="food-tag">~60 EGP</span></div>
+    <div class="food-card"><div class="food-emoji">🫓</div><p class="food-name">アエーシ</p><p class="food-roma">Aish baladi</p><p class="food-desc">全粒粉の素朴なエジプトパン。料理のお供。</p><span class="food-tag">主食</span></div>
+    <div class="food-card"><div class="food-emoji">🍮</div><p class="food-name">オム・アリ</p><p class="food-roma">Om Ali</p><p class="food-desc">温かいパイ風ミルクデザート。ナッツたっぷり。</p><span class="food-tag">デザート</span></div>
+    <div class="food-card"><div class="food-emoji">🌺</div><p class="food-name">カルカデ</p><p class="food-roma">Karkade</p><p class="food-desc">真っ赤なハイビスカスティー。ホットでもアイスでも。</p><span class="food-tag">飲み物</span></div>
+    <div class="food-card"><div class="food-emoji">🍵</div><p class="food-name">ミントティー</p><p class="food-roma">Shai bil na'na</p><p class="food-desc">甘い紅茶にミント。カフェの定番。</p><span class="food-tag">飲み物</span></div>
+    <div class="food-card"><div class="food-emoji">🕊️</div><p class="food-name">ハマーム</p><p class="food-roma">Hamam mahshi</p><p class="food-desc">米やフリーカを詰めた鳩の丸焼き。名物料理。</p><span class="food-tag">名物</span></div>
+  </div>
+  <p class="todo-note">価格は屋台〜庶民的な店の目安。衛生面が心配な場合は火の通ったもの・回転の良い店を。</p>
+</section>
+
 <!-- エジプト雑学クイズ -->
 <section class="section" style="padding-top:0">
   <p class="section-label">🏛️ 出発前の予習</p>
@@ -1638,6 +1693,21 @@ body.theme-night .print-btn { color: var(--gold-light); border-color: var(--gold
     <p class="rl-hint">名前を入れて「回す」を押すと、各役割をランダムに割り当てます。</p>
     <button class="rl-spin" id="rlSpin">🎲 ルーレットを回す</button>
     <div class="rl-results" id="rlResults"></div>
+  </div>
+</section>
+
+<!-- 出発前TODO（期限付き） -->
+<section class="section" style="padding-top:0">
+  <p class="section-label">✅ 準備タスク</p>
+  <h2 class="section-heading">出発前TODO（期限付き）</h2>
+  <div class="todo-card">
+    <div class="todo-head">
+      <div class="todo-progress-wrap"><div class="todo-progress-bar" id="todoBar"></div></div>
+      <span class="todo-progress-pct" id="todoPct">0%</span>
+    </div>
+    <p style="font-size:12px;color:var(--text-light);">チェックはこの端末に自動保存。期限は出発日（10/8）からの逆算の目安です。</p>
+    <ul class="todo-list" id="todoList"></ul>
+    <p class="todo-note">期限はあくまで目安。eVisaや保険は早めの手続きが安心です。</p>
   </div>
 </section>
 
@@ -2380,6 +2450,66 @@ function dayMapInit(container) {
     }, { rootMargin: '-30% 0px -60% 0px' });
     entries.forEach(function (e) { if (e.el) io.observe(e.el); });
   }
+})();
+
+// ── 出発前TODO（期限付き・localStorage保存） ──
+(function () {
+  var listEl = document.getElementById('todoList');
+  if (!listEl) return;
+  // [タスク, 期限(YYYY-MM-DD)]
+  var TASKS = [
+    ['パスポートの残存期間を確認（残6ヶ月以上）', '2026-07-15'],
+    ['カイロ／ルクソールのホテル予約を確定', '2026-08-08'],
+    ['砂漠キャンプツアーを予約', '2026-08-10'],
+    ['予防接種の要否を確認（A型肝炎など）', '2026-08-15'],
+    ['航空券の最終確認・座席指定', '2026-09-08'],
+    ['eVisa（電子ビザ）をオンライン申請', '2026-09-24'],
+    ['各神殿チケットの事前予約を確認', '2026-09-24'],
+    ['海外旅行保険に加入', '2026-10-01'],
+    ['常備薬・処方薬を準備', '2026-10-01'],
+    ['米ドル現金を用意・両替', '2026-10-05'],
+    ['パスポートのコピー・緊急連絡先を共有', '2026-10-05'],
+    ['eSIM購入／海外データ設定', '2026-10-06']
+  ];
+  var KEY = 'egypt2026-todo';
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  var bar = document.getElementById('todoBar'), pct = document.getElementById('todoPct');
+  var boxes = [];
+  var now = new Date(); now.setHours(0, 0, 0, 0);
+  function daysLeft(due) { return Math.round((new Date(due + 'T00:00:00') - now) / 86400000); }
+  function chipFor(due) {
+    var d = daysLeft(due);
+    if (d < 0) return { cls: 'urgent', txt: '期限超過' };
+    if (d === 0) return { cls: 'urgent', txt: '本日まで' };
+    if (d <= 14) return { cls: 'urgent', txt: '残り' + d + '日' };
+    if (d <= 30) return { cls: 'warn', txt: '残り' + d + '日' };
+    return { cls: 'ok', txt: '残り' + d + '日' };
+  }
+  function fmtDue(due) { var p = due.split('-'); return p[1] + '/' + p[2] + ' まで'; }
+  TASKS.forEach(function (t) {
+    var task = t[0], due = t[1], id = task;
+    var li = document.createElement('li'); li.className = 'todo-item';
+    var cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = !!saved[id];
+    var main = document.createElement('div'); main.className = 'todo-main';
+    main.innerHTML = '<div class="todo-task"></div><div class="todo-due">🗓 ' + fmtDue(due) + '</div>';
+    main.querySelector('.todo-task').textContent = task;
+    var chip = chipFor(due);
+    var chipEl = document.createElement('span'); chipEl.className = 'todo-chip ' + chip.cls; chipEl.textContent = chip.txt;
+    li.appendChild(cb); li.appendChild(main); li.appendChild(chipEl);
+    if (cb.checked) li.classList.add('done');
+    cb.addEventListener('change', function () {
+      saved[id] = cb.checked; li.classList.toggle('done', cb.checked);
+      localStorage.setItem(KEY, JSON.stringify(saved)); update();
+    });
+    listEl.appendChild(li); boxes.push(cb);
+  });
+  function update() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    var p = Math.round(n / boxes.length * 100);
+    bar.style.width = p + '%'; pct.textContent = p + '%';
+  }
+  update();
 })();
 
 // ── チケット早見表の円換算（通貨セクションのライブレートを共有） ──
