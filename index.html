@@ -787,6 +787,7 @@ body.theme-night .toc-list li a.current { color: #f3ead4; }
 .tkt-table tr:nth-child(even) td { background: rgba(212,160,23,0.05); }
 .tkt-name { font-weight: 600; color: var(--night); }
 .tkt-price { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--gold); white-space: nowrap; }
+.tkt-yen { display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; color: var(--text-light); margin-top: 3px; white-space: nowrap; }
 .tkt-free { color: #2E7D32; font-weight: 700; }
 .tkt-hour { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .tkt-memo { font-size: 12px; color: var(--text-light); }
@@ -829,7 +830,7 @@ body.theme-night .print-btn { color: var(--gold-light); border-color: var(--gold
   .tkt-table th { background: #eee !important; color: #000 !important; }
   .tkt-table tr:nth-child(even) td { background: #f6f6f6 !important; }
   a { color: #000 !important; text-decoration: none; }
-  .sos-tel, .budget-amount, .budget-total-amount, .tkt-price { color: #000 !important; }
+  .sos-tel, .budget-amount, .budget-total-amount, .tkt-price, .tkt-yen { color: #000 !important; }
 }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -1499,17 +1500,17 @@ body.theme-night .print-btn { color: var(--gold-light); border-color: var(--gold
         <tr><th>名所</th><th>入場料（目安）</th><th>開館時間</th><th>メモ</th></tr>
       </thead>
       <tbody>
-        <tr><td class="tkt-name">ギザのピラミッド（敷地）</td><td class="tkt-price">540 EGP</td><td class="tkt-hour">7:00–17:00</td><td class="tkt-memo">内部は別料金（クフ王 約900EGP）</td></tr>
-        <tr><td class="tkt-name">グランド・エジプシャン博物館（GEM）</td><td class="tkt-price">1,200 EGP</td><td class="tkt-hour">8:30–18:00</td><td class="tkt-memo">大型展示・所要2〜3時間</td></tr>
-        <tr><td class="tkt-name">王家の谷</td><td class="tkt-price">750 EGP</td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">3墓まで／ツタンカーメン墓は別途</td></tr>
-        <tr><td class="tkt-name">ハトシェプスト女王葬祭殿</td><td class="tkt-price">360 EGP</td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">日陰が少ない・午前推奨</td></tr>
-        <tr><td class="tkt-name">カルナック神殿</td><td class="tkt-price">450 EGP</td><td class="tkt-hour">6:00–17:30</td><td class="tkt-memo">広大・所要2時間ほど</td></tr>
-        <tr><td class="tkt-name">ルクソール神殿</td><td class="tkt-price">400 EGP</td><td class="tkt-hour">6:00–22:00</td><td class="tkt-memo">夜のライトアップが◎</td></tr>
+        <tr><td class="tkt-name">ギザのピラミッド（敷地）</td><td class="tkt-price" data-egp="540">540 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">7:00–17:00</td><td class="tkt-memo">内部は別料金（クフ王 約900EGP）</td></tr>
+        <tr><td class="tkt-name">グランド・エジプシャン博物館（GEM）</td><td class="tkt-price" data-egp="1200">1,200 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">8:30–18:00</td><td class="tkt-memo">大型展示・所要2〜3時間</td></tr>
+        <tr><td class="tkt-name">王家の谷</td><td class="tkt-price" data-egp="750">750 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">3墓まで／ツタンカーメン墓は別途</td></tr>
+        <tr><td class="tkt-name">ハトシェプスト女王葬祭殿</td><td class="tkt-price" data-egp="360">360 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">日陰が少ない・午前推奨</td></tr>
+        <tr><td class="tkt-name">カルナック神殿</td><td class="tkt-price" data-egp="450">450 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–17:30</td><td class="tkt-memo">広大・所要2時間ほど</td></tr>
+        <tr><td class="tkt-name">ルクソール神殿</td><td class="tkt-price" data-egp="400">400 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–22:00</td><td class="tkt-memo">夜のライトアップが◎</td></tr>
         <tr><td class="tkt-name">メムノンの巨像</td><td class="tkt-free">無料</td><td class="tkt-hour">終日</td><td class="tkt-memo">道路沿い・短時間</td></tr>
-        <tr><td class="tkt-name">エジプト考古学博物館（タハリール）</td><td class="tkt-price">550 EGP</td><td class="tkt-hour">9:00–19:00</td><td class="tkt-memo">旧博物館・ミイラ室は別途</td></tr>
+        <tr><td class="tkt-name">エジプト考古学博物館（タハリール）</td><td class="tkt-price" data-egp="550">550 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">9:00–19:00</td><td class="tkt-memo">旧博物館・ミイラ室は別途</td></tr>
         <tr><td class="tkt-name">ハンギング・チャーチ（コプト）</td><td class="tkt-free">無料</td><td class="tkt-hour">9:00–16:00</td><td class="tkt-memo">露出に配慮した服装で</td></tr>
         <tr><td class="tkt-name">ハン・エル＝ハリーリ市場</td><td class="tkt-free">無料</td><td class="tkt-hour">店舗による</td><td class="tkt-memo">夕方〜夜が賑わう</td></tr>
-        <tr><td class="tkt-name">カイロ・タワー</td><td class="tkt-price">300 EGP</td><td class="tkt-hour">9:00–24:00</td><td class="tkt-memo">夜景スポット</td></tr>
+        <tr><td class="tkt-name">カイロ・タワー</td><td class="tkt-price" data-egp="300">300 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">9:00–24:00</td><td class="tkt-memo">夜景スポット</td></tr>
       </tbody>
     </table>
   </div>
@@ -2064,7 +2065,12 @@ function dayMapInit(container) {
     jpyLeft = !jpyLeft; setLabels();
     var tmp = left.value; left.value = right.value; right.value = tmp;
   });
-  setLabels(); renderTips(); recalc('left');
+  // レートを他セクション（チケット早見表など）にも共有
+  function broadcast() {
+    window.__egpJpy = JPY_PER_EGP;
+    window.dispatchEvent(new CustomEvent('egpjpy', { detail: JPY_PER_EGP }));
+  }
+  setLabels(); renderTips(); recalc('left'); broadcast();
   // ライブレート取得（JPYベース → EGP）
   fetch('https://open.er-api.com/v6/latest/JPY').then(function (r) { return r.json(); }).then(function (j) {
     if (j && j.rates && j.rates.EGP) {
@@ -2072,7 +2078,7 @@ function dayMapInit(container) {
       var d = j.time_last_update_utc ? new Date(j.time_last_update_utc).toLocaleDateString('ja-JP') : '';
       rateEl.innerHTML = '1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>　（1万円 ≈ ' + Math.round(10000 / JPY_PER_EGP).toLocaleString() + ' EGP）<br>レート更新: ' + d + ' ・ ライブ取得';
     } else { throw 0; }
-    renderTips(); recalc('left');
+    renderTips(); recalc('left'); broadcast();
   }).catch(function () {
     rateEl.innerHTML = '1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>（参考値・オフライン）';
   });
@@ -2374,6 +2380,20 @@ function dayMapInit(container) {
     }, { rootMargin: '-30% 0px -60% 0px' });
     entries.forEach(function (e) { if (e.el) io.observe(e.el); });
   }
+})();
+
+// ── チケット早見表の円換算（通貨セクションのライブレートを共有） ──
+(function () {
+  var cells = document.querySelectorAll('.tkt-price[data-egp]');
+  if (!cells.length) return;
+  function apply(rate) {
+    cells.forEach(function (c) {
+      var yen = c.querySelector('.tkt-yen');
+      if (yen) yen.textContent = '≈ ¥' + Math.round((+c.dataset.egp) * rate).toLocaleString();
+    });
+  }
+  apply(window.__egpJpy || 3.1); // 初期は共有値かフォールバック
+  window.addEventListener('egpjpy', function (e) { apply(e.detail); });
 })();
 
 // ── 印刷用しおり（PDF保存） ──
