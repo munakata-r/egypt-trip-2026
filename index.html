@@ -263,11 +263,11 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
   .itinerary-bg { padding: 48px 0; }
   .section-heading { font-size: 23px; margin-bottom: 24px; }
 
-  /* ヒーロー：携帯もPCと同じ横動画を全体表示（contain）。文字は動画の上に重ねる */
-  .hero { min-height: 82vh; padding: 32px 20px 40px; }
-  .hero-video { object-fit: contain; object-position: center; }
+  /* ヒーロー：携帯はPCと同じ横動画を全画面背景に（全テキストの後ろが動画／左右は一部トリミング） */
+  .hero { padding: 48px 20px; }
+  .hero-video { object-fit: cover; object-position: center; }
   /* モヤ（暗いオーバーレイ）を薄くして映像を鮮明に。文字は影で可読性を確保 */
-  .hero::after { background: linear-gradient(rgba(15,10,3,0.16), rgba(15,10,3,0.5)); }
+  .hero::after { background: linear-gradient(rgba(15,10,3,0.22), rgba(15,10,3,0.58)); }
   .hero-content { text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
   .hero-stats { gap: 20px; }
   .hero-wing { width: 80vw; margin-bottom: 14px; }
