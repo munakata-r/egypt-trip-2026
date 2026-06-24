@@ -267,7 +267,11 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
   /* ヒーロー：携帯は専用の縦動画を全画面背景にし、文字をその上に重ねる */
   .hero { padding: 48px 20px; }
   .hero-video { display: none; }
-  .hero-video-mobile { display: block; }
+  /* 縦動画を表示。下端を少しクロップして焼き込みテロップ/透かしを隠す */
+  .hero-video-mobile { display: block; transform: scale(1.14); transform-origin: top center; }
+  /* モヤ（暗いオーバーレイ）を薄くして映像を鮮明に。文字は影で可読性を確保 */
+  .hero::after { background: linear-gradient(rgba(15,10,3,0.16), rgba(15,10,3,0.5)); }
+  .hero-content { text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
   .hero-stats { gap: 20px; }
   .hero-wing { width: 80vw; margin-bottom: 14px; }
   .hero-meta { font-size: 12px; margin-bottom: 36px; }
