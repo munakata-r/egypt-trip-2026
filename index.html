@@ -258,10 +258,16 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
 .footer-title { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 20px; margin-bottom: 8px; }
 
 @media (max-width: 600px) {
-  /* 全体の余白を詰める */
-  .section { padding: 48px 18px; }
-  .itinerary-bg { padding: 48px 0; }
-  .section-heading { font-size: 23px; margin-bottom: 24px; }
+  /* 全体の余白を詰める（携帯はコンパクトに） */
+  .section { padding: 28px 16px; }
+  .itinerary-bg { padding: 28px 0; }
+  .section-heading { font-size: 20px; margin-bottom: 14px; padding-bottom: 9px; }
+  .section-label { margin-bottom: 5px; letter-spacing: 0.22em; }
+  /* グリッド類の間隔も詰める */
+  .now-grid, .hl-grid, .budget-grid, .food-grid, .phrase-grid, .vid-grid,
+  .model-grid, .sos-grid, .rl-results, .pack-cols { gap: 10px; margin-top: 12px; }
+  .memo-card { padding: 16px 18px; margin-bottom: 12px; }
+  .egy-topband { height: 5px; }
 
   /* ヒーロー：携帯は中央の文言だけ動画、上(有翼日輪)と下(カウントダウン)は夜空。
      背景動画にグラデーションマスクをかけ、中央帯のみ動画を見せ上下は星空を出す */
