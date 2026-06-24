@@ -263,10 +263,9 @@ footer { background: var(--night-mid); text-align: center; padding: 32px 24px; c
   .itinerary-bg { padding: 48px 0; }
   .section-heading { font-size: 23px; margin-bottom: 24px; }
 
-  /* ヒーロー：携帯では横長動画の全景を上部に帯表示し、その下にタイトル等を置いて余白を詰める */
-  .hero { min-height: auto; justify-content: flex-start; padding: 0 20px 40px; }
-  .hero-video { object-fit: contain; object-position: top center; }
-  .hero-content { margin-top: calc(56.25vw + 18px); }
+  /* ヒーロー：携帯は横長動画の全景（帯サイズ）はそのまま、文字を動画の上に重ねる */
+  .hero { padding: 48px 20px; }
+  .hero-video { object-fit: contain; object-position: center; }
   .hero-stats { gap: 20px; }
   .hero-wing { width: 80vw; margin-bottom: 14px; }
   .hero-meta { font-size: 12px; margin-bottom: 36px; }
