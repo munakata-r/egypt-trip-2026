@@ -903,6 +903,39 @@ body.theme-night .food-name { color: #f3ead4; }
 .todo-note { font-size: 12px; color: var(--text-light); margin-top: 12px; }
 body.theme-night .todo-card { background: #17110a; }
 body.theme-night .todo-task { color: var(--text); }
+
+/* 携帯コンパクト：現地のいま／フレーズ集／TODO（基本ルールの後に置いて上書き） */
+@media (max-width: 600px) {
+  /* 現地のいま：2都市を横並び・小さく */
+  .now-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .now-card { padding: 12px 11px; }
+  .now-card::after { display: none; }
+  .now-city { font-size: 8.5px; letter-spacing: 0.1em; }
+  .now-time { font-size: 25px; margin: 2px 0 1px; }
+  .now-date { font-size: 10px; }
+  .now-weather { margin-top: 9px; padding-top: 9px; gap: 7px; flex-wrap: wrap; }
+  .now-icon { font-size: 22px; }
+  .now-temp { font-size: 17px; }
+  .now-cond { font-size: 9.5px; }
+  .now-jp { font-size: 9px; width: 100%; margin-left: 0; text-align: left; }
+
+  /* アラビア語フレーズ集：2列・小さく */
+  .phrase-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .phrase-card { padding: 10px 11px; }
+  .phrase-jp { font-size: 10.5px; }
+  .phrase-ar { font-size: 19px; line-height: 1.2; }
+  .phrase-roma { font-size: 10.5px; }
+  .phrase-play { width: 28px; height: 28px; font-size: 13px; top: 8px; right: 8px; }
+
+  /* 出発前TODO：各行を詰める */
+  .todo-card { padding: 16px 14px 12px; }
+  .todo-list { margin-top: 10px; }
+  .todo-item { padding: 8px 3px; gap: 9px; }
+  .todo-item input { width: 16px; height: 16px; }
+  .todo-task { font-size: 12.5px; line-height: 1.35; }
+  .todo-due { font-size: 10px; margin-top: 1px; }
+  .todo-chip { font-size: 10px; padding: 3px 8px; }
+}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
