@@ -2473,6 +2473,28 @@ function dayMapInit(container) {
   var entries = [];
   // 先頭にトップへ
   entries.push({ id: '', label: '⬆ トップへ', el: null });
+  // 目次の表示名（ページ上の見出しはそのまま、目次だけ分かりやすい名前に）
+  var TOC_LABELS = {
+    '🌍 現地のいま': '🌍 現地の時刻・天気',
+    '📅 旅程': '📅 旅程（10日間の予定）',
+    '🌅 旅のマジックアワー': '🌅 日の出・日の入り',
+    '✈ フライト情報': '✈ フライト',
+    '📊 旅のスケール': '📊 旅の統計（数字で見る）',
+    '🎬 旅の予告編': '🎬 行き先の動画',
+    '💰 予算': '💰 費用・予算',
+    '💱 お金': '💱 通貨換算・チップ',
+    '🏷️ 現地リファレンス': '🏷️ チケット料金・開館時間',
+    '📝 グループメモ': '📝 集合・連絡メモ',
+    '🆘 もしもの時': '🆘 緊急連絡先',
+    '𓂀 ファラオの遊び': '𓂀 名前をヒエログリフに',
+    '🗣️ 現地で使える': '🗣️ アラビア語フレーズ',
+    '🍽️ 食べておきたい': '🍽️ 現地グルメ図鑑',
+    '🏛️ 出発前の予習': '🏛️ エジプト雑学クイズ',
+    '🎯 旅の担当決め': '🎯 役割ルーレット',
+    '✅ 準備タスク': '✅ 出発前TODO',
+    '🎒 出発前チェック': '🎒 持ち物チェックリスト',
+    '📸 写真クレジット': '📸 写真クレジット'
+  };
   // 各セクションの section-label からラベルとジャンプ先を生成
   var n = 0;
   document.querySelectorAll('.section-label').forEach(function (lbl) {
@@ -2480,7 +2502,8 @@ function dayMapInit(container) {
     if (!sec) return;
     if (!sec.id) sec.id = 'sec-' + (++n);
     sec.setAttribute('data-toc-target', '');
-    entries.push({ id: sec.id, label: lbl.textContent.trim(), el: sec });
+    var txt = lbl.textContent.trim();
+    entries.push({ id: sec.id, label: TOC_LABELS[txt] || txt, el: sec });
   });
   // リスト描画
   entries.forEach(function (e) {
