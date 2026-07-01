@@ -643,6 +643,21 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
 }
 .theme-toggle:hover { transform: scale(1.08); }
 
+/* BGM（アラビア風アンビエント）トグル */
+.music-toggle {
+  position: fixed; right: 16px; bottom: 78px; z-index: 800;
+  width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(212,160,23,0.5); cursor: pointer;
+  background: rgba(26,18,9,0.9); color: var(--gold-light); font-size: 20px; line-height: 1;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center;
+  transition: transform 0.2s, background 0.3s;
+}
+.music-toggle:hover { transform: scale(1.08); }
+.music-toggle.playing { background: var(--gold); color: var(--night); animation: musicPulse 1.6s ease-in-out infinite; }
+@keyframes musicPulse { 0%,100% { box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 0 0 rgba(240,200,66,0.5); } 50% { box-shadow: 0 4px 14px rgba(0,0,0,0.35), 0 0 14px rgba(240,200,66,0.6); } }
+body.theme-night .music-toggle { background: rgba(245,237,216,0.92); color: #1a1209; }
+body.theme-night .music-toggle.playing { background: var(--gold); color: var(--night); }
+@media (prefers-reduced-motion: reduce) { .music-toggle, .music-toggle.playing { animation: none; } }
+
 /* 夜モード（CSS変数の上書き＋ハードコード白面の個別上書き） */
 body.theme-night {
   --sand-pale: #0e0a05; --text: #ece0c8; --text-light: #b09c78;
@@ -1824,6 +1839,7 @@ body.theme-night .todo-task { color: var(--text); }
   </div>
 </section>
 
+<button class="music-toggle" id="musicToggle" title="BGM（アラビア風）を再生 / 停止" aria-label="BGM再生・停止">🎵</button>
 <button class="theme-toggle" id="themeToggle" title="昼 / 夜を切り替え" aria-label="昼夜切り替え">🌙</button>
 
 <button class="toc-fab" id="tocFab" aria-label="目次を開く"><span class="toc-bars">☰</span>目次</button>
@@ -2628,6 +2644,80 @@ function dayMapInit(container) {
 (function () {
   var btn = document.getElementById('printBtn');
   if (btn) btn.addEventListener('click', function () { window.print(); });
+})();
+
+// ── BGM：アラビア風アンビエント（Web Audioで生成・著作権フリー） ──
+(function () {
+  var btn = document.getElementById('musicToggle');
+  if (!btn) return;
+  var KEY = 'egypt2026-music';
+  var actx = null, master = null, padNodes = [], schedTimer = null, noteIdx = 0, playing = false;
+  // ヒジャーズ旋法（D）：アラビア/中東らしい音階
+  var SCALE = [293.66, 311.13, 369.99, 392.00, 440.00, 466.16, 523.25, 587.33];
+  var MELODY = [0, 2, 3, 4, 3, 2, 1, 0, 2, 4, 5, 4, 3, 2, 1, 2];
+
+  function playNote(freq, t) {
+    var o = actx.createOscillator(), g = actx.createGain();
+    o.type = 'triangle'; o.frequency.value = freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.16, t + 0.04);
+    g.gain.exponentialRampToValueAtTime(0.0008, t + 1.1);
+    o.connect(g).connect(master);
+    o.start(t); o.stop(t + 1.2);
+  }
+  function startPad() {
+    [146.83, 220.00].forEach(function (f) { // D3 + A3 ドローン
+      var o = actx.createOscillator(), g = actx.createGain(), lp = actx.createBiquadFilter();
+      o.type = 'sawtooth'; o.frequency.value = f;
+      lp.type = 'lowpass'; lp.frequency.value = 550;
+      g.gain.value = 0.045;
+      o.connect(lp).connect(g).connect(master);
+      o.start(); padNodes.push(o);
+    });
+  }
+  function start() {
+    if (playing) return;
+    try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
+    master = actx.createGain(); master.gain.value = 0.0001;
+    // 余韻用ディレイ
+    var delay = actx.createDelay(); delay.delayTime.value = 0.34;
+    var fb = actx.createGain(); fb.gain.value = 0.3;
+    var wet = actx.createGain(); wet.gain.value = 0.3;
+    master.connect(actx.destination);
+    master.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(actx.destination);
+    master.gain.linearRampToValueAtTime(0.22, actx.currentTime + 1.6); // フェードイン
+    startPad();
+    noteIdx = 0;
+    (function loop() {
+      if (!actx) return;
+      playNote(SCALE[MELODY[noteIdx % MELODY.length]], actx.currentTime + 0.05);
+      noteIdx++;
+      schedTimer = setTimeout(loop, 640);
+    })();
+    playing = true;
+    btn.classList.add('playing'); btn.textContent = '🔊';
+    try { localStorage.setItem(KEY, 'on'); } catch (e) {}
+  }
+  function stop(remember) {
+    if (!playing) return;
+    clearTimeout(schedTimer); schedTimer = null;
+    var ctx = actx;
+    if (master && ctx) master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+    setTimeout(function () { try { if (ctx) ctx.close(); } catch (e) {} }, 700);
+    actx = null; master = null; padNodes = []; playing = false;
+    btn.classList.remove('playing'); btn.textContent = '🎵';
+    if (remember !== false) { try { localStorage.setItem(KEY, 'off'); } catch (e) {} }
+  }
+  btn.addEventListener('click', function () { playing ? stop() : start(); });
+  // 前回オンにしていた人は、最初の操作で自動再生（ブラウザの自動再生ポリシー対応）
+  var wasOn = false;
+  try { wasOn = localStorage.getItem(KEY) === 'on'; } catch (e) {}
+  if (wasOn) {
+    var kick = function () { start(); window.removeEventListener('pointerdown', kick); window.removeEventListener('keydown', kick); window.removeEventListener('scroll', kick); };
+    window.addEventListener('pointerdown', kick, { once: true });
+    window.addEventListener('keydown', kick, { once: true });
+    window.addEventListener('scroll', kick, { once: true, passive: true });
+  }
 })();
 
 // ── PWA: Service Worker 登録 ──
