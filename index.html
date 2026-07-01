@@ -1836,6 +1836,10 @@ body.theme-night .todo-task { color: var(--text); }
       <li><a href="https://commons.wikimedia.org/wiki/File:Ful_medames_(cropped).jpg" target="_blank" rel="noopener" style="color:var(--lapis);text-decoration:none;">エジプシャン朝食（フール）</a> — CC BY-SA 3.0 / Wikimedia Commons</li>
       <li><a href="https://commons.wikimedia.org/wiki/File:MS_Golden_Boat_R01.jpg" target="_blank" rel="noopener" style="color:var(--lapis);text-decoration:none;">ナイル川クルーズ船</a> — CC BY 3.0 / Wikimedia Commons</li>
     </ul>
+    <p style="font-size:13px;color:var(--text-light);margin:14px 0 6px;line-height:1.7;">🎵 BGM（右下の音符ボタン）</p>
+    <ul style="font-size:13px;">
+      <li>「Ibn Al-Noor」 by <a href="https://incompetech.com/" target="_blank" rel="noopener" style="color:var(--lapis);text-decoration:none;">Kevin MacLeod</a> — <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color:var(--lapis);text-decoration:none;">CC BY 4.0</a>（<a href="https://commons.wikimedia.org/wiki/File:Ibn_Al-Noor_(ISRC_USUAN1100706).mp3" target="_blank" rel="noopener" style="color:var(--lapis);text-decoration:none;">Wikimedia Commons</a>）</li>
+    </ul>
   </div>
 </section>
 
@@ -2646,66 +2650,34 @@ function dayMapInit(container) {
   if (btn) btn.addEventListener('click', function () { window.print(); });
 })();
 
-// ── BGM：アラビア風アンビエント（Web Audioで生成・著作権フリー） ──
+// ── BGM：中東エピック曲（Kevin MacLeod "Ibn Al-Noor" / CC BY・実曲） ──
 (function () {
   var btn = document.getElementById('musicToggle');
   if (!btn) return;
-  var KEY = 'egypt2026-music';
-  var actx = null, master = null, padNodes = [], schedTimer = null, noteIdx = 0, playing = false;
-  // ヒジャーズ旋法（D）：アラビア/中東らしい音階
-  var SCALE = [293.66, 311.13, 369.99, 392.00, 440.00, 466.16, 523.25, 587.33];
-  var MELODY = [0, 2, 3, 4, 3, 2, 1, 0, 2, 4, 5, 4, 3, 2, 1, 2];
-
-  function playNote(freq, t) {
-    var o = actx.createOscillator(), g = actx.createGain();
-    o.type = 'triangle'; o.frequency.value = freq;
-    g.gain.setValueAtTime(0.0001, t);
-    g.gain.linearRampToValueAtTime(0.16, t + 0.04);
-    g.gain.exponentialRampToValueAtTime(0.0008, t + 1.1);
-    o.connect(g).connect(master);
-    o.start(t); o.stop(t + 1.2);
-  }
-  function startPad() {
-    [146.83, 220.00].forEach(function (f) { // D3 + A3 ドローン
-      var o = actx.createOscillator(), g = actx.createGain(), lp = actx.createBiquadFilter();
-      o.type = 'sawtooth'; o.frequency.value = f;
-      lp.type = 'lowpass'; lp.frequency.value = 550;
-      g.gain.value = 0.045;
-      o.connect(lp).connect(g).connect(master);
-      o.start(); padNodes.push(o);
-    });
+  var KEY = 'egypt2026-music', VOL = 0.5;
+  var audio = new Audio('audio/bgm.mp3');
+  audio.loop = true; audio.preload = 'none'; audio.volume = 0;
+  var playing = false, fadeTimer = null;
+  function fadeTo(target, done) {
+    clearInterval(fadeTimer);
+    fadeTimer = setInterval(function () {
+      var v = audio.volume, nv = v + (target - v) * 0.16;
+      if (Math.abs(target - v) < 0.02) { audio.volume = target; clearInterval(fadeTimer); if (done) done(); }
+      else { audio.volume = Math.max(0, Math.min(1, nv)); }
+    }, 45);
   }
   function start() {
     if (playing) return;
-    try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return; }
-    master = actx.createGain(); master.gain.value = 0.0001;
-    // 余韻用ディレイ
-    var delay = actx.createDelay(); delay.delayTime.value = 0.34;
-    var fb = actx.createGain(); fb.gain.value = 0.3;
-    var wet = actx.createGain(); wet.gain.value = 0.3;
-    master.connect(actx.destination);
-    master.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(actx.destination);
-    master.gain.linearRampToValueAtTime(0.22, actx.currentTime + 1.6); // フェードイン
-    startPad();
-    noteIdx = 0;
-    (function loop() {
-      if (!actx) return;
-      playNote(SCALE[MELODY[noteIdx % MELODY.length]], actx.currentTime + 0.05);
-      noteIdx++;
-      schedTimer = setTimeout(loop, 640);
-    })();
-    playing = true;
-    btn.classList.add('playing'); btn.textContent = '🔊';
-    try { localStorage.setItem(KEY, 'on'); } catch (e) {}
+    var p = audio.play();
+    if (p && p.then) {
+      p.then(function () { playing = true; btn.classList.add('playing'); btn.textContent = '🔊'; fadeTo(VOL); try { localStorage.setItem(KEY, 'on'); } catch (e) {} })
+       .catch(function () { /* 自動再生ブロック時など */ });
+    } else { playing = true; btn.classList.add('playing'); btn.textContent = '🔊'; audio.volume = VOL; }
   }
   function stop(remember) {
     if (!playing) return;
-    clearTimeout(schedTimer); schedTimer = null;
-    var ctx = actx;
-    if (master && ctx) master.gain.linearRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
-    setTimeout(function () { try { if (ctx) ctx.close(); } catch (e) {} }, 700);
-    actx = null; master = null; padNodes = []; playing = false;
-    btn.classList.remove('playing'); btn.textContent = '🎵';
+    playing = false; btn.classList.remove('playing'); btn.textContent = '🎵';
+    fadeTo(0, function () { audio.pause(); });
     if (remember !== false) { try { localStorage.setItem(KEY, 'off'); } catch (e) {} }
   }
   btn.addEventListener('click', function () { playing ? stop() : start(); });
@@ -2713,10 +2685,8 @@ function dayMapInit(container) {
   var wasOn = false;
   try { wasOn = localStorage.getItem(KEY) === 'on'; } catch (e) {}
   if (wasOn) {
-    var kick = function () { start(); window.removeEventListener('pointerdown', kick); window.removeEventListener('keydown', kick); window.removeEventListener('scroll', kick); };
-    window.addEventListener('pointerdown', kick, { once: true });
-    window.addEventListener('keydown', kick, { once: true });
-    window.addEventListener('scroll', kick, { once: true, passive: true });
+    var kick = function () { start(); ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { window.removeEventListener(ev, kick); }); };
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (ev) { window.addEventListener(ev, kick, { once: true, passive: true }); });
   }
 })();
 
