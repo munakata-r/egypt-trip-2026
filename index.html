@@ -177,21 +177,23 @@ body {
 .plan-panel { display: none; }
 .plan-panel.active { display: block; }
 
-/* 宿泊先まとめ（旅程冒頭・ダーク背景用） */
-.hotel-summary { background: rgba(20,14,5,0.5); border: 1px solid rgba(212,176,150,0.25); border-radius: 8px; padding: 18px 18px 14px; margin-bottom: 28px; }
-.hotel-summary-title { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; color: var(--gold-light); margin-bottom: 12px; }
+/* 宿泊先まとめ（費用セクション・明るい背景用・夜モード対応） */
+.hotel-summary { background: #fff; border: 1px solid var(--divider); border-radius: 8px; padding: 18px 18px 14px; margin-top: 16px; }
+.hotel-summary-title { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; color: var(--lapis); margin-bottom: 10px; }
 .hotel-list { list-style: none; }
-.hotel-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(212,176,150,0.14); }
+.hotel-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
 .hotel-row:last-child { border-bottom: none; }
 .hotel-date { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--gold); min-width: 54px; white-space: nowrap; }
 .hotel-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.hotel-name { font-size: 14px; font-weight: 600; color: var(--sand-light); text-decoration: none; }
-.hotel-name:hover { color: var(--gold-light); text-decoration: underline; }
-.hotel-area { font-size: 11px; color: var(--sand); }
-.hotel-price { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--sand-light); white-space: nowrap; }
-.hotel-note { font-size: 11.5px; color: var(--sand); margin-top: 10px; line-height: 1.6; }
+.hotel-name { font-size: 14px; font-weight: 600; color: var(--night); text-decoration: none; }
+.hotel-name:hover { color: var(--lapis); text-decoration: underline; }
+.hotel-area { font-size: 11px; color: var(--text-light); }
+.hotel-price { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--night); white-space: nowrap; }
+.hotel-note { font-size: 11.5px; color: var(--text-light); margin-top: 10px; line-height: 1.6; }
+body.theme-night .hotel-summary { background: #17110a; border-color: rgba(212,176,150,0.18); }
+body.theme-night .hotel-name, body.theme-night .hotel-price { color: #f3ead4; }
 @media (max-width: 600px) {
-  .hotel-summary { padding: 14px 14px 12px; margin-bottom: 20px; }
+  .hotel-summary { padding: 14px 14px 12px; }
   .hotel-row { flex-wrap: wrap; gap: 3px 10px; }
   .hotel-price { margin-left: auto; }
   .hotel-name { font-size: 13px; }
@@ -1053,38 +1055,6 @@ body.theme-night .todo-task { color: var(--text); }
       <button class="plan-tab-btn" onclick="switchPlan('relaxed')">☕ ゆったり型 — 厳選してじっくり楽しむ</button>
     </div>
 
-    <div class="hotel-summary">
-      <p class="hotel-summary-title">🏨 宿泊先（予約済み）</p>
-      <ul class="hotel-list">
-        <li class="hotel-row">
-          <span class="hotel-date">10/9</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-01Bqxr" target="_blank" rel="noopener">New Gardenia Pyramids – Rooftop</a><span class="hotel-area">📍 ギザ（ピラミッド近く）／ الهرم, الجيزة</span></div>
-          <span class="hotel-price">¥14,509</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/10</span>
-          <div class="hotel-main"><span class="hotel-name">白砂漠 キャンプ泊</span><span class="hotel-area">📍 白砂漠（砂漠ツアー）</span></div>
-          <span class="hotel-price">ツアー</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/11</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-oRxsXRc" target="_blank" rel="noopener">El Mesaadya Hotel</a><span class="hotel-area">📍 カイロ（ヘリオポリス）／ مصر الجديدة</span></div>
-          <span class="hotel-price">¥23,936</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/12–13</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-Q78gBh" target="_blank" rel="noopener">Pyramisa Hotel Luxor</a><span class="hotel-area">📍 ルクソール（ナイル沿い）／ الأقصر</span></div>
-          <span class="hotel-price">¥116,699</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/14–15</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-fmOHMd" target="_blank" rel="noopener">Royal Town Hotel</a><span class="hotel-area">📍 カイロ（タハリール）／ ميدان التحرير</span></div>
-          <span class="hotel-price">¥19,953</span>
-        </li>
-      </ul>
-      <p class="hotel-note">合計 ¥175,097（5人・全宿泊）。各ホテル名リンクは Booking.com の予約ページ。10/8・10/16 は機内泊、10/10 は白砂漠キャンプ泊。</p>
-    </div>
-
     <!-- ======== 詰め込み型 ======== -->
     <div id="packed" class="plan-panel active">
 
@@ -1114,12 +1084,12 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">04:05</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ドーハ着</strong>（東京組）乗継待ち約3時間<div class="sub">ラウンジ利用可能なら休憩推奨</div></div></div>
           <div class="tl-row"><span class="tl-time">07:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ドーハ発</strong><span class="badge b-flight">QR1307</span></div></div>
           <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 着 — 全員合流</strong><div class="sub">入国審査・両替・SIMカード購入。空港からタクシーで約1時間</div></div></div>
-          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルに荷物を預ける</strong><div class="sub">部屋に入れなくてもOK。すぐ出発</div></div></div>
+          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>New Gardenia（ギザ） に荷物を預ける</strong><div class="sub">部屋に入れなくてもOK。すぐ出発</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — コシャリ</strong><span class="badge b-food">現地飯</span><div class="sub">エジプト国民食。米・パスタ・豆・トマトソース。1食100円程度</div><div class="tl-imgs"><img class="tl-img" src="images/koshari.jpg" alt="コシャリ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">ラクダ乗り体験も可。入場料：大人250EGP。チャータータクシー推奨</div><div class="tl-imgs"><img class="tl-img" src="images/pyramid.webp" alt="ギザのピラミッド" loading="lazy"><img class="tl-img" src="images/sphinx.jpg" alt="スフィンクス" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>グランド・エジプシャン博物館（GEM）</strong><div class="sub">ツタンカーメン黄金マスク等。所要2〜3時間。閉館21時</div><div class="tl-imgs"><img class="tl-img" src="images/gem-tut.jpg" alt="ツタンカーメンの黄金のマスク" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — コフタ・ターメイヤ</strong><span class="badge b-food">現地飯</span><div class="sub">ひき肉スパイスグリル・エジプト式ファラフェル</div></div></div>
-          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong><div class="sub">翌朝6時出発のため早めに</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>New Gardenia（ギザ） 帰着・就寝</strong><div class="sub">翌朝6時出発のため早めに</div></div></div>
         </div>
       </div>
 
@@ -1155,9 +1125,9 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠アクティビティ — サンドボード・ラクダ・オアシス散策</strong><div class="sub">白砂漠の奇岩めぐりや温泉オアシスでのんびり</div><div class="tl-imgs"><img class="tl-img" src="images/desert.jpg" alt="砂漠" loading="lazy"><img class="tl-img" src="images/desert-camp.webp" alt="砂漠キャンプ" loading="lazy"><img class="tl-img" src="images/camel.jpg" alt="ラクダ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でランチ</strong><span class="badge b-food">現地飯</span><div class="sub">ベドウィン式の昼食でひと休み</div></div></div>
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロへ出発</strong><div class="sub">ジープで約4〜5時間。車内で仮眠推奨</div></div></div>
-          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ着・ホテルチェックイン・シャワー</strong><div class="sub">砂漠の砂を落としてリフレッシュ</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ着・El Mesaadya（カイロ） チェックイン・シャワー</strong><div class="sub">砂漠の砂を落としてリフレッシュ</div></div></div>
           <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — カイロ市内でケバブ・コフタ</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテルでゆっくり休息・就寝</strong><div class="sub">翌朝5:30起床・ルクソールへ</div></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>El Mesaadya（カイロ） でゆっくり休息・就寝</strong><div class="sub">翌朝5:30起床・ルクソールへ</div></div></div>
         </div>
       </div>
 
@@ -1170,18 +1140,18 @@ body.theme-night .todo-task { color: var(--text); }
         </div>
         <div class="day-body">
           <div class="day-note">国内線でルクソール入り。東岸の2大神殿を午後に集中攻略。</div>
-          <div class="tl-row"><span class="tl-time">05:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・ホテル朝食</strong></div></div>
+          <div class="tl-row"><span class="tl-time">05:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・El Mesaadya（カイロ） 朝食</strong></div></div>
           <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 へ移動</strong><div class="sub">タクシーで30〜40分。7時着を目標に</div></div></div>
           <div class="tl-row"><span class="tl-time">08:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ発</strong><span class="badge b-flight">NP071 ナイル航空</span><div class="sub">所要約1時間</div></div></div>
           <div class="tl-row"><span class="tl-time">09:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール国際空港 着</strong><div class="sub">チャータータクシー手配（Uber不可）。1日チャーターが効率的</div></div></div>
-          <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソールホテル チェックイン・荷物預け</strong></div></div>
+          <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>Pyramisa Luxor チェックイン・荷物預け</strong></div></div>
           <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>軽食</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">11:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール博物館（オプション）</strong><div class="sub">展示密度が高い穴場。所要1時間。入場200EGP</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — マフシー・モロヘイヤスープ</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿</strong><div class="sub">世界最大の神殿群。スフィンクス参道・大列柱室。所要2時間。入場450EGP</div><div class="tl-imgs"><img class="tl-img" src="images/horus-temple.jpg" alt="神殿内部の列柱" loading="lazy"><img class="tl-img" src="images/luxor-temple-2.avif" alt="ルクソールの神殿" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">17:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿</strong><div class="sub">ライトアップが美しい夜間開放（〜21時）。入場350EGP</div><div class="tl-imgs"><img class="tl-img" src="images/luxor-temple.jpg" alt="ルクソール神殿" loading="lazy"><img class="tl-img" src="images/luxor-temple-3.jpg" alt="ルクソール神殿" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿いレストラン</strong><span class="badge b-food">現地飯</span><div class="sub">ナイルパーチのグリルなど</div></div></div>
-          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong><div class="sub">翌朝7時出発</div></div></div>
+          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Pyramisa Luxor 帰着・就寝</strong><div class="sub">翌朝7時出発</div></div></div>
         </div>
       </div>
 
@@ -1194,7 +1164,7 @@ body.theme-night .todo-task { color: var(--text); }
         </div>
         <div class="day-body">
           <div class="day-note">西岸を丸一日かけて制覇。午前中の涼しいうちに遺跡を回り、午後はナイルで締める。</div>
-          <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・ホテル朝食</strong></div></div>
+          <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>起床・Pyramisa Luxor 朝食</strong></div></div>
           <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>チャータータクシーで西岸へ</strong><div class="sub">ローカルフェリーで渡河 → タクシー乗換</div></div></div>
           <div class="tl-row"><span class="tl-time">08:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>王家の谷</strong><div class="sub">基本チケット3墓込み。KV62（ツタンカーメン）は別料金。所要1.5〜2時間</div><div class="tl-imgs"><img class="tl-img" src="images/valley-kings.jpg" alt="王家の谷" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハトシェプスト女王葬祭殿</strong><div class="sub">3段テラスの壮大な神殿。王家の谷から車で10分。入場300EGP</div><div class="tl-imgs"><img class="tl-img" src="images/hatshepsut.jpg" alt="ハトシェプスト女王葬祭殿" loading="lazy"></div></div></div>
@@ -1203,7 +1173,7 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>貴族の墓（オプション）</strong><div class="sub">鮮やかな壁画が残る穴場スポット</div></div></div>
           <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川フェルッカクルーズ</strong><div class="sub">帆船で1〜2時間。日没を川の上で。1隻5人チャーター500〜800EGP</div><div class="tl-imgs"><img class="tl-img" src="images/felucca.jpg" alt="ナイル川のフェルッカ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ハンム（ハト料理）に挑戦</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷物準備</strong><div class="sub">翌朝10:30発のため余裕あり</div></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Pyramisa Luxor 帰着・荷物準備</strong><div class="sub">翌朝10:30発のため余裕あり</div></div></div>
         </div>
       </div>
 
@@ -1216,14 +1186,14 @@ body.theme-night .todo-task { color: var(--text); }
         </div>
         <div class="day-body">
           <div class="day-note">午前中に移動完了。午後はカイロの未踏スポットを追加で攻略。</div>
-          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテル チェックアウト・空港へ</strong></div></div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>Pyramisa Luxor チェックアウト・空港へ</strong></div></div>
           <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール発</strong><span class="badge b-flight">NP072 ナイル航空</span></div></div>
           <div class="tl-row"><span class="tl-time">11:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 着</strong><div class="sub">タクシーでカイロ市内へ（約1時間）</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — コシャリ屋台</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>エジプト考古学博物館（旧博物館）</strong><div class="sub">本物のミイラ・副葬品。GEMとは別の見どころ</div><div class="tl-imgs"><img class="tl-img" src="images/egyptian-museum.jpg" alt="エジプト考古学博物館" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>コプト地区（オールド・カイロ）</strong><div class="sub">初期キリスト教エジプトの遺産。ハンギング・チャーチなど</div><div class="tl-imgs"><img class="tl-img" src="images/coptic.jpg" alt="ハンギング・チャーチ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿いレストラン</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着</strong></div></div>
         </div>
       </div>
 
@@ -1243,7 +1213,7 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川クルーズ（デイタイム）</strong><div class="sub">フェルッカでカイロの摩天楼とピラミッドを同時に</div></div></div>
           <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ズアイラ通り・アンティーク街</strong><div class="sub">ヴィンテージ雑貨・エジプト工芸品</div></div></div>
           <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル・クルーズ船ディナー</strong><span class="badge b-food">現地飯</span><div class="sub">旅の締めくくり。ウードの生演奏あり</div><div class="tl-imgs"><img class="tl-img" src="images/nile-cruise.jpg" alt="ナイル川クルーズ船" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷造り・就寝</strong></div></div>
+          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着・荷造り・就寝</strong></div></div>
         </div>
       </div>
 
@@ -1303,11 +1273,11 @@ body.theme-night .todo-task { color: var(--text); }
         <div class="day-body">
           <div class="day-note">到着後は体を慣らすことを優先。ピラミッドに集中して深く楽しむ。博物館は翌日以降へ。</div>
           <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 着 — 全員合流</strong><div class="sub">入国・両替・SIM購入（約1〜1.5時間）</div></div></div>
-          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルへ移動・チェックイン・休憩</strong><div class="sub">1〜2時間ゆっくり休んでリセット</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>New Gardenia（ギザ） へ移動・チェックイン・休憩</strong><div class="sub">1〜2時間ゆっくり休んでリセット</div></div></div>
           <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>遅めランチ — コシャリ</strong><span class="badge b-food">現地飯</span><div class="tl-imgs"><img class="tl-img" src="images/koshari.jpg" alt="コシャリ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">15:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ギザのピラミッド＆スフィンクス</strong><div class="sub">夕方の涼しい時間帯に。夕日に染まるピラミッドはゆっくり2〜3時間</div><div class="tl-imgs"><img class="tl-img" src="images/pyramid.webp" alt="ギザのピラミッド" loading="lazy"><img class="tl-img" src="images/sphinx.jpg" alt="スフィンクス" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ケバブ・コフタ</strong><span class="badge b-food">現地飯</span><div class="sub">旅の乾杯を</div></div></div>
-          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・就寝</strong></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>New Gardenia（ギザ） 帰着・就寝</strong></div></div>
         </div>
       </div>
 
@@ -1343,9 +1313,9 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">09:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でのんびり — 写真・ラクダ・オアシス散策</strong><div class="sub">奇岩や温泉オアシスで思い思いの時間を</div><div class="tl-imgs"><img class="tl-img" src="images/desert.jpg" alt="砂漠" loading="lazy"><img class="tl-img" src="images/desert-camp.webp" alt="砂漠キャンプ" loading="lazy"><img class="tl-img" src="images/camel.jpg" alt="ラクダ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でゆっくりランチ</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロへ出発</strong><div class="sub">車内でゆっくり休憩・仮眠</div></div></div>
-          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ着・ホテルチェックイン・シャワー</strong><div class="sub">砂を落としてゆっくりリセット</div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ着・El Mesaadya（カイロ） チェックイン・シャワー</strong><div class="sub">砂を落としてゆっくりリセット</div></div></div>
           <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — じっくり本格エジプト料理</strong><span class="badge b-food">現地飯</span><div class="sub">複数の料理をコースで</div></div></div>
-          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・休息</strong></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>El Mesaadya（カイロ） 帰着・休息</strong></div></div>
         </div>
       </div>
 
@@ -1362,13 +1332,13 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 へ移動</strong></div></div>
           <div class="tl-row"><span class="tl-time">08:25</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ発</strong><span class="badge b-flight">NP071 ナイル航空</span></div></div>
           <div class="tl-row"><span class="tl-time">09:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール着 — チャータータクシー手配</strong></div></div>
-          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルチェックイン・休憩</strong></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>Pyramisa Luxor チェックイン・休憩</strong></div></div>
           <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — ルクソール東岸の地元食堂</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カルナック神殿 — たっぷり2.5時間</strong><div class="sub">急がずに各聖域をじっくり。オーディオガイド推奨</div><div class="tl-imgs"><img class="tl-img" src="images/horus-temple.jpg" alt="神殿内部の列柱" loading="lazy"><img class="tl-img" src="images/luxor-temple-2.avif" alt="ルクソールの神殿" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿いカフェでひと休み</strong><div class="sub">ミント・ティーでまったり</div></div></div>
           <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿い</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール神殿 ナイトビジット</strong><div class="sub">ライトアップされた幻想的な神殿。21時閉館</div><div class="tl-imgs"><img class="tl-img" src="images/luxor-temple.jpg" alt="ルクソール神殿" loading="lazy"><img class="tl-img" src="images/luxor-temple-3.jpg" alt="ルクソール神殿" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Pyramisa Luxor 帰着</strong></div></div>
         </div>
       </div>
 
@@ -1388,7 +1358,7 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">13:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — ローカル食堂でゆっくり2時間</strong><span class="badge b-food">現地飯</span><div class="sub">色々な料理を注文して試す。店主にスパイスの話を聞く</div></div></div>
           <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川フェルッカクルーズ — 2時間</strong><div class="sub">夕日の中のナイルをゆっくり漂う</div><div class="tl-imgs"><img class="tl-img" src="images/felucca.jpg" alt="ナイル川のフェルッカ" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ルクソール最後の夜をじっくり</strong><span class="badge b-food">現地飯</span><div class="sub">コース料理でエジプシャンディナー満喫</div></div></div>
-          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷物まとめ</strong></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Pyramisa Luxor 帰着・荷物まとめ</strong></div></div>
         </div>
       </div>
 
@@ -1404,11 +1374,11 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>チェックアウト・空港へ</strong></div></div>
           <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール発</strong><span class="badge b-flight">NP072 ナイル航空</span></div></div>
           <div class="tl-row"><span class="tl-time">11:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 着</strong></div></div>
-          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ホテルチェックイン・シャワー・休憩</strong><div class="sub">1.5〜2時間ゆっくりリセット</div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>Royal Town（カイロ） チェックイン・シャワー・休憩</strong><div class="sub">1.5〜2時間ゆっくりリセット</div></div></div>
           <div class="tl-row"><span class="tl-time">15:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>遅めランチ — カイロのカフェ</strong><span class="badge b-food">現地飯</span></div></div>
           <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿い散歩＆コルニーシュ</strong><div class="sub">急がずカイロの街を感じる</div></div></div>
           <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川ディナークルーズ</strong><span class="badge b-food">現地飯</span><div class="sub">船上から見るカイロ夜景。生演奏付きプランも。旅のご褒美ディナー</div><div class="tl-imgs"><img class="tl-img" src="images/nile-cruise.jpg" alt="ナイル川クルーズ船" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着</strong></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着</strong></div></div>
         </div>
       </div>
 
@@ -1427,7 +1397,7 @@ body.theme-night .todo-task { color: var(--text); }
           <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場でお土産購入</strong><div class="sub">最終日前日なので余裕を持って選べる</div><div class="tl-imgs"><img class="tl-img" src="images/khan-khalili.jpg" alt="ハン・エル＝ハリーリ市場" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワーで夕景</strong><div class="sub">沈む夕日とカイロ全景。ピラミッドも見える</div><div class="tl-imgs"><img class="tl-img" src="images/cairo-tower.jpg" alt="カイロ・タワー" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — エジプト料理フルコース</strong><span class="badge b-food">現地飯</span><div class="sub">5人でゆっくり旅を振り返りながら</div></div></div>
-          <div class="tl-row"><span class="tl-time">22:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>ホテル帰着・荷造り・就寝</strong></div></div>
+          <div class="tl-row"><span class="tl-time">22:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着・荷造り・就寝</strong></div></div>
         </div>
       </div>
 
@@ -1629,8 +1599,8 @@ body.theme-night .todo-task { color: var(--text); }
     </div>
     <div class="budget-item">
       <p class="budget-cat">🏨 ホテル（予約済み）</p>
-      <p class="budget-amount">¥175,097</p>
-      <p class="budget-note">5人・全宿泊合計 ／ 単身 各¥37,680・小泉夫妻 ¥62,058</p>
+      <p class="budget-amount">¥37,680</p>
+      <p class="budget-note">1人あたり（単身）<br>小泉夫妻 ¥62,058</p>
     </div>
     <div class="budget-item">
       <p class="budget-cat">🎟️ アクティビティ等</p>
@@ -1643,8 +1613,44 @@ body.theme-night .todo-task { color: var(--text); }
     <span class="budget-total-amount">¥251,810</span>
   </div>
   <div class="budget-total" style="margin-top:10px;">
-    <span class="budget-total-label">ホテル合計 / 5人</span>
-    <span class="budget-total-amount">¥175,097</span>
+    <span class="budget-total-label">ホテル合計 / 人（単身）</span>
+    <span class="budget-total-amount">¥37,680</span>
+  </div>
+  <div class="budget-total" style="margin-top:10px; border-top:2px solid var(--gold); padding-top:14px;">
+    <span class="budget-total-label">1人あたり 総額（単身）</span>
+    <span class="budget-total-amount">¥289,490</span>
+  </div>
+
+  <div class="hotel-summary">
+    <p class="hotel-summary-title">🏨 宿泊先の内訳（予約済み）</p>
+    <ul class="hotel-list">
+      <li class="hotel-row">
+        <span class="hotel-date">10/9</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-01Bqxr" target="_blank" rel="noopener">New Gardenia Pyramids – Rooftop</a><span class="hotel-area">📍 ギザ（ピラミッド近く）／ الهرم, الجيزة</span></div>
+        <span class="hotel-price">¥14,509</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/10</span>
+        <div class="hotel-main"><span class="hotel-name">白砂漠 キャンプ泊</span><span class="hotel-area">📍 白砂漠（砂漠ツアー）</span></div>
+        <span class="hotel-price">ツアー</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/11</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-oRxsXRc" target="_blank" rel="noopener">El Mesaadya Hotel</a><span class="hotel-area">📍 カイロ（ヘリオポリス）／ مصر الجديدة</span></div>
+        <span class="hotel-price">¥23,936</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/12–13</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-Q78gBh" target="_blank" rel="noopener">Pyramisa Hotel Luxor</a><span class="hotel-area">📍 ルクソール（ナイル沿い）／ الأقصر</span></div>
+        <span class="hotel-price">¥116,699</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/14–15</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-fmOHMd" target="_blank" rel="noopener">Royal Town Hotel</a><span class="hotel-area">📍 カイロ（タハリール）／ ميدان التحرير</span></div>
+        <span class="hotel-price">¥19,953</span>
+      </li>
+    </ul>
+    <p class="hotel-note">合計 ¥175,097（5人・全宿泊）。各ホテル名リンクは Booking.com の予約ページ。10/8・10/16 は機内泊、10/10 は白砂漠キャンプ泊。</p>
   </div>
 </section>
 
@@ -1945,13 +1951,13 @@ function toggleDay(header) {
 
 // ── その日の移動マップ（Leaflet + OpenStreetMap / APIキー不要） ──
 var DAY_ROUTES = {
-  '9':  { pts:[[30.1219,31.4056,'カイロ国際空港 着'],[29.9773,31.1325,'ギザのピラミッド＆スフィンクス'],[29.9939,31.1196,'グランド・エジプシャン博物館（GEM）']], legs:['空港から約1時間（車）','約15分（車）'] },
-  '10': { pts:[[30.0444,31.2357,'カイロ 出発'],[28.10,28.70,'黒砂漠・クリスタル山'],[27.20,28.18,'白砂漠 キャンプ泊']], legs:['約4時間（車）','約1時間（車）'] },
-  '11': { pts:[[27.20,28.18,'白砂漠'],[30.0444,31.2357,'カイロ 夕方帰着']], legs:['約4〜5時間（車）'] },
-  '12': { pts:[[30.1219,31.4056,'カイロ空港'],[25.6710,32.7066,'ルクソール空港'],[25.7188,32.6573,'カルナック神殿'],[25.6997,32.6390,'ルクソール神殿']], legs:['約1時間（飛行機）','約20分（車）','約10分（車）'] },
-  '13': { pts:[[25.7402,32.6014,'王家の谷'],[25.7380,32.6065,'ハトシェプスト女王葬祭殿'],[25.7205,32.6107,'メムノンの巨像'],[25.7000,32.6350,'ナイル川 フェルッカ']], legs:['約10分（車）','約10分（車）','約20分（車）'] },
-  '14': { pts:[[25.6710,32.7066,'ルクソール空港'],[30.1219,31.4056,'カイロ空港'],[30.0478,31.2336,'エジプト考古学博物館'],[30.0058,31.2300,'コプト地区（ハンギング・チャーチ）']], legs:['約1時間（飛行機）','約1時間（車）','約20分（車）'] },
-  '15': { pts:[[30.0477,31.2622,'ハン・エル＝ハリーリ市場'],[30.0459,31.2243,'カイロ・タワー'],[30.0444,31.2357,'ナイル川クルーズ']], legs:['約20分（車）','約10分（車）'] }
+  '9':  { pts:[[30.1219,31.4056,'カイロ国際空港 着'],[29.9642,31.1487,'🏨 New Gardenia（ギザ・宿）荷物預け'],[29.9773,31.1325,'ギザのピラミッド＆スフィンクス'],[29.9939,31.1196,'グランド・エジプシャン博物館（GEM）']], legs:['空港から約1時間（車）','約10分（車）','約10分（車）'] },
+  '10': { pts:[[29.9642,31.1487,'🏨 New Gardenia（ギザ・宿）出発'],[28.10,28.70,'黒砂漠・クリスタル山'],[27.20,28.18,'白砂漠 キャンプ泊']], legs:['約4.5時間（車）','約1時間（車）'] },
+  '11': { pts:[[27.20,28.18,'白砂漠'],[30.1016,31.3793,'🏨 El Mesaadya（カイロ・宿）着']], legs:['約4〜5時間（車）'] },
+  '12': { pts:[[30.1219,31.4056,'カイロ空港'],[25.6710,32.7066,'ルクソール空港'],[25.6869,32.6299,'🏨 Pyramisa Luxor（宿）チェックイン'],[25.7188,32.6573,'カルナック神殿'],[25.6997,32.6390,'ルクソール神殿']], legs:['約1時間（飛行機）','約15分（車）','約15分（車）','約10分（車）'] },
+  '13': { pts:[[25.6869,32.6299,'🏨 Pyramisa Luxor（宿）出発'],[25.7402,32.6014,'王家の谷'],[25.7380,32.6065,'ハトシェプスト女王葬祭殿'],[25.7205,32.6107,'メムノンの巨像'],[25.7000,32.6350,'ナイル川 フェルッカ']], legs:['約20分（車）','約10分（車）','約10分（車）','約20分（車）'] },
+  '14': { pts:[[25.6710,32.7066,'ルクソール空港'],[30.1219,31.4056,'カイロ空港'],[30.0478,31.2336,'エジプト考古学博物館'],[30.0058,31.2300,'コプト地区（ハンギング・チャーチ）'],[30.0449,31.2365,'🏨 Royal Town（カイロ・宿）着']], legs:['約1時間（飛行機）','約1時間（車）','約20分（車）','約15分（車）'] },
+  '15': { pts:[[30.0449,31.2365,'🏨 Royal Town（カイロ・宿）出発'],[30.0477,31.2622,'ハン・エル＝ハリーリ市場'],[30.0459,31.2243,'カイロ・タワー'],[30.0444,31.2357,'ナイル川クルーズ']], legs:['約15分（車）','約20分（車）','約10分（車）'] }
 };
 function dayMapInit(container) {
   if (container.dataset.init || !window.L) return;
