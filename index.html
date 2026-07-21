@@ -177,21 +177,23 @@ body {
 .plan-panel { display: none; }
 .plan-panel.active { display: block; }
 
-/* 宿泊先まとめ（旅程冒頭・ダーク背景用） */
-.hotel-summary { background: rgba(20,14,5,0.5); border: 1px solid rgba(212,176,150,0.25); border-radius: 8px; padding: 18px 18px 14px; margin-bottom: 28px; }
-.hotel-summary-title { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; color: var(--gold-light); margin-bottom: 12px; }
+/* 宿泊先まとめ（費用セクション・明るい背景用・夜モード対応） */
+.hotel-summary { background: #fff; border: 1px solid var(--divider); border-radius: 8px; padding: 18px 18px 14px; margin-top: 16px; }
+.hotel-summary-title { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; color: var(--lapis); margin-bottom: 10px; }
 .hotel-list { list-style: none; }
-.hotel-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(212,176,150,0.14); }
+.hotel-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--divider); }
 .hotel-row:last-child { border-bottom: none; }
 .hotel-date { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; color: var(--gold); min-width: 54px; white-space: nowrap; }
 .hotel-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.hotel-name { font-size: 14px; font-weight: 600; color: var(--sand-light); text-decoration: none; }
-.hotel-name:hover { color: var(--gold-light); text-decoration: underline; }
-.hotel-area { font-size: 11px; color: var(--sand); }
-.hotel-price { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--sand-light); white-space: nowrap; }
-.hotel-note { font-size: 11.5px; color: var(--sand); margin-top: 10px; line-height: 1.6; }
+.hotel-name { font-size: 14px; font-weight: 600; color: var(--night); text-decoration: none; }
+.hotel-name:hover { color: var(--lapis); text-decoration: underline; }
+.hotel-area { font-size: 11px; color: var(--text-light); }
+.hotel-price { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--night); white-space: nowrap; }
+.hotel-note { font-size: 11.5px; color: var(--text-light); margin-top: 10px; line-height: 1.6; }
+body.theme-night .hotel-summary { background: #17110a; border-color: rgba(212,176,150,0.18); }
+body.theme-night .hotel-name, body.theme-night .hotel-price { color: #f3ead4; }
 @media (max-width: 600px) {
-  .hotel-summary { padding: 14px 14px 12px; margin-bottom: 20px; }
+  .hotel-summary { padding: 14px 14px 12px; }
   .hotel-row { flex-wrap: wrap; gap: 3px 10px; }
   .hotel-price { margin-left: auto; }
   .hotel-name { font-size: 13px; }
@@ -1053,38 +1055,6 @@ body.theme-night .todo-task { color: var(--text); }
       <button class="plan-tab-btn" onclick="switchPlan('relaxed')">☕ ゆったり型 — 厳選してじっくり楽しむ</button>
     </div>
 
-    <div class="hotel-summary">
-      <p class="hotel-summary-title">🏨 宿泊先（予約済み）</p>
-      <ul class="hotel-list">
-        <li class="hotel-row">
-          <span class="hotel-date">10/9</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-01Bqxr" target="_blank" rel="noopener">New Gardenia Pyramids – Rooftop</a><span class="hotel-area">📍 ギザ（ピラミッド近く）／ الهرم, الجيزة</span></div>
-          <span class="hotel-price">¥14,509</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/10</span>
-          <div class="hotel-main"><span class="hotel-name">白砂漠 キャンプ泊</span><span class="hotel-area">📍 白砂漠（砂漠ツアー）</span></div>
-          <span class="hotel-price">ツアー</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/11</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-oRxsXRc" target="_blank" rel="noopener">El Mesaadya Hotel</a><span class="hotel-area">📍 カイロ（ヘリオポリス）／ مصر الجديدة</span></div>
-          <span class="hotel-price">¥23,936</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/12–13</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-Q78gBh" target="_blank" rel="noopener">Pyramisa Hotel Luxor</a><span class="hotel-area">📍 ルクソール（ナイル沿い）／ الأقصر</span></div>
-          <span class="hotel-price">¥116,699</span>
-        </li>
-        <li class="hotel-row">
-          <span class="hotel-date">10/14–15</span>
-          <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-fmOHMd" target="_blank" rel="noopener">Royal Town Hotel</a><span class="hotel-area">📍 カイロ（タハリール）／ ميدان التحرير</span></div>
-          <span class="hotel-price">¥19,953</span>
-        </li>
-      </ul>
-      <p class="hotel-note">合計 ¥175,097（5人・全宿泊）。各ホテル名リンクは Booking.com の予約ページ。10/8・10/16 は機内泊、10/10 は白砂漠キャンプ泊。</p>
-    </div>
-
     <!-- ======== 詰め込み型 ======== -->
     <div id="packed" class="plan-panel active">
 
@@ -1629,8 +1599,8 @@ body.theme-night .todo-task { color: var(--text); }
     </div>
     <div class="budget-item">
       <p class="budget-cat">🏨 ホテル（予約済み）</p>
-      <p class="budget-amount">¥175,097</p>
-      <p class="budget-note">5人・全宿泊合計 ／ 単身 各¥37,680・小泉夫妻 ¥62,058</p>
+      <p class="budget-amount">¥37,680</p>
+      <p class="budget-note">1人あたり（単身）<br>小泉夫妻 ¥62,058</p>
     </div>
     <div class="budget-item">
       <p class="budget-cat">🎟️ アクティビティ等</p>
@@ -1645,6 +1615,38 @@ body.theme-night .todo-task { color: var(--text); }
   <div class="budget-total" style="margin-top:10px;">
     <span class="budget-total-label">ホテル合計 / 5人</span>
     <span class="budget-total-amount">¥175,097</span>
+  </div>
+
+  <div class="hotel-summary">
+    <p class="hotel-summary-title">🏨 宿泊先の内訳（予約済み）</p>
+    <ul class="hotel-list">
+      <li class="hotel-row">
+        <span class="hotel-date">10/9</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-01Bqxr" target="_blank" rel="noopener">New Gardenia Pyramids – Rooftop</a><span class="hotel-area">📍 ギザ（ピラミッド近く）／ الهرم, الجيزة</span></div>
+        <span class="hotel-price">¥14,509</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/10</span>
+        <div class="hotel-main"><span class="hotel-name">白砂漠 キャンプ泊</span><span class="hotel-area">📍 白砂漠（砂漠ツアー）</span></div>
+        <span class="hotel-price">ツアー</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/11</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-oRxsXRc" target="_blank" rel="noopener">El Mesaadya Hotel</a><span class="hotel-area">📍 カイロ（ヘリオポリス）／ مصر الجديدة</span></div>
+        <span class="hotel-price">¥23,936</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/12–13</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-Q78gBh" target="_blank" rel="noopener">Pyramisa Hotel Luxor</a><span class="hotel-area">📍 ルクソール（ナイル沿い）／ الأقصر</span></div>
+        <span class="hotel-price">¥116,699</span>
+      </li>
+      <li class="hotel-row">
+        <span class="hotel-date">10/14–15</span>
+        <div class="hotel-main"><a class="hotel-name" href="https://www.booking.com/Share-fmOHMd" target="_blank" rel="noopener">Royal Town Hotel</a><span class="hotel-area">📍 カイロ（タハリール）／ ميدان التحرير</span></div>
+        <span class="hotel-price">¥19,953</span>
+      </li>
+    </ul>
+    <p class="hotel-note">合計 ¥175,097（5人・全宿泊）。各ホテル名リンクは Booking.com の予約ページ。10/8・10/16 は機内泊、10/10 は白砂漠キャンプ泊。</p>
   </div>
 </section>
 
