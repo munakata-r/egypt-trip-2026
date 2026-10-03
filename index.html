@@ -228,6 +228,26 @@ body.theme-night .hotel-name, body.theme-night .hotel-price { color: #f3ead4; }
   padding: 8px 12px; border-radius: 0 4px 4px 0; margin-bottom: 16px;
 }
 
+/* 砂漠キャンプの持ち物・チップメモ */
+.day-memo {
+  background: rgba(186,117,23,0.10); border: 1px solid rgba(186,117,23,0.35);
+  border-radius: 6px; padding: 10px 12px; margin-bottom: 16px;
+}
+.day-memo-title {
+  font-size: 12px; font-weight: 700; color: var(--gold-light);
+  letter-spacing: 0.04em; margin: 0 0 6px;
+}
+.day-memo dl { margin: 0; }
+.day-memo dt {
+  font-size: 11px; font-weight: 700; color: var(--gold);
+  margin-top: 6px;
+}
+.day-memo dt:first-of-type { margin-top: 0; }
+.day-memo dd {
+  margin: 2px 0 0; font-size: 11.5px; line-height: 1.55;
+  color: rgba(200,169,126,0.92);
+}
+
 /* timeline */
 .tl-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
 .tl-time {
@@ -1102,6 +1122,17 @@ body.theme-night .todo-task { color: var(--text); }
         </div>
         <div class="day-body">
           <div class="day-note">早朝出発でツアーを最大限満喫。白砂漠・黒砂漠コースが定番。</div>
+          <div class="day-memo">
+            <p class="day-memo-title">🎒 砂漠ツアー 持ち物・チップメモ（ナギーサファリ案内より）</p>
+            <dl>
+              <dt>持ち物</dt>
+              <dd>懐中電灯／水着・タオル（砂漠の鉱泉・ホテルプール用）／防寒着（夜は15℃前後）／日焼け止め・帽子・サングラス・スカーフ／塩分タブレット・冷却グッズ　※ドライヤーは砂漠ツアーは貸出対象外</dd>
+              <dt>注意</dt>
+              <dd>行きたい場所は事前にリクエスト（不可の場合あり）／海外旅行保険の連絡先を携帯（現地クリニックは領収証が出ない場合あり）</dd>
+              <dt>チップの目安</dt>
+              <dd>トイレ 10〜15EGP／ポーター 約$2（少額のドル紙幣が便利）</dd>
+            </dl>
+          </div>
           <div class="tl-row"><span class="tl-time">06:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ出発</strong><div class="sub">ツアー業者のジープ。バフレイヤ・オアシスまで約4時間</div></div></div>
           <div class="tl-row"><span class="tl-time">10:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>黒砂漠・クリスタル山</strong><div class="sub">玄武岩の黒い丘。クリスタルが散らばる独特の風景</div></div></div>
           <div class="tl-row"><span class="tl-time">12:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でランチ</strong><span class="badge b-food">現地飯</span><div class="sub">ベドウィン式。焚き火・鶏肉・野菜スープ</div></div></div>
@@ -1181,19 +1212,19 @@ body.theme-night .todo-task { color: var(--text); }
       <div class="day-card">
         <div class="day-header" onclick="toggleDay(this)">
           <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">14</span><span class="day-weekday">WED</span></div>
-          <div class="day-info"><p class="day-theme">ルクソール発 → カイロ帰着 → 旧博物館 → コプト地区</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-info"><p class="day-theme">ルクソール発 → カイロ帰着 → ナイル・ディナークルーズ</p><p class="day-location">🇪🇬 カイロ</p></div>
           <div class="day-chevron">▼</div>
         </div>
         <div class="day-body">
-          <div class="day-note">午前中に移動完了。午後はカイロの未踏スポットを追加で攻略。</div>
+          <div class="day-note">午前中に移動完了。夜はナイル川ディナークルーズを旅のハイライトに。</div>
           <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>Pyramisa Luxor チェックアウト・空港へ</strong></div></div>
           <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ルクソール発</strong><span class="badge b-flight">NP072 ナイル航空</span></div></div>
           <div class="tl-row"><span class="tl-time">11:35</span><div class="tl-dot-col"><div class="tl-dot" style="background:#378ADD"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ国際空港 T1 着</strong><div class="sub">タクシーでカイロ市内へ（約1時間）</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — コシャリ屋台</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>エジプト考古学博物館（旧博物館）</strong><div class="sub">本物のミイラ・副葬品。GEMとは別の見どころ</div><div class="tl-imgs"><img class="tl-img" src="images/egyptian-museum.jpg" alt="エジプト考古学博物館" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>コプト地区（オールド・カイロ）</strong><div class="sub">初期キリスト教エジプトの遺産。ハンギング・チャーチなど</div><div class="tl-imgs"><img class="tl-img" src="images/coptic.jpg" alt="ハンギング・チャーチ" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル川沿いレストラン</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着</strong></div></div>
+          <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>Royal Town（カイロ） チェックイン・シャワー・休憩</strong><div class="sub">移動の疲れをリセット</div></div></div>
+          <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川沿い散歩・コルニーシュ</strong><div class="sub">夕暮れのカイロの街を感じる</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川ディナークルーズ船</strong><span class="badge b-food">現地飯</span><div class="sub">船上からのカイロ夜景。ウードの生演奏・ベリーダンスも。旅のご褒美ディナー</div><div class="tl-imgs"><img class="tl-img" src="images/nile-cruise.jpg" alt="ナイル川クルーズ船" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">21:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着</strong></div></div>
         </div>
       </div>
 
@@ -1201,19 +1232,20 @@ body.theme-night .todo-task { color: var(--text); }
       <div class="day-card">
         <div class="day-header" onclick="toggleDay(this)">
           <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">15</span><span class="day-weekday">THU</span></div>
-          <div class="day-info"><p class="day-theme">カイロ フリーday — 市場・タワー・昼クルーズ・アンティーク街</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-info"><p class="day-theme">カイロ最終日 — コプト地区・考古学博物館（＋市場・タワー）</p><p class="day-location">🇪🇬 カイロ</p></div>
           <div class="day-chevron">▼</div>
         </div>
         <div class="day-body">
-          <div class="day-note">最終日はショッピングと食の深掘りデー。翌14:05発なので余裕あり。</div>
+          <div class="day-note">最終日はコプト地区をメインに。考古学博物館＋市場・タワーも回る欲張りデー。翌14:05発なので余裕あり。</div>
           <div class="tl-row"><span class="tl-time">08:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>朝食 — エジプシャン・ブレックファスト</strong><span class="badge b-food">現地飯</span><div class="sub">フール・ターメイヤ・チーズ・アイシュ</div><div class="tl-imgs"><img class="tl-img" src="images/egyptian-breakfast.jpg" alt="エジプシャン朝食（フール）" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場 本格散策</strong><div class="sub">パピルス・アラバスター・スパイス・ランプ。値切り交渉を楽しむ</div><div class="tl-imgs"><img class="tl-img" src="images/khan-khalili.jpg" alt="ハン・エル＝ハリーリ市場" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワー</strong><div class="sub">高さ187m。カイロ全景とピラミッドを一望。入場200EGP</div><div class="tl-imgs"><img class="tl-img" src="images/cairo-tower.jpg" alt="カイロ・タワー" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">12:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — アブ・タレク（コシャリ専門店）</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ナイル川クルーズ（デイタイム）</strong><div class="sub">フェルッカでカイロの摩天楼とピラミッドを同時に</div></div></div>
-          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ズアイラ通り・アンティーク街</strong><div class="sub">ヴィンテージ雑貨・エジプト工芸品</div></div></div>
-          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — ナイル・クルーズ船ディナー</strong><span class="badge b-food">現地飯</span><div class="sub">旅の締めくくり。ウードの生演奏あり</div><div class="tl-imgs"><img class="tl-img" src="images/nile-cruise.jpg" alt="ナイル川クルーズ船" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">20:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着・荷造り・就寝</strong></div></div>
+          <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>コプト地区（オールド・カイロ）</strong><span class="badge" style="background:#BA7517;color:#fff">★メイン</span><div class="sub">初期キリスト教エジプトの遺産。ハンギング・チャーチ、聖セルギウス教会、コプト博物館など</div><div class="tl-imgs"><img class="tl-img" src="images/coptic.jpg" alt="ハンギング・チャーチ" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">11:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>エジプト考古学博物館（旧博物館）</strong><div class="sub">本物のミイラ・副葬品。GEMとは別の見どころ</div><div class="tl-imgs"><img class="tl-img" src="images/egyptian-museum.jpg" alt="エジプト考古学博物館" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">13:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — アブ・タレク（コシャリ専門店）</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">14:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場 散策</strong><div class="sub">パピルス・アラバスター・スパイス・ランプ。値切り交渉を楽しむ</div><div class="tl-imgs"><img class="tl-img" src="images/khan-khalili.jpg" alt="ハン・エル＝ハリーリ市場" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">16:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワー</strong><div class="sub">高さ187m。カイロ全景とピラミッドを一望。入場200EGP</div><div class="tl-imgs"><img class="tl-img" src="images/cairo-tower.jpg" alt="カイロ・タワー" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">18:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ズアイラ通り・アンティーク街（時間が許せば）</strong><div class="sub">ヴィンテージ雑貨・エジプト工芸品</div></div></div>
+          <div class="tl-row"><span class="tl-time">19:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — カイロ市内で旅の締めくくり</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">21:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着・荷造り・就寝</strong></div></div>
         </div>
       </div>
 
@@ -1290,6 +1322,17 @@ body.theme-night .todo-task { color: var(--text); }
         </div>
         <div class="day-body">
           <div class="day-note">砂漠での時間はのんびりと。昼寝・写真タイムを惜しまない。</div>
+          <div class="day-memo">
+            <p class="day-memo-title">🎒 砂漠ツアー 持ち物・チップメモ（ナギーサファリ案内より）</p>
+            <dl>
+              <dt>持ち物</dt>
+              <dd>懐中電灯／水着・タオル（砂漠の鉱泉・ホテルプール用）／防寒着（夜は15℃前後）／日焼け止め・帽子・サングラス・スカーフ／塩分タブレット・冷却グッズ　※ドライヤーは砂漠ツアーは貸出対象外</dd>
+              <dt>注意</dt>
+              <dd>行きたい場所は事前にリクエスト（不可の場合あり）／海外旅行保険の連絡先を携帯（現地クリニックは領収証が出ない場合あり）</dd>
+              <dt>チップの目安</dt>
+              <dd>トイレ 10〜15EGP／ポーター 約$2（少額のドル紙幣が便利）</dd>
+            </dl>
+          </div>
           <div class="tl-row"><span class="tl-time">07:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ出発</strong><div class="sub">1時間遅めスタート。道中の景色も楽しむ</div></div></div>
           <div class="tl-row"><span class="tl-time">11:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>黒砂漠・クリスタル山</strong><div class="sub">写真タイムをたっぷりとる</div></div></div>
           <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>砂漠でランチ＆昼寝</strong><span class="badge b-food">現地飯</span><div class="sub">砂の上で昼寝。誰にも邪魔されない最高の昼休み</div></div></div>
@@ -1386,16 +1429,17 @@ body.theme-night .todo-task { color: var(--text); }
       <div class="day-card">
         <div class="day-header" onclick="toggleDay(this)">
           <div class="day-date-block"><span class="day-month">OCT</span><span class="day-num">15</span><span class="day-weekday">THU</span></div>
-          <div class="day-info"><p class="day-theme">カイロ フリーday — GEM博物館＋市場＋タワー</p><p class="day-location">🇪🇬 カイロ</p></div>
+          <div class="day-info"><p class="day-theme">カイロ最終日 — コプト地区・考古学博物館（＋市場・タワー）</p><p class="day-location">🇪🇬 カイロ</p></div>
           <div class="day-chevron">▼</div>
         </div>
         <div class="day-body">
-          <div class="day-note">ゆったり型の真骨頂。朝食だけで2時間使ってもいい。</div>
+          <div class="day-note">ゆったり型の真骨頂。コプト地区をメインに据え、焦らず深く味わう最終日。</div>
           <div class="tl-row"><span class="tl-time">09:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>朝食 — カイロのカフェでゆっくり</strong><span class="badge b-food">現地飯</span><div class="sub">フール・チーズ・アイシュ。エジプシャンコーヒー＆ミントティーも</div><div class="tl-imgs"><img class="tl-img" src="images/egyptian-breakfast.jpg" alt="エジプシャン朝食（フール）" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>グランド・エジプシャン博物館（GEM）</strong><div class="sub">3〜4時間たっぷり。ツタンカーメン黄金マスクなど世界一の規模を堪能</div><div class="tl-imgs"><img class="tl-img" src="images/gem-tut.jpg" alt="ツタンカーメンの黄金のマスク" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">14:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — じっくり2時間ランチ</strong><span class="badge b-food">現地飯</span></div></div>
-          <div class="tl-row"><span class="tl-time">16:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場でお土産購入</strong><div class="sub">最終日前日なので余裕を持って選べる</div><div class="tl-imgs"><img class="tl-img" src="images/khan-khalili.jpg" alt="ハン・エル＝ハリーリ市場" loading="lazy"></div></div></div>
-          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワーで夕景</strong><div class="sub">沈む夕日とカイロ全景。ピラミッドも見える</div><div class="tl-imgs"><img class="tl-img" src="images/cairo-tower.jpg" alt="カイロ・タワー" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">10:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>コプト地区（オールド・カイロ）</strong><span class="badge" style="background:#BA7517;color:#fff">★メイン</span><div class="sub">ハンギング・チャーチ、聖セルギウス教会、コプト博物館。初期キリスト教エジプトの世界をじっくり</div><div class="tl-imgs"><img class="tl-img" src="images/coptic.jpg" alt="ハンギング・チャーチ" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">13:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>昼食 — じっくり2時間ランチ</strong><span class="badge b-food">現地飯</span></div></div>
+          <div class="tl-row"><span class="tl-time">15:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>エジプト考古学博物館（旧博物館）</strong><div class="sub">本物のミイラ・副葬品をゆっくり。GEMとは別の見どころ</div><div class="tl-imgs"><img class="tl-img" src="images/egyptian-museum.jpg" alt="エジプト考古学博物館" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">17:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>ハン・エル＝ハリーリ市場でお土産購入</strong><div class="sub">最終日前日なので余裕を持って選べる</div><div class="tl-imgs"><img class="tl-img" src="images/khan-khalili.jpg" alt="ハン・エル＝ハリーリ市場" loading="lazy"></div></div></div>
+          <div class="tl-row"><span class="tl-time">18:30</span><div class="tl-dot-col"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>カイロ・タワーで夕景（時間が許せば）</strong><div class="sub">沈む夕日とカイロ全景。ピラミッドも見える</div><div class="tl-imgs"><img class="tl-img" src="images/cairo-tower.jpg" alt="カイロ・タワー" loading="lazy"></div></div></div>
           <div class="tl-row"><span class="tl-time">20:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#639922"></div><div class="tl-vline"></div></div><div class="tl-content"><strong>夕食 — エジプト料理フルコース</strong><span class="badge b-food">現地飯</span><div class="sub">5人でゆっくり旅を振り返りながら</div></div></div>
           <div class="tl-row"><span class="tl-time">22:00</span><div class="tl-dot-col"><div class="tl-dot" style="background:#888780"></div></div><div class="tl-content"><strong>Royal Town（カイロ） 帰着・荷造り・就寝</strong></div></div>
         </div>
@@ -1603,9 +1647,9 @@ body.theme-night .todo-task { color: var(--text); }
       <p class="budget-note">1人あたり（単身）<br>小泉夫妻 ¥62,058</p>
     </div>
     <div class="budget-item">
-      <p class="budget-cat">🎟️ アクティビティ等</p>
-      <p class="budget-amount">未定</p>
-      <p class="budget-note">砂漠ツアー・入場料など</p>
+      <p class="budget-cat">🏜️ 砂漠ツアー</p>
+      <p class="budget-amount">¥44,950</p>
+      <p class="budget-note">$290 / 人（白砂漠1泊2日）<br>入場料等は別途</p>
     </div>
   </div>
   <div class="budget-total">
@@ -1616,9 +1660,13 @@ body.theme-night .todo-task { color: var(--text); }
     <span class="budget-total-label">ホテル合計 / 人（単身）</span>
     <span class="budget-total-amount">¥37,680</span>
   </div>
+  <div class="budget-total" style="margin-top:10px;">
+    <span class="budget-total-label">砂漠ツアー / 人</span>
+    <span class="budget-total-amount">¥44,950</span>
+  </div>
   <div class="budget-total" style="margin-top:10px; border-top:2px solid var(--gold); padding-top:14px;">
     <span class="budget-total-label">1人あたり 総額（単身）</span>
-    <span class="budget-total-amount">¥289,490</span>
+    <span class="budget-total-amount">¥334,440</span>
   </div>
 
   <div class="hotel-summary">
@@ -1632,7 +1680,7 @@ body.theme-night .todo-task { color: var(--text); }
       <li class="hotel-row">
         <span class="hotel-date">10/10</span>
         <div class="hotel-main"><span class="hotel-name">白砂漠 キャンプ泊</span><span class="hotel-area">📍 白砂漠（砂漠ツアー）</span></div>
-        <span class="hotel-price">ツアー</span>
+        <span class="hotel-price">$290 / 人</span>
       </li>
       <li class="hotel-row">
         <span class="hotel-date">10/11</span>
@@ -1650,7 +1698,7 @@ body.theme-night .todo-task { color: var(--text); }
         <span class="hotel-price">¥19,953</span>
       </li>
     </ul>
-    <p class="hotel-note">合計 ¥175,097（5人・全宿泊）。各ホテル名リンクは Booking.com の予約ページ。10/8・10/16 は機内泊、10/10 は白砂漠キャンプ泊。</p>
+    <p class="hotel-note">ホテル合計 ¥175,097（5人・ホテル分）。各ホテル名リンクは Booking.com の予約ページ。10/8・10/16 は機内泊。10/10 の白砂漠キャンプは砂漠ツアー $290/人（約¥44,950）で別枠。</p>
   </div>
 </section>
 
@@ -1956,8 +2004,8 @@ var DAY_ROUTES = {
   '11': { pts:[[27.20,28.18,'白砂漠'],[30.1016,31.3793,'🏨 El Mesaadya（カイロ・宿）着']], legs:['約4〜5時間（車）'] },
   '12': { pts:[[30.1219,31.4056,'カイロ空港'],[25.6710,32.7066,'ルクソール空港'],[25.6869,32.6299,'🏨 Pyramisa Luxor（宿）チェックイン'],[25.7188,32.6573,'カルナック神殿'],[25.6997,32.6390,'ルクソール神殿']], legs:['約1時間（飛行機）','約15分（車）','約15分（車）','約10分（車）'] },
   '13': { pts:[[25.6869,32.6299,'🏨 Pyramisa Luxor（宿）出発'],[25.7402,32.6014,'王家の谷'],[25.7380,32.6065,'ハトシェプスト女王葬祭殿'],[25.7205,32.6107,'メムノンの巨像'],[25.7000,32.6350,'ナイル川 フェルッカ']], legs:['約20分（車）','約10分（車）','約10分（車）','約20分（車）'] },
-  '14': { pts:[[25.6710,32.7066,'ルクソール空港'],[30.1219,31.4056,'カイロ空港'],[30.0478,31.2336,'エジプト考古学博物館'],[30.0058,31.2300,'コプト地区（ハンギング・チャーチ）'],[30.0449,31.2365,'🏨 Royal Town（カイロ・宿）着']], legs:['約1時間（飛行機）','約1時間（車）','約20分（車）','約15分（車）'] },
-  '15': { pts:[[30.0449,31.2365,'🏨 Royal Town（カイロ・宿）出発'],[30.0477,31.2622,'ハン・エル＝ハリーリ市場'],[30.0459,31.2243,'カイロ・タワー'],[30.0444,31.2357,'ナイル川クルーズ']], legs:['約15分（車）','約20分（車）','約10分（車）'] }
+  '14': { pts:[[25.6710,32.7066,'ルクソール空港'],[30.1219,31.4056,'カイロ空港'],[30.0449,31.2365,'🏨 Royal Town（カイロ・宿）着'],[30.0444,31.2357,'ナイル川ディナークルーズ']], legs:['約1時間（飛行機）','約1時間（車）','約10分（車）'] },
+  '15': { pts:[[30.0449,31.2365,'🏨 Royal Town（カイロ・宿）出発'],[30.0058,31.2300,'コプト地区（ハンギング・チャーチ）'],[30.0478,31.2336,'エジプト考古学博物館'],[30.0477,31.2622,'ハン・エル＝ハリーリ市場'],[30.0459,31.2243,'カイロ・タワー']], legs:['約25分（車）','約15分（車）','約20分（車）','約15分（車）'] }
 };
 function dayMapInit(container) {
   if (container.dataset.init || !window.L) return;
