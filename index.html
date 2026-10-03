@@ -592,9 +592,9 @@ body.anim-on .reveal.in { opacity: 1; transform: none; transition: opacity 0.6s 
 /* ── 通貨換算＋チップ早見表 ── */
 .fx-tool { background: var(--papyrus); border: 1px solid var(--divider); border-radius: 6px; padding: 24px; }
 .fx-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.fx-field { display: flex; flex-direction: column; gap: 4px; }
+.fx-field { display: flex; flex-direction: column; gap: 4px; flex: 1 1 120px; min-width: 110px; }
 .fx-field label { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-light); }
-.fx-input { width: 150px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; padding: 10px 12px; border: 1px solid var(--sand); border-radius: 6px; background: #fff; color: var(--night); }
+.fx-input { width: 100%; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; padding: 10px 12px; border: 1px solid var(--sand); border-radius: 6px; background: #fff; color: var(--night); box-sizing: border-box; }
 .fx-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(212,160,23,0.18); }
 .fx-swap { font-size: 22px; color: var(--gold); background: none; border: none; cursor: pointer; padding: 6px; align-self: flex-end; }
 .fx-rate { font-size: 12px; color: var(--text-light); margin-top: 12px; }
@@ -1713,13 +1713,16 @@ body.theme-night .todo-task { color: var(--text); }
   <div class="fx-tool">
     <div class="fx-row">
       <div class="fx-field">
-        <label id="fxLeftLabel">日本円 (JPY)</label>
-        <input class="fx-input" id="fxLeft" type="number" inputmode="decimal" value="1000">
+        <label>🇯🇵 日本円 (JPY)</label>
+        <input class="fx-input" id="fxJPY" type="number" inputmode="decimal" value="1000">
       </div>
-      <button class="fx-swap" id="fxSwap" title="入れ替え">⇄</button>
       <div class="fx-field">
-        <label id="fxRightLabel">エジプトポンド (EGP)</label>
-        <input class="fx-input" id="fxRight" type="number" inputmode="decimal" value="0">
+        <label>🇪🇬 エジプトポンド (EGP)</label>
+        <input class="fx-input" id="fxEGP" type="number" inputmode="decimal" value="0">
+      </div>
+      <div class="fx-field">
+        <label>🇺🇸 米ドル (USD)</label>
+        <input class="fx-input" id="fxUSD" type="number" inputmode="decimal" value="0">
       </div>
     </div>
     <p class="fx-rate" id="fxRate">レート取得中…</p>
@@ -2316,18 +2319,17 @@ function dayMapInit(container) {
 
 // ── 通貨換算＋チップ早見表（ライブレート / open.er-api.com・キー不要） ──
 (function () {
-  var left = document.getElementById('fxLeft'), right = document.getElementById('fxRight');
-  if (!left) return;
+  var jpyI = document.getElementById('fxJPY'), egp = document.getElementById('fxEGP'), usd = document.getElementById('fxUSD');
+  if (!jpyI) return;
   var rateEl = document.getElementById('fxRate'), tipsEl = document.getElementById('fxTips');
-  var leftLabel = document.getElementById('fxLeftLabel'), rightLabel = document.getElementById('fxRightLabel');
-  var JPY_PER_EGP = 3.1; // フォールバック（おおよそ）
-  var jpyLeft = true;    // true: 左=JPY 右=EGP
+  var JPY_PER_EGP = 3.1;   // フォールバック（おおよそ）
+  var JPY_PER_USD = 155;   // フォールバック（おおよそ）
   // チップ目安（EGP）
   var TIPS = [
     ['ホテルの枕銭 / 1泊', 20], ['ポーター / 1個', 20], ['レストラン会計', null],
     ['ガイド / 1日', 200], ['ドライバー / 1日', 100], ['トイレ係', 5]
   ];
-  function fmtYen(egp) { return '≈ ¥' + Math.round(egp * JPY_PER_EGP).toLocaleString(); }
+  function fmtYen(e) { return '≈ ¥' + Math.round(e * JPY_PER_EGP).toLocaleString(); }
   function renderTips() {
     tipsEl.innerHTML = '';
     TIPS.forEach(function (t) {
@@ -2338,40 +2340,41 @@ function dayMapInit(container) {
       tipsEl.appendChild(li);
     });
   }
-  function recalc(from) {
-    var rate = jpyLeft ? (1 / JPY_PER_EGP) : JPY_PER_EGP; // 左→右 の倍率
-    if (from === 'right') {
-      var v = parseFloat(right.value) || 0; left.value = +(v / rate).toFixed(2);
-    } else {
-      var v2 = parseFloat(left.value) || 0; right.value = +(v2 * rate).toFixed(2);
-    }
+  // どれか1つに入力 → 残り2つを更新（JPYを基準に換算）
+  function recalc(src) {
+    var jpy;
+    if (src === 'EGP') jpy = (parseFloat(egp.value) || 0) * JPY_PER_EGP;
+    else if (src === 'USD') jpy = (parseFloat(usd.value) || 0) * JPY_PER_USD;
+    else jpy = (parseFloat(jpyI.value) || 0);
+    if (src !== 'JPY') jpyI.value = Math.round(jpy);
+    if (src !== 'EGP') egp.value = +(jpy / JPY_PER_EGP).toFixed(2);
+    if (src !== 'USD') usd.value = +(jpy / JPY_PER_USD).toFixed(2);
   }
-  function setLabels() {
-    leftLabel.textContent = jpyLeft ? '日本円 (JPY)' : 'エジプトポンド (EGP)';
-    rightLabel.textContent = jpyLeft ? 'エジプトポンド (EGP)' : '日本円 (JPY)';
-  }
-  left.addEventListener('input', function () { recalc('left'); });
-  right.addEventListener('input', function () { recalc('right'); });
-  document.getElementById('fxSwap').addEventListener('click', function () {
-    jpyLeft = !jpyLeft; setLabels();
-    var tmp = left.value; left.value = right.value; right.value = tmp;
-  });
+  jpyI.addEventListener('input', function () { recalc('JPY'); });
+  egp.addEventListener('input', function () { recalc('EGP'); });
+  usd.addEventListener('input', function () { recalc('USD'); });
   // レートを他セクション（チケット早見表など）にも共有
   function broadcast() {
     window.__egpJpy = JPY_PER_EGP;
     window.dispatchEvent(new CustomEvent('egpjpy', { detail: JPY_PER_EGP }));
   }
-  setLabels(); renderTips(); recalc('left'); broadcast();
-  // ライブレート取得（JPYベース → EGP）
+  function showRate(live, dateStr) {
+    rateEl.innerHTML = '1 USD ≈ <b>¥' + JPY_PER_USD.toFixed(1) + '</b>　/　1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>' +
+      '<br>（1万円 ≈ ' + Math.round(10000 / JPY_PER_EGP).toLocaleString() + ' EGP ／ ' + (10000 / JPY_PER_USD).toFixed(1) + ' USD）' +
+      (live ? '<br>レート更新: ' + dateStr + ' ・ ライブ取得' : '<br>参考値・オフライン');
+  }
+  renderTips(); recalc('JPY'); broadcast(); showRate(false, '');
+  // ライブレート取得（JPYベース → EGP・USD）
   fetch('https://open.er-api.com/v6/latest/JPY').then(function (r) { return r.json(); }).then(function (j) {
-    if (j && j.rates && j.rates.EGP) {
+    if (j && j.rates && j.rates.EGP && j.rates.USD) {
       JPY_PER_EGP = 1 / j.rates.EGP;
+      JPY_PER_USD = 1 / j.rates.USD;
       var d = j.time_last_update_utc ? new Date(j.time_last_update_utc).toLocaleDateString('ja-JP') : '';
-      rateEl.innerHTML = '1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>　（1万円 ≈ ' + Math.round(10000 / JPY_PER_EGP).toLocaleString() + ' EGP）<br>レート更新: ' + d + ' ・ ライブ取得';
+      showRate(true, d);
     } else { throw 0; }
-    renderTips(); recalc('left'); broadcast();
+    renderTips(); recalc('JPY'); broadcast();
   }).catch(function () {
-    rateEl.innerHTML = '1 EGP ≈ <b>¥' + JPY_PER_EGP.toFixed(2) + '</b>（参考値・オフライン）';
+    showRate(false, '');
   });
 })();
 
