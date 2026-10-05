@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エジプト旅行 2026 — 旅のしおり（印刷用）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papyrus:#faf6ec; --paper:#ffffff; --ink:#2a2416; --sub:#6b5f4a;
+    --gold:#BA7517; --gold-d:#9a5f12; --lapis:#2B5E8C; --sand:#d9cdb3; --line:#e4dcc9;
+    --green:#4e7d2a;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:'Noto Sans JP',-apple-system,sans-serif;
+    color:var(--ink); background:#ddd6c7; line-height:1.6;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  /* ── 画面ツールバー（印刷時は非表示） ── */
+  .toolbar{
+    position:sticky; top:0; z-index:50; display:flex; gap:12px; align-items:center; justify-content:center;
+    background:#1c1810; color:#f3ead4; padding:12px 16px; flex-wrap:wrap;
+  }
+  .toolbar p{ margin:0; font-size:13px; }
+  .tb-btn{
+    font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; cursor:pointer;
+    background:var(--gold); color:#fff; border:none; border-radius:6px; padding:9px 18px;
+  }
+  .tb-btn.ghost{ background:transparent; color:#f3ead4; border:1px solid #6a5c3c; text-decoration:none; }
+
+  /* ── 用紙（A4） ── */
+  .sheet{
+    width:210mm; min-height:297mm; margin:12mm auto; padding:15mm 16mm;
+    background:var(--paper); box-shadow:0 6px 24px rgba(0,0,0,.25); position:relative;
+  }
+  .sheet .foot{
+    position:absolute; left:16mm; right:16mm; bottom:9mm;
+    display:flex; justify-content:space-between; font-size:9.5px; color:var(--sub);
+    border-top:1px solid var(--line); padding-top:5px; font-family:'Montserrat',sans-serif; letter-spacing:.04em;
+  }
+
+  h1,h2,h3{ font-family:'Noto Serif JP',serif; margin:0; }
+  .kicker{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-d); }
+  .sec-title{ font-size:20px; font-weight:900; color:var(--ink); margin:2px 0 14px; border-bottom:2px solid var(--gold); padding-bottom:7px; }
+
+  /* ── 表紙 ── */
+  .cover{ display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:267mm; }
+  .cover .eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.3em; color:var(--gold-d); font-size:13px; }
+  .cover .glyph{ font-size:58px; color:var(--gold); margin:10px 0 6px; }
+  .cover h1{ font-size:44px; font-weight:900; line-height:1.25; color:var(--ink); }
+  .cover .sub{ font-family:'Noto Serif JP',serif; font-size:18px; color:var(--lapis); margin-top:10px; }
+  .cover .dates{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; letter-spacing:.06em; color:var(--gold-d); margin:22px 0 6px; }
+  .cover .span{ font-size:13px; color:var(--sub); }
+  .cover .members{ margin-top:34px; padding-top:18px; border-top:1px solid var(--line); width:70%; }
+  .cover .members .lbl{ font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:.2em; color:var(--gold-d); font-weight:700; }
+  .cover .members .names{ font-family:'Noto Serif JP',serif; font-size:17px; margin-top:8px; letter-spacing:.08em; }
+  .cover .brand{ margin-top:40px; font-size:11px; color:var(--sub); }
+  .cover .rule{ width:48px; height:3px; background:var(--gold); margin:18px auto 0; }
+
+  /* ── 日程 ── */
+  .day{ margin-bottom:14px; break-inside:avoid; }
+  .day-head{ display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:5px; margin-bottom:7px; }
+  .day-date{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:16px; color:var(--gold-d); white-space:nowrap; }
+  .day-wd{ font-family:'Montserrat',sans-serif; font-size:10px; color:var(--sub); font-weight:700; }
+  .day-ttl{ font-family:'Noto Serif JP',serif; font-weight:700; font-size:14px; color:var(--ink); }
+  .day-loc{ margin-left:auto; font-size:11px; color:var(--lapis); white-space:nowrap; }
+  .sched{ list-style:none; margin:0; padding:0; }
+  .sched li{ display:flex; gap:10px; padding:2.5px 0; font-size:12px; }
+  .sched .t{ font-family:'Montserrat',sans-serif; font-weight:700; color:var(--gold-d); min-width:52px; text-align:right; white-space:nowrap; font-size:11px; padding-top:1px; }
+  .sched .a{ color:var(--ink); }
+  .sched .a em{ font-style:normal; color:var(--sub); font-size:11px; }
+  .tagf{ display:inline-block; background:#eef3e6; color:var(--green); font-size:9.5px; font-weight:700; padding:1px 6px; border-radius:3px; margin-left:5px; font-family:'Montserrat',sans-serif; }
+  .tagp{ display:inline-block; background:#e7eef6; color:var(--lapis); font-size:9.5px; font-weight:700; padding:1px 6px; border-radius:3px; margin-left:5px; font-family:'Montserrat',sans-serif; }
+
+  /* ── 汎用テーブル ── */
+  table{ width:100%; border-collapse:collapse; font-size:12px; }
+  th{ text-align:left; font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold-d); border-bottom:2px solid var(--gold); padding:6px 8px; }
+  td{ padding:7px 8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:nth-child(even) td{ background:#faf6ec; }
+  .nm{ font-weight:700; }
+  .num{ font-family:'Montserrat',sans-serif; font-weight:700; color:var(--gold-d); white-space:nowrap; }
+  .day-cell{ font-family:'Montserrat',sans-serif; font-weight:800; color:var(--gold-d); white-space:nowrap; }
+  .ar{ font-size:16px; direction:rtl; }
+  .roma{ font-size:10.5px; color:var(--sub); }
+
+  /* ── 2カラム ── */
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .box{ border:1px solid var(--line); border-radius:7px; padding:12px 14px; break-inside:avoid; }
+  .box h3{ font-size:13px; color:var(--lapis); font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.08em; margin-bottom:8px; }
+  .chk{ list-style:none; margin:0; padding:0; font-size:12px; }
+  .chk li{ padding:3.5px 0; display:flex; gap:8px; align-items:flex-start; }
+  .chk li::before{ content:"☐"; color:var(--gold); font-size:14px; line-height:1.3; }
+  .plain{ font-size:11.5px; color:var(--ink); }
+  .plain dt{ font-weight:700; color:var(--gold-d); margin-top:7px; font-size:11px; }
+  .plain dd{ margin:1px 0 0; color:var(--sub); }
+
+  .sos{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .sos .card{ border:1px solid var(--line); border-left:4px solid #C0392B; border-radius:6px; padding:9px 12px; break-inside:avoid; }
+  .sos .card.info{ border-left-color:var(--lapis); }
+  .sos .lbl{ font-family:'Montserrat',sans-serif; font-size:9px; letter-spacing:.12em; text-transform:uppercase; color:var(--sub); font-weight:700; }
+  .sos .nam{ font-size:13px; font-weight:700; margin:1px 0 2px; }
+  .sos .tel{ font-family:'Montserrat',sans-serif; font-size:17px; font-weight:800; color:#C0392B; }
+  .sos .card.info .tel{ color:var(--lapis); font-size:14px; }
+  .sos .meta{ font-size:10px; color:var(--sub); margin-top:2px; }
+
+  .note{ font-size:10.5px; color:var(--sub); margin-top:12px; line-height:1.6; }
+  .lead{ font-size:12.5px; color:var(--ink); margin:0 0 14px; }
+
+  @media print{
+    body{ background:#fff; }
+    .toolbar{ display:none !important; }
+    .sheet{ width:auto; min-height:auto; margin:0; padding:14mm 15mm 18mm; box-shadow:none; page-break-after:always; }
+    .sheet:last-child{ page-break-after:auto; }
+    @page{ size:A4; margin:0; }
+  }
+  @media (max-width:760px){
+    .sheet{ width:auto; margin:0 0 10px; padding:20px 16px 40px; min-height:0; box-shadow:none; }
+    .cols,.sos{ grid-template-columns:1fr; }
+    .cover{ min-height:auto; padding:40px 0; }
+    .cover h1{ font-size:32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <p>🖨 ブラウザの「印刷」→「PDFとして保存」で冊子になります（A4・用紙余白なし推奨）</p>
+  <button class="tb-btn" onclick="window.print()">印刷 / PDFで保存</button>
+  <a class="tb-btn ghost" href="index.html">← サイトに戻る</a>
+</div>
+
+<!-- 1. 表紙 -->
+<section class="sheet">
+  <div class="cover">
+    <p class="eyebrow">EGYPT · 9 NIGHTS 10 DAYS</p>
+    <div class="glyph">𓂀</div>
+    <h1>エジプト<br>5人旅のしおり</h1>
+    <p class="sub">ピラミッド・白砂漠・ルクソール・ナイルクルーズ</p>
+    <div class="rule"></div>
+    <p class="dates">2026.10.08 — 10.17</p>
+    <p class="span">成田／関西 発 ・ カイロ IN / OUT ・ 9泊10日</p>
+    <div class="members">
+      <p class="lbl">MEMBERS</p>
+      <p class="names">宗像 涼 ・ 澤 和輝 ・ 小泉 玲雄 ・ 小泉 久美子 ・ 廣本 守</p>
+    </div>
+    <p class="brand">Travel Booklet ・ 旅のしおり</p>
+  </div>
+  <div class="foot"><span>EGYPT 2026</span><span>表紙</span></div>
+</section>
+
+<!-- 2. 概要・フライト -->
+<section class="sheet">
+  <p class="kicker">Overview &amp; Flights</p>
+  <h2 class="sec-title">旅の概要とフライト</h2>
+  <p class="lead">東京組はカタール航空（ドーハ乗継）、大阪組はエミレーツ航空（ドバイ乗継）でカイロへ。カイロで全員合流し、以降は同一行程。国内線でルクソールを往復します。</p>
+
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:0 0 6px;">✈ 往路</h3>
+  <table>
+    <tr><th>区分</th><th>便</th><th>出発</th><th>到着</th></tr>
+    <tr><td class="nm">東京組 ①</td><td class="num">QR807</td><td>NRT 10/8 22:25</td><td>DOH 翌 04:05</td></tr>
+    <tr><td class="nm">東京組 ②</td><td class="num">QR1307</td><td>DOH 10/9 07:25</td><td>CAI 11:00</td></tr>
+    <tr><td class="nm">大阪組 ①</td><td class="num">EK317</td><td>KIX 10/8 23:45</td><td>DXB 翌 04:35</td></tr>
+    <tr><td class="nm">大阪組 ②</td><td class="num">EK927</td><td>DXB 10/9 08:15</td><td>CAI 11:05</td></tr>
+  </table>
+
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:16px 0 6px;">✈ 国内線（カイロ ⇆ ルクソール）</h3>
+  <table>
+    <tr><th>区分</th><th>便</th><th>出発</th><th>到着</th></tr>
+    <tr><td class="nm">往き</td><td class="num">NP071</td><td>CAI 10/12 08:25</td><td>LXR 09:30</td></tr>
+    <tr><td class="nm">帰り</td><td class="num">NP072</td><td>LXR 10/14 10:30</td><td>CAI 11:35</td></tr>
+  </table>
+
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:16px 0 6px;">✈ 復路（全員）</h3>
+  <table>
+    <tr><th>区分</th><th>便</th><th>出発</th><th>到着</th></tr>
+    <tr><td class="nm">①</td><td class="num">QR1304</td><td>CAI 10/16 14:05</td><td>DOH 17:10</td></tr>
+    <tr><td class="nm">②</td><td class="num">QR808</td><td>DOH 10/16 20:35</td><td>NRT 翌 12:55</td></tr>
+  </table>
+  <p class="note">※ 時刻は現時点の予定。出発前にボーディングパス・現地案内で最終確認を。10/8・10/16 は機内泊。</p>
+  <div class="foot"><span>EGYPT 2026</span><span>概要・フライト</span></div>
+</section>
+
+<!-- 3. 日程 10/8-10/10 -->
+<section class="sheet">
+  <p class="kicker">Itinerary · Day 1–3</p>
+  <h2 class="sec-title">日程 ①（10/8 → 10/10）</h2>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/8</span><span class="day-wd">THU</span><span class="day-ttl">出発（機内泊）</span><span class="day-loc">🇯🇵 成田 / 関西</span></div>
+    <ul class="sched">
+      <li><span class="t">〜22:00</span><span class="a">成田空港 集合・チェックイン <em>出発2時間前を目安</em></span></li>
+      <li><span class="t">22:25</span><span class="a">成田発 <span class="tagp">QR807</span>（東京組）</span></li>
+      <li><span class="t">23:45</span><span class="a">関西発 <span class="tagp">EK317</span>（大阪組・ドバイ乗継）</span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/9</span><span class="day-wd">FRI</span><span class="day-ttl">カイロ到着 → ギザのピラミッド満喫</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <ul class="sched">
+      <li><span class="t">11:00</span><span class="a">カイロ国際空港 着・全員合流 <em>入国・両替・SIM購入</em></span></li>
+      <li><span class="t">12:30</span><span class="a">New Gardenia（ギザ）に荷物を預ける</span></li>
+      <li><span class="t">13:00</span><span class="a">昼食 — コシャリ<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">14:00</span><span class="a">ギザのピラミッド＆スフィンクス</span></li>
+      <li><span class="t">16:30</span><span class="a">ギザ散策 — ラクダ乗り・パノラマ写真</span></li>
+      <li><span class="t">19:30</span><span class="a">夕食 — コフタ・ターメイヤ<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">21:00</span><span class="a">New Gardenia 帰着 <em>屋上からピラミッドのライトアップ</em></span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/10</span><span class="day-wd">SAT</span><span class="day-ttl">白砂漠キャンプツアー Day 1</span><span class="day-loc">🏜️ 砂漠</span></div>
+    <ul class="sched">
+      <li><span class="t">07:00</span><span class="a">New Gardenia 出発 <em>料金は車内で前払い・大荷物はオアシス預け</em></span></li>
+      <li><span class="t">午前</span><span class="a">バハレイヤ・オアシスへ（約4時間）</span></li>
+      <li><span class="t">昼</span><span class="a">オアシス到着・昼食<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">午後</span><span class="a">4WDで 砂丘・黒砂漠・クリスタルマウンテン</span></li>
+      <li><span class="t">夕方</span><span class="a">アガバト山</span></li>
+      <li><span class="t">夜</span><span class="a">白砂漠 → キャンプ泊・夕食＆星空<span class="tagf">現地飯</span></span></li>
+    </ul>
+  </div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/8–10/10</span></div>
+</section>
+
+<!-- 4. 日程 10/11-10/13 -->
+<section class="sheet">
+  <p class="kicker">Itinerary · Day 4–6</p>
+  <h2 class="sec-title">日程 ②（10/11 → 10/13）</h2>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/11</span><span class="day-wd">SUN</span><span class="day-ttl">砂漠の朝 → カイロ帰着</span><span class="day-loc">🏜️ 砂漠 → カイロ</span></div>
+    <ul class="sched">
+      <li><span class="t">06:00</span><span class="a">砂漠の日の出鑑賞</span></li>
+      <li><span class="t">07:00</span><span class="a">朝食 — キャンプ<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">08:30</span><span class="a">砂漠を出発（希望者は砂漠の鉱泉）</span></li>
+      <li><span class="t">昼</span><span class="a">オアシスで昼食（サンドイッチ）<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">16:30</span><span class="a">El Mesaadya（カイロ）到着・チェックイン</span></li>
+      <li><span class="t">夜</span><span class="a">夕食（ツアー外・各自）<span class="tagf">現地飯</span></span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/12</span><span class="day-wd">MON</span><span class="day-ttl">ルクソール移動 → 2大神殿</span><span class="day-loc">🏛️ ルクソール</span></div>
+    <ul class="sched">
+      <li><span class="t">08:25</span><span class="a">カイロ発 <span class="tagp">NP071</span> → 09:30 ルクソール着</span></li>
+      <li><span class="t">10:00</span><span class="a">Pyramisa Luxor チェックイン・荷物預け</span></li>
+      <li><span class="t">13:00</span><span class="a">昼食 — マフシー・モロヘイヤスープ<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">14:00</span><span class="a">カルナック神殿 <em>所要2時間・入場450EGP</em></span></li>
+      <li><span class="t">17:00</span><span class="a">ルクソール神殿 <em>夜のライトアップ・入場350EGP</em></span></li>
+      <li><span class="t">19:00</span><span class="a">夕食 — ナイル川沿いレストラン<span class="tagf">現地飯</span></span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/13</span><span class="day-wd">TUE</span><span class="day-ttl">西岸めぐり → 東岸さんぽ</span><span class="day-loc">🏛️ ルクソール西岸</span></div>
+    <ul class="sched">
+      <li><span class="t">07:00</span><span class="a">チャータータクシーで西岸へ（フェリー渡河）</span></li>
+      <li><span class="t">08:00</span><span class="a">王家の谷 <em>3墓込750EGP・ツタンカーメン墓は別途</em></span></li>
+      <li><span class="t">10:00</span><span class="a">ハトシェプスト女王葬祭殿 <em>入場360EGP</em></span></li>
+      <li><span class="t">11:30</span><span class="a">メムノンの巨像（無料）</span></li>
+      <li><span class="t">12:30</span><span class="a">昼食 — 西岸ローカル食堂<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">16:00</span><span class="a">東岸のスーク散策・カフェでひと休み</span></li>
+      <li><span class="t">18:30</span><span class="a">夕食 — ハンム（ハト料理）に挑戦<span class="tagf">現地飯</span></span></li>
+    </ul>
+  </div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/11–10/13</span></div>
+</section>
+
+<!-- 5. 日程 10/14-10/17 -->
+<section class="sheet">
+  <p class="kicker">Itinerary · Day 7–10</p>
+  <h2 class="sec-title">日程 ③（10/14 → 10/17）</h2>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/14</span><span class="day-wd">WED</span><span class="day-ttl">カイロ帰着 → GEM → ナイルクルーズ</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <ul class="sched">
+      <li><span class="t">10:30</span><span class="a">ルクソール発 <span class="tagp">NP072</span> → 11:35 カイロ着</span></li>
+      <li><span class="t">14:00</span><span class="a">Royal Town チェックイン・荷物を預ける</span></li>
+      <li><span class="t">15:00</span><span class="a">大エジプト博物館（GEM）<em>ツタンカーメン黄金マスク等・所要2〜3時間</em></span></li>
+      <li><span class="t">18:30</span><span class="a">ナイル川ディナークルーズ船<span class="tagf">現地飯</span><em>夜景・生演奏</em></span></li>
+      <li><span class="t">21:30</span><span class="a">Royal Town 帰着</span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/15</span><span class="day-wd">THU</span><span class="day-ttl">カイロ最終日 — コプト地区・考古学博物館</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <ul class="sched">
+      <li><span class="t">09:00</span><span class="a">コプト地区（ハンギング・チャーチ）<em>★メイン・無料</em></span></li>
+      <li><span class="t">11:30</span><span class="a">エジプト考古学博物館（旧／タハリール）<em>入場550EGP</em></span></li>
+      <li><span class="t">13:30</span><span class="a">昼食 — アブ・タレク（コシャリ）<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">14:30</span><span class="a">ハン・エル＝ハリーリ市場 散策</span></li>
+      <li><span class="t">16:30</span><span class="a">カイロ・タワー <em>入場300EGP・夜景</em></span></li>
+      <li><span class="t">19:30</span><span class="a">夕食 — 旅の締めくくり<span class="tagf">現地飯</span></span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/16</span><span class="day-wd">FRI</span><span class="day-ttl">帰国日 → ドーハ乗継</span><span class="day-loc">🇪🇬 カイロ → ドーハ</span></div>
+    <ul class="sched">
+      <li><span class="t">12:00</span><span class="a">カイロ国際空港へ出発 <em>出発2時間前を目安</em></span></li>
+      <li><span class="t">14:05</span><span class="a">カイロ発 <span class="tagp">QR1304</span> → 17:10 ドーハ着</span></li>
+      <li><span class="t">20:35</span><span class="a">ドーハ発 <span class="tagp">QR808</span>（機内泊）</span></li>
+    </ul>
+  </div>
+
+  <div class="day">
+    <div class="day-head"><span class="day-date">10/17</span><span class="day-wd">SAT</span><span class="day-ttl">帰国！ お疲れ様でした 🎉</span><span class="day-loc">🇯🇵 成田着</span></div>
+    <ul class="sched">
+      <li><span class="t">12:55</span><span class="a">成田国際空港 着 → 入国 → 解散</span></li>
+    </ul>
+  </div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/14–10/17</span></div>
+</section>
+
+<!-- 6. 宿泊・費用 -->
+<section class="sheet">
+  <p class="kicker">Hotels &amp; Budget</p>
+  <h2 class="sec-title">宿泊先と費用</h2>
+
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:0 0 6px;">🏨 宿泊先（予約済み）</h3>
+  <table>
+    <tr><th>日付</th><th>ホテル</th><th>エリア</th><th>料金</th></tr>
+    <tr><td class="day-cell">10/9</td><td class="nm">New Gardenia Pyramids – Rooftop</td><td>ギザ（ピラミッド近く）</td><td class="num">¥14,509</td></tr>
+    <tr><td class="day-cell">10/10</td><td class="nm">白砂漠 キャンプ泊</td><td>白砂漠（砂漠ツアー）</td><td class="num">$290/人</td></tr>
+    <tr><td class="day-cell">10/11</td><td class="nm">El Mesaadya Hotel</td><td>カイロ（ヘリオポリス）</td><td class="num">¥23,936</td></tr>
+    <tr><td class="day-cell">10/12–13</td><td class="nm">Pyramisa Hotel Luxor</td><td>ルクソール（ナイル沿い）</td><td class="num">¥116,699</td></tr>
+    <tr><td class="day-cell">10/14–15</td><td class="nm">Royal Town Hotel</td><td>カイロ（タハリール）</td><td class="num">¥19,953</td></tr>
+  </table>
+  <p class="note">※ 10/8・10/16 は機内泊。ホテル合計 ¥175,097（5人・ホテル分）。白砂漠キャンプは砂漠ツアー $290/人（約¥44,950）で別枠。</p>
+
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:18px 0 6px;">💰 費用まとめ（1人あたり）</h3>
+  <table>
+    <tr><th>項目</th><th>内容</th><th>金額 / 人</th></tr>
+    <tr><td class="nm">国際線（往復）</td><td>カタール／エミレーツ</td><td class="num">¥196,890</td></tr>
+    <tr><td class="nm">国内線（往復）</td><td>ナイル航空 カイロ⇆ルクソール</td><td class="num">¥54,920</td></tr>
+    <tr><td class="nm">ホテル</td><td>単身（小泉夫妻は ¥62,058）</td><td class="num">¥37,680</td></tr>
+    <tr><td class="nm">砂漠ツアー</td><td>白砂漠1泊2日 $290</td><td class="num">¥44,950</td></tr>
+    <tr><td class="nm" style="color:var(--gold-d)">総額（単身）</td><td>入場料・食費・チップは別途</td><td class="num" style="font-size:15px;color:var(--gold-d)">¥334,440</td></tr>
+  </table>
+  <p class="note">※ 円換算は $1≒¥155 の目安。入場料・飲食・チップ等は現地払いで別途。</p>
+  <div class="foot"><span>EGYPT 2026</span><span>宿泊・費用</span></div>
+</section>
+
+<!-- 7. 巡るスポット -->
+<section class="sheet">
+  <p class="kicker">Spots in Order</p>
+  <h2 class="sec-title">巡る遺跡・スポット一覧（スケジュール順）</h2>
+  <table>
+    <tr><th>日付</th><th>スポット</th><th>ひとこと</th></tr>
+    <tr><td class="day-cell">10/9</td><td class="nm">ギザのピラミッド＆スフィンクス</td><td>敷地540EGP（内部別途）。ラクダ乗りも</td></tr>
+    <tr><td class="day-cell">10/10</td><td class="nm">黒砂漠・クリスタルマウンテン・アガバト山・白砂漠</td><td>4WDで砂漠を巡る（ツアー込み）</td></tr>
+    <tr><td class="day-cell">10/11</td><td class="nm">砂漠の鉱泉（オアシス）</td><td>希望者のみ。天然の鉱泉</td></tr>
+    <tr><td class="day-cell">10/12</td><td class="nm">カルナック神殿</td><td>450EGP。広大・所要2時間</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">ルクソール神殿</td><td>350EGP。夜のライトアップが◎</td></tr>
+    <tr><td class="day-cell">10/13</td><td class="nm">王家の谷</td><td>750EGP（3墓）。ツタンカーメン墓は別途</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">ハトシェプスト女王葬祭殿</td><td>360EGP。午前推奨</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">メムノンの巨像</td><td>無料。道路沿い・短時間</td></tr>
+    <tr><td class="day-cell">10/14</td><td class="nm">大エジプト博物館（GEM）</td><td>1,200EGP。ツタンカーメン黄金マスク等</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">ナイル川ディナークルーズ</td><td>夕食・生演奏付き（夜景クルーズ）</td></tr>
+    <tr><td class="day-cell">10/15</td><td class="nm">コプト地区（ハンギング・チャーチ）</td><td>無料。露出に配慮した服装で</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">エジプト考古学博物館（旧／タハリール）</td><td>550EGP。ミイラ室は別途</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">ハン・エル＝ハリーリ市場</td><td>無料。夕方〜夜が賑わう</td></tr>
+    <tr><td class="day-cell"></td><td class="nm">カイロ・タワー</td><td>300EGP。夜景スポット</td></tr>
+  </table>
+  <p class="note">⚠️ 入場料は2025年時点の目安（EGP）。改定が多いため現地で変わる場合あり。</p>
+  <div class="foot"><span>EGYPT 2026</span><span>巡るスポット</span></div>
+</section>
+
+<!-- 8. フレーズ・チップ -->
+<section class="sheet">
+  <p class="kicker">Arabic &amp; Tips</p>
+  <h2 class="sec-title">よく使うアラビア語 ＆ チップの目安</h2>
+  <table>
+    <tr><th>日本語</th><th>アラビア語</th><th>読み方</th></tr>
+    <tr><td class="nm">こんにちは</td><td class="ar">السلام عليكم</td><td class="roma">as-salāmu ʿalaykum</td></tr>
+    <tr><td class="nm">ありがとう</td><td class="ar">شكراً</td><td class="roma">shukran</td></tr>
+    <tr><td class="nm">はい / いいえ</td><td class="ar">أيوة / لأ</td><td class="roma">aywa / laʾ</td></tr>
+    <tr><td class="nm">いくらですか？</td><td class="ar">بكام؟</td><td class="roma">bikām?</td></tr>
+    <tr><td class="nm">高すぎます</td><td class="ar">غالي قوي</td><td class="roma">ghāli ʾawi</td></tr>
+    <tr><td class="nm">まけてください</td><td class="ar">اعمل خصم</td><td class="roma">iʿmel khasm</td></tr>
+    <tr><td class="nm">いりません</td><td class="ar">لا، شكراً</td><td class="roma">laʾ, shukran</td></tr>
+    <tr><td class="nm">おいしい！</td><td class="ar">لذيذ</td><td class="roma">lazīz</td></tr>
+    <tr><td class="nm">トイレはどこ？</td><td class="ar">فين الحمام؟</td><td class="roma">fein il-hammām?</td></tr>
+    <tr><td class="nm">お願いします</td><td class="ar">من فضلك</td><td class="roma">min faḍlak</td></tr>
+    <tr><td class="nm">ここへ行って（住所を見せて）</td><td class="ar">إلى هنا، لو سمحت</td><td class="roma">ila hunā, law samaht</td></tr>
+    <tr><td class="nm">お会計お願いします</td><td class="ar">الحساب لو سمحت</td><td class="roma">il-hisāb law samaht</td></tr>
+    <tr><td class="nm">助けて！</td><td class="ar">ساعدني</td><td class="roma">sāʿidni</td></tr>
+    <tr><td class="nm">さようなら</td><td class="ar">مع السلامة</td><td class="roma">maʿa s-salāma</td></tr>
+  </table>
+
+  <div class="box" style="margin-top:16px;">
+    <h3>💵 チップ（バクシーシ）の目安 ・ ドル＝USD（少額紙幣が便利）</h3>
+    <div class="plain" style="columns:2; column-gap:24px;">
+      <div>・ホテルの枕銭 … 1泊 約$2</div>
+      <div>・ポーター（荷物）… 約$2</div>
+      <div>・トイレ … 1回 10〜15EGP</div>
+      <div>・レストラン（自分で会計）… 飲食代の約10%</div>
+      <div>・クルーズ内チップ … 1泊 $15〜30</div>
+      <div>・ガイド／ドライバー … 1日 100〜200EGP 目安</div>
+    </div>
+  </div>
+  <div class="foot"><span>EGYPT 2026</span><span>フレーズ・チップ</span></div>
+</section>
+
+<!-- 9. 持ち物・緊急連絡先 -->
+<section class="sheet">
+  <p class="kicker">Packing &amp; Emergency</p>
+  <h2 class="sec-title">持ち物チェック ＆ 緊急連絡先</h2>
+
+  <div class="cols">
+    <div class="box">
+      <h3>🎒 共通の持ち物</h3>
+      <ul class="chk">
+        <li>パスポート（＋コピー）・Eチケット・日程表</li>
+        <li>現金（USD小額紙幣）・クレカ</li>
+        <li>海外旅行保険の連絡先</li>
+        <li>変換プラグ・モバイルバッテリー</li>
+        <li>日焼け止め・帽子・サングラス・スカーフ</li>
+        <li>常備薬・絆創膏・虫よけ・ウェットティッシュ</li>
+        <li>履き慣れた靴／サンダル</li>
+        <li>塩分タブレット・冷却グッズ（暑さ対策）</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>🏜️ 砂漠キャンプ（10/10–11）</h3>
+      <ul class="chk">
+        <li>懐中電灯（ヘッドライト）</li>
+        <li>水着・タオル（砂漠の鉱泉・ホテルプール用）</li>
+        <li>防寒着（夜は15℃前後）</li>
+        <li>小さめのサブバッグ（大荷物はオアシス預け）</li>
+      </ul>
+      <dl class="plain">
+        <dt>砂漠ツアー注意</dt>
+        <dd>料金は送迎車内で前払い／温泉・サンドボード等の希望は出発時にスタッフへ／ドライヤーは砂漠ツアーは貸出対象外。</dd>
+      </dl>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:18px 0 8px;">🆘 緊急連絡先</h3>
+  <div class="sos">
+    <div class="card"><p class="lbl">Police · 警察</p><p class="nam">エジプト警察</p><p class="tel">122</p></div>
+    <div class="card"><p class="lbl">Ambulance · 救急</p><p class="nam">救急車</p><p class="tel">123</p></div>
+    <div class="card"><p class="lbl">Tourist Police · 観光警察</p><p class="nam">観光警察</p><p class="tel">126</p></div>
+    <div class="card info"><p class="lbl">Embassy · 大使館</p><p class="nam">在エジプト日本国大使館（カイロ）</p><p class="tel">+20 2 2728 5500</p><p class="meta">81 Corniche El Nil, Maadi, Cairo</p></div>
+    <div class="card info"><p class="lbl">Tour · 砂漠ツアー手配</p><p class="nam">ナギーサファリ（24H・日本語OK）</p><p class="tel">+20 109 860 5616</p><p class="meta">代表 Nageh Saad／mail@enjoy-egypt.net</p></div>
+    <div class="card info"><p class="lbl">Memo · メモ</p><p class="nam">自分の保険・連絡先</p><p class="meta" style="margin-top:8px;">保険会社：＿＿＿＿＿＿＿<br>証券番号：＿＿＿＿＿＿＿<br>緊急連絡：＿＿＿＿＿＿＿</p></div>
+  </div>
+  <p class="note">📵 番号・住所は出発前に最新情報を必ず確認してください。良い旅を！ 𓋹</p>
+  <div class="foot"><span>EGYPT 2026</span><span>持ち物・緊急連絡先</span></div>
+</section>
+
+</body>
+</html>
