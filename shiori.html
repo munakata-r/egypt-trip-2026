@@ -65,14 +65,13 @@
   .front.tut{ background:#000; }
   .front.tut .cover-img{ object-position:center; }
   .front.tut .cv-ov{ background:linear-gradient(180deg, rgba(10,7,2,.42) 0%, rgba(10,7,2,.20) 42%, rgba(10,7,2,.72) 66%, rgba(8,5,2,.97) 86%, #050302 100%); }
-  /* 文字ブロックを下にコンパクトに集める */
+  /* 文字・イラストはすべて顎より下へ集約（サブ文言・ヒエログリフ帯は省略） */
+  .front.tut .cv-sub, .front.tut .cv-hg{ display:none; }
   .front.tut .cv-inner{ padding:0 8cqw 6cqw; }
-  .front.tut .cv-ws{ margin-bottom:1.2cqw; }
+  .front.tut .cv-ws{ margin-bottom:1.6cqw; }
   .front.tut .cv-title{ margin-top:.6cqw; }
-  .front.tut .cv-sub{ margin-top:.9cqw; }
-  .front.tut .cv-cartouche{ margin-top:1.8cqw; }
-  .front.tut .cv-hg{ margin-top:1.4cqw; }
-  .front.tut .cv-members{ margin-top:1.4cqw; padding-top:1.3cqw; }
+  .front.tut .cv-cartouche{ margin-top:2cqw; }
+  .front.tut .cv-members{ margin-top:2cqw; padding-top:1.6cqw; }
   .cv-frame{ position:absolute; inset:4.5cqw; border:0.5cqw solid rgba(227,178,74,.9); box-shadow:0 0 0 0.9cqw rgba(227,178,74,.22) inset; z-index:3; pointer-events:none; }
   .cv-frame::before,.cv-frame::after{ content:"𓊖"; position:absolute; left:50%; transform:translateX(-50%); font-size:3.2cqw; color:var(--gold-l); }
   .cv-frame::before{ top:-1.9cqw; } .cv-frame::after{ bottom:-1.9cqw; }
