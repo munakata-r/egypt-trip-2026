@@ -169,11 +169,13 @@
   /* 記入用ページ（罫線） */
   .writelines{ background-image:repeating-linear-gradient(to bottom, transparent, transparent 9.6mm, var(--line) 9.6mm, var(--line) 10mm); }
   .prompt{ font-size:11px; color:var(--gold-d); font-weight:700; margin:0 0 5px; }
-  /* 寄せ書き */
-  .yose{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .yose .yb{ border:1px solid var(--line); border-radius:6px; padding:8px 10px; min-height:33mm; }
-  .yose .yb.full{ grid-column:1 / -1; min-height:24mm; }
-  .yose .yn{ font-family:'Noto Serif JP',serif; font-weight:700; font-size:12px; color:var(--lapis); border-bottom:1px solid var(--line); padding-bottom:3px; margin-bottom:5px; }
+  /* 旅のルート */
+  .route{ margin:2mm 0 0; }
+  .rnode{ display:flex; gap:10px; align-items:center; }
+  .rico{ width:12mm; height:12mm; border-radius:50%; background:var(--papyrus); border:2px solid var(--gold); display:flex; align-items:center; justify-content:center; font-size:5.2mm; flex-shrink:0; }
+  .rinfo b{ font-size:12.5px; color:var(--ink); } .rinfo span{ display:block; font-size:10.5px; color:var(--sub); margin-top:1px; }
+  .rseg{ font-size:10px; color:var(--lapis); font-weight:600; margin:1px 0 1px 6mm; padding:3px 0 3px 10px; border-left:2px dashed var(--sand); }
+  .rseg.air{ color:#1B4F8C; } .rseg.car{ color:var(--green); }
 
   /* ── 印刷：各ページA5・1枚ずつ（全ブラウザ対応） ── */
   @media print{
@@ -672,23 +674,29 @@
 
 </div><!-- /pair7 -->
 
-<!-- ===== PAIR 8：5人の寄せ書き ＋ 裏表紙 ===== -->
+<!-- ===== PAIR 8：旅のルート ＋ 裏表紙 ===== -->
 <div class="pair">
 
-<!-- 5人の寄せ書き -->
+<!-- 旅のルート -->
 <section class="sheet">
-  <p class="kicker">Messages</p>
-  <h2 class="sec-title">5人の寄せ書き</h2>
-  <div class="sec-rule"><span class="hg">𓃭</span></div>
-  <div class="yose">
-    <div class="yb"><p class="yn">宗像 涼</p></div>
-    <div class="yb"><p class="yn">澤 和輝</p></div>
-    <div class="yb"><p class="yn">小泉 玲雄</p></div>
-    <div class="yb"><p class="yn">小泉 久美子</p></div>
-    <div class="yb full"><p class="yn">廣本 守</p></div>
+  <p class="kicker">Route Map</p>
+  <h2 class="sec-title">旅のルート（9泊10日）</h2>
+  <div class="sec-rule"><span class="hg">🗺️</span></div>
+  <div class="route">
+    <div class="rnode"><span class="rico">✈️</span><div class="rinfo"><b>日本（成田／関西）</b><span>10/8 夜 出発・機内泊</span></div></div>
+    <div class="rseg air">✈ カタール／エミレーツで乗継 → カイロ</div>
+    <div class="rnode"><span class="rico">🔺</span><div class="rinfo"><b>カイロ・ギザ</b><span>10/9 ピラミッド＆スフィンクス</span></div></div>
+    <div class="rseg car">🚙 4WDで約4時間（西の砂漠へ）</div>
+    <div class="rnode"><span class="rico">🏜️</span><div class="rinfo"><b>白砂漠（バハレイヤ）</b><span>10/10–11 砂漠ツアー・キャンプ泊</span></div></div>
+    <div class="rseg car">🚙 カイロへ戻る（ヘリオポリス泊）</div>
+    <div class="rnode"><span class="rico">🏛️</span><div class="rinfo"><b>ルクソール</b><span>10/12–13 神殿・王家の谷（国内線で南へ）</span></div></div>
+    <div class="rseg air">✈ 国内線でカイロへ戻る</div>
+    <div class="rnode"><span class="rico">🕌</span><div class="rinfo"><b>カイロ（タハリール）</b><span>10/14–15 大エジプト博物館・クルーズ・コプト地区</span></div></div>
+    <div class="rseg air">✈ ドーハ乗継で帰国</div>
+    <div class="rnode"><span class="rico">🗾</span><div class="rinfo"><b>日本（成田）</b><span>10/17 帰国 🎉</span></div></div>
   </div>
-  <p class="note" style="text-align:center;">旅のあとに、ひとことずつ。𓋹 最高の10日間を記録しよう。</p>
-  <div class="foot"><span>EGYPT 2026</span><span>寄せ書き</span></div>
+  <p class="note">総飛行距離 約24,000km・訪問スポット16か所・世界遺産エリア3件。カイロを拠点に、砂漠→ルクソール→カイロと巡る周遊ルート。</p>
+  <div class="foot"><span>EGYPT 2026</span><span>旅のルート</span></div>
 </section>
 
 <!-- 裏表紙 -->
