@@ -10,8 +10,8 @@
 <style>
   :root{
     --papyrus:#faf6ec; --paper:#ffffff; --ink:#2a2416; --sub:#6b5f4a;
-    --gold:#BA7517; --gold-d:#9a5f12; --lapis:#2B5E8C; --sand:#d9cdb3; --line:#e4dcc9;
-    --green:#4e7d2a;
+    --gold:#BA7517; --gold-d:#9a5f12; --gold-l:#e3b24a; --lapis:#2B5E8C; --sand:#d9cdb3; --line:#e4dcc9;
+    --green:#4e7d2a; --night:#140e06;
   }
   *{ box-sizing:border-box; }
   html,body{ margin:0; padding:0; }
@@ -20,6 +20,8 @@
     color:var(--ink); background:#ddd6c7; line-height:1.6;
     -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
+  img{ display:block; }
+
   /* ── 画面ツールバー（印刷時は非表示） ── */
   .toolbar{
     position:sticky; top:0; z-index:50; display:flex; gap:12px; align-items:center; justify-content:center;
@@ -35,7 +37,7 @@
   /* ── 用紙（A4） ── */
   .sheet{
     width:210mm; min-height:297mm; margin:12mm auto; padding:15mm 16mm;
-    background:var(--paper); box-shadow:0 6px 24px rgba(0,0,0,.25); position:relative;
+    background:var(--paper); box-shadow:0 6px 24px rgba(0,0,0,.25); position:relative; overflow:hidden;
   }
   .sheet .foot{
     position:absolute; left:16mm; right:16mm; bottom:9mm;
@@ -45,31 +47,41 @@
 
   h1,h2,h3{ font-family:'Noto Serif JP',serif; margin:0; }
   .kicker{ font-family:'Montserrat',sans-serif; font-weight:700; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-d); }
-  .sec-title{ font-size:20px; font-weight:900; color:var(--ink); margin:2px 0 14px; border-bottom:2px solid var(--gold); padding-bottom:7px; }
+  .sec-title{ font-size:20px; font-weight:900; color:var(--ink); margin:2px 0 6px; }
+  .sec-rule{ display:flex; align-items:center; gap:8px; margin:0 0 14px; color:var(--gold); }
+  .sec-rule::before{ content:""; height:2px; width:38px; background:var(--gold); }
+  .sec-rule .hg{ font-size:16px; }
+  .sec-rule::after{ content:""; flex:1; height:1px; background:var(--line); }
 
-  /* ── 表紙 ── */
-  .cover{ display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:267mm; }
-  .cover .eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.3em; color:var(--gold-d); font-size:13px; }
-  .cover .glyph{ font-size:58px; color:var(--gold); margin:10px 0 6px; }
-  .cover h1{ font-size:44px; font-weight:900; line-height:1.25; color:var(--ink); }
-  .cover .sub{ font-family:'Noto Serif JP',serif; font-size:18px; color:var(--lapis); margin-top:10px; }
-  .cover .dates{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:22px; letter-spacing:.06em; color:var(--gold-d); margin:22px 0 6px; }
-  .cover .span{ font-size:13px; color:var(--sub); }
-  .cover .members{ margin-top:34px; padding-top:18px; border-top:1px solid var(--line); width:70%; }
-  .cover .members .lbl{ font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:.2em; color:var(--gold-d); font-weight:700; }
-  .cover .members .names{ font-family:'Noto Serif JP',serif; font-size:17px; margin-top:8px; letter-spacing:.08em; }
-  .cover .brand{ margin-top:40px; font-size:11px; color:var(--sub); }
-  .cover .rule{ width:48px; height:3px; background:var(--gold); margin:18px auto 0; }
+  /* ── 表紙（全面写真） ── */
+  .cover-sheet{ padding:0; color:#fff; display:flex; }
+  .cover-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .cover-ov{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,14,6,.60) 0%, rgba(20,14,6,.30) 42%, rgba(20,14,6,.88) 100%); }
+  .cover-content{ position:relative; z-index:2; margin:auto; text-align:center; padding:0 18mm; width:100%; }
+  .cover-content .eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.32em; color:var(--gold-l); font-size:13px; }
+  .cover-content .glyph{ font-size:56px; color:var(--gold-l); margin:8px 0 2px; text-shadow:0 2px 10px rgba(0,0,0,.5); }
+  .cover-content h1{ font-size:46px; font-weight:900; line-height:1.22; color:#fff; text-shadow:0 2px 16px rgba(0,0,0,.6); }
+  .cover-content .sub{ font-family:'Noto Serif JP',serif; font-size:17px; color:#f3e7cf; margin-top:12px; }
+  .cover-content .dates{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:24px; letter-spacing:.06em; color:var(--gold-l); margin:24px 0 4px; text-shadow:0 2px 10px rgba(0,0,0,.6); }
+  .cover-content .span{ font-size:12.5px; color:#e9ddc7; }
+  .cover-content .hgrow{ color:var(--gold-l); font-size:20px; letter-spacing:.3em; margin:20px 0 0; opacity:.9; }
+  .cover-content .members{ margin-top:22px; padding-top:16px; border-top:1px solid rgba(255,255,255,.3); width:78%; margin-left:auto; margin-right:auto; }
+  .cover-content .members .lbl{ font-family:'Montserrat',sans-serif; font-size:10px; letter-spacing:.24em; color:var(--gold-l); font-weight:700; }
+  .cover-content .members .names{ font-family:'Noto Serif JP',serif; font-size:16px; margin-top:7px; letter-spacing:.08em; color:#fff; }
 
   /* ── 日程 ── */
-  .day{ margin-bottom:14px; break-inside:avoid; }
-  .day-head{ display:flex; align-items:baseline; gap:12px; border-bottom:1px solid var(--line); padding-bottom:5px; margin-bottom:7px; }
-  .day-date{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:16px; color:var(--gold-d); white-space:nowrap; }
-  .day-wd{ font-family:'Montserrat',sans-serif; font-size:10px; color:var(--sub); font-weight:700; }
+  .day{ margin-bottom:12px; break-inside:avoid; }
+  .day-head{ display:flex; align-items:baseline; gap:10px; border-bottom:2px solid var(--gold); padding-bottom:5px; margin-bottom:8px; }
+  .day-badge{ font-family:'Montserrat',sans-serif; font-weight:800; font-size:13px; color:#fff; background:var(--gold); border-radius:5px; padding:3px 9px; white-space:nowrap; }
+  .day-wd{ font-family:'Montserrat',sans-serif; font-size:9.5px; color:var(--sub); font-weight:700; }
   .day-ttl{ font-family:'Noto Serif JP',serif; font-weight:700; font-size:14px; color:var(--ink); }
   .day-loc{ margin-left:auto; font-size:11px; color:var(--lapis); white-space:nowrap; }
+  .photos{ display:flex; gap:6px; margin:0 0 9px; }
+  .photos .ph{ flex:1; height:30mm; border-radius:7px; overflow:hidden; border:1px solid var(--line); position:relative; }
+  .photos .ph img{ width:100%; height:100%; object-fit:cover; }
+  .photos .ph .cap{ position:absolute; left:0; right:0; bottom:0; font-size:9px; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.65), transparent); padding:9px 6px 3px; font-weight:600; }
   .sched{ list-style:none; margin:0; padding:0; }
-  .sched li{ display:flex; gap:10px; padding:2.5px 0; font-size:12px; }
+  .sched li{ display:flex; gap:10px; padding:2px 0; font-size:12px; }
   .sched .t{ font-family:'Montserrat',sans-serif; font-weight:700; color:var(--gold-d); min-width:52px; text-align:right; white-space:nowrap; font-size:11px; padding-top:1px; }
   .sched .a{ color:var(--ink); }
   .sched .a em{ font-style:normal; color:var(--sub); font-size:11px; }
@@ -86,6 +98,12 @@
   .day-cell{ font-family:'Montserrat',sans-serif; font-weight:800; color:var(--gold-d); white-space:nowrap; }
   .ar{ font-size:16px; direction:rtl; }
   .roma{ font-size:10.5px; color:var(--sub); }
+
+  /* ── 写真モザイク ── */
+  .mosaic{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-bottom:14px; }
+  .mosaic .ph{ height:26mm; border-radius:7px; overflow:hidden; border:1px solid var(--line); position:relative; }
+  .mosaic .ph img{ width:100%; height:100%; object-fit:cover; }
+  .mosaic .ph .cap{ position:absolute; left:0; right:0; bottom:0; font-size:9px; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.7), transparent); padding:10px 5px 3px; font-weight:600; }
 
   /* ── 2カラム ── */
   .cols{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
@@ -108,55 +126,68 @@
   .sos .meta{ font-size:10px; color:var(--sub); margin-top:2px; }
 
   .note{ font-size:10.5px; color:var(--sub); margin-top:12px; line-height:1.6; }
-  .lead{ font-size:12.5px; color:var(--ink); margin:0 0 14px; }
+  .lead{ font-size:12.5px; color:var(--ink); margin:0 0 12px; }
+  .hgband{ text-align:center; color:var(--gold); font-size:15px; letter-spacing:.4em; margin:10px 0 0; opacity:.6; }
 
   @media print{
     body{ background:#fff; }
     .toolbar{ display:none !important; }
     .sheet{ width:auto; min-height:auto; margin:0; padding:14mm 15mm 18mm; box-shadow:none; page-break-after:always; }
     .sheet:last-child{ page-break-after:auto; }
+    .cover-sheet{ padding:0; }
     @page{ size:A4; margin:0; }
   }
   @media (max-width:760px){
     .sheet{ width:auto; margin:0 0 10px; padding:20px 16px 40px; min-height:0; box-shadow:none; }
     .cols,.sos{ grid-template-columns:1fr; }
-    .cover{ min-height:auto; padding:40px 0; }
-    .cover h1{ font-size:32px; }
+    .mosaic{ grid-template-columns:repeat(2,1fr); }
+    .cover-sheet{ min-height:88vh; }
+    .cover-content h1{ font-size:34px; }
+    .photos .ph{ height:24vw; }
+    .mosaic .ph{ height:28vw; }
   }
 </style>
 </head>
 <body>
 
 <div class="toolbar">
-  <p>🖨 ブラウザの「印刷」→「PDFとして保存」で冊子になります（A4・用紙余白なし推奨）</p>
+  <p>🖨 ブラウザの「印刷」→「PDFとして保存」で冊子になります（A4・背景グラフィックON・余白なし推奨）</p>
   <button class="tb-btn" onclick="window.print()">印刷 / PDFで保存</button>
   <a class="tb-btn ghost" href="index.html">← サイトに戻る</a>
 </div>
 
-<!-- 1. 表紙 -->
-<section class="sheet">
-  <div class="cover">
+<!-- 1. 表紙（全面写真） -->
+<section class="sheet cover-sheet">
+  <img class="cover-img" src="images/hero-ruins.jpg" alt="エジプトの遺跡">
+  <div class="cover-ov"></div>
+  <div class="cover-content">
     <p class="eyebrow">EGYPT · 9 NIGHTS 10 DAYS</p>
     <div class="glyph">𓂀</div>
     <h1>エジプト<br>5人旅のしおり</h1>
     <p class="sub">ピラミッド・白砂漠・ルクソール・ナイルクルーズ</p>
-    <div class="rule"></div>
     <p class="dates">2026.10.08 — 10.17</p>
     <p class="span">成田／関西 発 ・ カイロ IN / OUT ・ 9泊10日</p>
+    <p class="hgrow">𓋹 𓆣 𓊖 𓃭 𓅓 𓋹</p>
     <div class="members">
       <p class="lbl">MEMBERS</p>
       <p class="names">宗像 涼 ・ 澤 和輝 ・ 小泉 玲雄 ・ 小泉 久美子 ・ 廣本 守</p>
     </div>
-    <p class="brand">Travel Booklet ・ 旅のしおり</p>
   </div>
-  <div class="foot"><span>EGYPT 2026</span><span>表紙</span></div>
 </section>
 
 <!-- 2. 概要・フライト -->
 <section class="sheet">
   <p class="kicker">Overview &amp; Flights</p>
   <h2 class="sec-title">旅の概要とフライト</h2>
+  <div class="sec-rule"><span class="hg">✈</span></div>
   <p class="lead">東京組はカタール航空（ドーハ乗継）、大阪組はエミレーツ航空（ドバイ乗継）でカイロへ。カイロで全員合流し、以降は同一行程。国内線でルクソールを往復します。</p>
+
+  <div class="photos">
+    <div class="ph"><img src="images/pyramid.webp" alt="ピラミッド"><span class="cap">ギザのピラミッド</span></div>
+    <div class="ph"><img src="images/desert.jpg" alt="白砂漠"><span class="cap">白砂漠</span></div>
+    <div class="ph"><img src="images/luxor-temple.jpg" alt="ルクソール神殿"><span class="cap">ルクソール</span></div>
+    <div class="ph"><img src="images/nile-cruise.jpg" alt="ナイルクルーズ"><span class="cap">ナイルクルーズ</span></div>
+  </div>
 
   <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:0 0 6px;">✈ 往路</h3>
   <table>
@@ -167,30 +198,26 @@
     <tr><td class="nm">大阪組 ②</td><td class="num">EK927</td><td>DXB 10/9 08:15</td><td>CAI 11:05</td></tr>
   </table>
 
-  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:16px 0 6px;">✈ 国内線（カイロ ⇆ ルクソール）</h3>
+  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:14px 0 6px;">✈ 国内線（カイロ ⇆ ルクソール） ／ 復路（全員）</h3>
   <table>
     <tr><th>区分</th><th>便</th><th>出発</th><th>到着</th></tr>
-    <tr><td class="nm">往き</td><td class="num">NP071</td><td>CAI 10/12 08:25</td><td>LXR 09:30</td></tr>
-    <tr><td class="nm">帰り</td><td class="num">NP072</td><td>LXR 10/14 10:30</td><td>CAI 11:35</td></tr>
-  </table>
-
-  <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:16px 0 6px;">✈ 復路（全員）</h3>
-  <table>
-    <tr><th>区分</th><th>便</th><th>出発</th><th>到着</th></tr>
-    <tr><td class="nm">①</td><td class="num">QR1304</td><td>CAI 10/16 14:05</td><td>DOH 17:10</td></tr>
-    <tr><td class="nm">②</td><td class="num">QR808</td><td>DOH 10/16 20:35</td><td>NRT 翌 12:55</td></tr>
+    <tr><td class="nm">国内 往き</td><td class="num">NP071</td><td>CAI 10/12 08:25</td><td>LXR 09:30</td></tr>
+    <tr><td class="nm">国内 帰り</td><td class="num">NP072</td><td>LXR 10/14 10:30</td><td>CAI 11:35</td></tr>
+    <tr><td class="nm">復路 ①</td><td class="num">QR1304</td><td>CAI 10/16 14:05</td><td>DOH 17:10</td></tr>
+    <tr><td class="nm">復路 ②</td><td class="num">QR808</td><td>DOH 10/16 20:35</td><td>NRT 翌 12:55</td></tr>
   </table>
   <p class="note">※ 時刻は現時点の予定。出発前にボーディングパス・現地案内で最終確認を。10/8・10/16 は機内泊。</p>
   <div class="foot"><span>EGYPT 2026</span><span>概要・フライト</span></div>
 </section>
 
-<!-- 3. 日程 10/8-10/10 -->
+<!-- 3. 日程 10/8-10/9 -->
 <section class="sheet">
-  <p class="kicker">Itinerary · Day 1–3</p>
-  <h2 class="sec-title">日程 ①（10/8 → 10/10）</h2>
+  <p class="kicker">Itinerary · Day 1–2</p>
+  <h2 class="sec-title">日程 ①（10/8 → 10/9）</h2>
+  <div class="sec-rule"><span class="hg">𓊖</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/8</span><span class="day-wd">THU</span><span class="day-ttl">出発（機内泊）</span><span class="day-loc">🇯🇵 成田 / 関西</span></div>
+    <div class="day-head"><span class="day-badge">10/8</span><span class="day-wd">THU</span><span class="day-ttl">出発（機内泊）</span><span class="day-loc">🇯🇵 成田 / 関西</span></div>
     <ul class="sched">
       <li><span class="t">〜22:00</span><span class="a">成田空港 集合・チェックイン <em>出発2時間前を目安</em></span></li>
       <li><span class="t">22:25</span><span class="a">成田発 <span class="tagp">QR807</span>（東京組）</span></li>
@@ -199,7 +226,12 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/9</span><span class="day-wd">FRI</span><span class="day-ttl">カイロ到着 → ギザのピラミッド満喫</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/9</span><span class="day-wd">FRI</span><span class="day-ttl">カイロ到着 → ギザのピラミッド満喫</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="photos">
+      <div class="ph"><img src="images/pyramid.webp" alt="ギザのピラミッド"><span class="cap">ギザのピラミッド</span></div>
+      <div class="ph"><img src="images/sphinx.jpg" alt="スフィンクス"><span class="cap">スフィンクス</span></div>
+      <div class="ph"><img src="images/camel.jpg" alt="ラクダ"><span class="cap">ラクダ乗り</span></div>
+    </div>
     <ul class="sched">
       <li><span class="t">11:00</span><span class="a">カイロ国際空港 着・全員合流 <em>入国・両替・SIM購入</em></span></li>
       <li><span class="t">12:30</span><span class="a">New Gardenia（ギザ）に荷物を預ける</span></li>
@@ -210,9 +242,22 @@
       <li><span class="t">21:00</span><span class="a">New Gardenia 帰着 <em>屋上からピラミッドのライトアップ</em></span></li>
     </ul>
   </div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/8–10/9</span></div>
+</section>
+
+<!-- 4. 日程 10/10-10/11 -->
+<section class="sheet">
+  <p class="kicker">Itinerary · Day 3–4</p>
+  <h2 class="sec-title">日程 ②（10/10 → 10/11）白砂漠キャンプ</h2>
+  <div class="sec-rule"><span class="hg">𓃭</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/10</span><span class="day-wd">SAT</span><span class="day-ttl">白砂漠キャンプツアー Day 1</span><span class="day-loc">🏜️ 砂漠</span></div>
+    <div class="day-head"><span class="day-badge">10/10</span><span class="day-wd">SAT</span><span class="day-ttl">白砂漠キャンプツアー Day 1</span><span class="day-loc">🏜️ 砂漠</span></div>
+    <div class="photos">
+      <div class="ph"><img src="images/desert.jpg" alt="白砂漠"><span class="cap">白砂漠の奇岩</span></div>
+      <div class="ph"><img src="images/desert-camp.webp" alt="砂漠キャンプ"><span class="cap">砂漠キャンプ</span></div>
+      <div class="ph"><img src="images/camel.jpg" alt="砂漠"><span class="cap">4WDで冒険</span></div>
+    </div>
     <ul class="sched">
       <li><span class="t">07:00</span><span class="a">New Gardenia 出発 <em>料金は車内で前払い・大荷物はオアシス預け</em></span></li>
       <li><span class="t">午前</span><span class="a">バハレイヤ・オアシスへ（約4時間）</span></li>
@@ -222,18 +267,11 @@
       <li><span class="t">夜</span><span class="a">白砂漠 → キャンプ泊・夕食＆星空<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
-  <div class="foot"><span>EGYPT 2026</span><span>日程 10/8–10/10</span></div>
-</section>
-
-<!-- 4. 日程 10/11-10/13 -->
-<section class="sheet">
-  <p class="kicker">Itinerary · Day 4–6</p>
-  <h2 class="sec-title">日程 ②（10/11 → 10/13）</h2>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/11</span><span class="day-wd">SUN</span><span class="day-ttl">砂漠の朝 → カイロ帰着</span><span class="day-loc">🏜️ 砂漠 → カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/11</span><span class="day-wd">SUN</span><span class="day-ttl">砂漠の朝 → カイロ帰着</span><span class="day-loc">🏜️ 砂漠 → カイロ</span></div>
     <ul class="sched">
-      <li><span class="t">06:00</span><span class="a">砂漠の日の出鑑賞</span></li>
+      <li><span class="t">06:00</span><span class="a">砂漠の日の出鑑賞 🌅</span></li>
       <li><span class="t">07:00</span><span class="a">朝食 — キャンプ<span class="tagf">現地飯</span></span></li>
       <li><span class="t">08:30</span><span class="a">砂漠を出発（希望者は砂漠の鉱泉）</span></li>
       <li><span class="t">昼</span><span class="a">オアシスで昼食（サンドイッチ）<span class="tagf">現地飯</span></span></li>
@@ -241,9 +279,22 @@
       <li><span class="t">夜</span><span class="a">夕食（ツアー外・各自）<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/10–10/11</span></div>
+</section>
+
+<!-- 5. 日程 10/12-10/13 -->
+<section class="sheet">
+  <p class="kicker">Itinerary · Day 5–6</p>
+  <h2 class="sec-title">日程 ③（10/12 → 10/13）ルクソール</h2>
+  <div class="sec-rule"><span class="hg">𓉴</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/12</span><span class="day-wd">MON</span><span class="day-ttl">ルクソール移動 → 2大神殿</span><span class="day-loc">🏛️ ルクソール</span></div>
+    <div class="day-head"><span class="day-badge">10/12</span><span class="day-wd">MON</span><span class="day-ttl">ルクソール移動 → 2大神殿</span><span class="day-loc">🏛️ ルクソール</span></div>
+    <div class="photos">
+      <div class="ph"><img src="images/horus-temple.jpg" alt="カルナック神殿"><span class="cap">カルナック神殿</span></div>
+      <div class="ph"><img src="images/luxor-temple.jpg" alt="ルクソール神殿"><span class="cap">ルクソール神殿</span></div>
+      <div class="ph"><img src="images/luxor-temple-3.jpg" alt="ライトアップ"><span class="cap">夜のライトアップ</span></div>
+    </div>
     <ul class="sched">
       <li><span class="t">08:25</span><span class="a">カイロ発 <span class="tagp">NP071</span> → 09:30 ルクソール着</span></li>
       <li><span class="t">10:00</span><span class="a">Pyramisa Luxor チェックイン・荷物預け</span></li>
@@ -255,7 +306,12 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/13</span><span class="day-wd">TUE</span><span class="day-ttl">西岸めぐり → 東岸さんぽ</span><span class="day-loc">🏛️ ルクソール西岸</span></div>
+    <div class="day-head"><span class="day-badge">10/13</span><span class="day-wd">TUE</span><span class="day-ttl">西岸めぐり → 東岸さんぽ</span><span class="day-loc">🏛️ ルクソール西岸</span></div>
+    <div class="photos">
+      <div class="ph"><img src="images/valley-kings.jpg" alt="王家の谷"><span class="cap">王家の谷</span></div>
+      <div class="ph"><img src="images/hatshepsut.jpg" alt="ハトシェプスト"><span class="cap">ハトシェプスト</span></div>
+      <div class="ph"><img src="images/memnon.jpg" alt="メムノンの巨像"><span class="cap">メムノンの巨像</span></div>
+    </div>
     <ul class="sched">
       <li><span class="t">07:00</span><span class="a">チャータータクシーで西岸へ（フェリー渡河）</span></li>
       <li><span class="t">08:00</span><span class="a">王家の谷 <em>3墓込750EGP・ツタンカーメン墓は別途</em></span></li>
@@ -266,16 +322,22 @@
       <li><span class="t">18:30</span><span class="a">夕食 — ハンム（ハト料理）に挑戦<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
-  <div class="foot"><span>EGYPT 2026</span><span>日程 10/11–10/13</span></div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/12–10/13</span></div>
 </section>
 
-<!-- 5. 日程 10/14-10/17 -->
+<!-- 6. 日程 10/14-10/15 -->
 <section class="sheet">
-  <p class="kicker">Itinerary · Day 7–10</p>
-  <h2 class="sec-title">日程 ③（10/14 → 10/17）</h2>
+  <p class="kicker">Itinerary · Day 7–8</p>
+  <h2 class="sec-title">日程 ④（10/14 → 10/15）カイロ</h2>
+  <div class="sec-rule"><span class="hg">𓅓</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/14</span><span class="day-wd">WED</span><span class="day-ttl">カイロ帰着 → GEM → ナイルクルーズ</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/14</span><span class="day-wd">WED</span><span class="day-ttl">カイロ帰着 → GEM → ナイルクルーズ</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="photos">
+      <div class="ph"><img src="images/gem-tut.jpg" alt="ツタンカーメン黄金マスク"><span class="cap">大エジプト博物館</span></div>
+      <div class="ph"><img src="images/ツタンカーメン.jpg" alt="ツタンカーメン"><span class="cap">黄金のマスク</span></div>
+      <div class="ph"><img src="images/nile-cruise.jpg" alt="ナイルクルーズ"><span class="cap">ディナークルーズ</span></div>
+    </div>
     <ul class="sched">
       <li><span class="t">10:30</span><span class="a">ルクソール発 <span class="tagp">NP072</span> → 11:35 カイロ着</span></li>
       <li><span class="t">14:00</span><span class="a">Royal Town チェックイン・荷物を預ける</span></li>
@@ -286,7 +348,12 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/15</span><span class="day-wd">THU</span><span class="day-ttl">カイロ最終日 — コプト地区・考古学博物館</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/15</span><span class="day-wd">THU</span><span class="day-ttl">カイロ最終日 — コプト地区・考古学博物館</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="photos">
+      <div class="ph"><img src="images/coptic.jpg" alt="コプト地区"><span class="cap">コプト地区</span></div>
+      <div class="ph"><img src="images/khan-khalili.jpg" alt="ハン・エル＝ハリーリ市場"><span class="cap">ハン市場</span></div>
+      <div class="ph"><img src="images/cairo-tower.jpg" alt="カイロ・タワー"><span class="cap">カイロ・タワー</span></div>
+    </div>
     <ul class="sched">
       <li><span class="t">09:00</span><span class="a">コプト地区（ハンギング・チャーチ）<em>★メイン・無料</em></span></li>
       <li><span class="t">11:30</span><span class="a">エジプト考古学博物館（旧／タハリール）<em>入場550EGP</em></span></li>
@@ -296,10 +363,19 @@
       <li><span class="t">19:30</span><span class="a">夕食 — 旅の締めくくり<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/14–10/15</span></div>
+</section>
+
+<!-- 7. 日程 10/16-10/17 -->
+<section class="sheet">
+  <p class="kicker">Itinerary · Day 9–10</p>
+  <h2 class="sec-title">日程 ⑤（10/16 → 10/17）帰国</h2>
+  <div class="sec-rule"><span class="hg">✈</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/16</span><span class="day-wd">FRI</span><span class="day-ttl">帰国日 → ドーハ乗継</span><span class="day-loc">🇪🇬 カイロ → ドーハ</span></div>
+    <div class="day-head"><span class="day-badge">10/16</span><span class="day-wd">FRI</span><span class="day-ttl">帰国日 → ドーハ乗継</span><span class="day-loc">🇪🇬 カイロ → ドーハ</span></div>
     <ul class="sched">
+      <li><span class="t">09:00</span><span class="a">起床・朝食・チェックアウト</span></li>
       <li><span class="t">12:00</span><span class="a">カイロ国際空港へ出発 <em>出発2時間前を目安</em></span></li>
       <li><span class="t">14:05</span><span class="a">カイロ発 <span class="tagp">QR1304</span> → 17:10 ドーハ着</span></li>
       <li><span class="t">20:35</span><span class="a">ドーハ発 <span class="tagp">QR808</span>（機内泊）</span></li>
@@ -307,18 +383,27 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-date">10/17</span><span class="day-wd">SAT</span><span class="day-ttl">帰国！ お疲れ様でした 🎉</span><span class="day-loc">🇯🇵 成田着</span></div>
+    <div class="day-head"><span class="day-badge">10/17</span><span class="day-wd">SAT</span><span class="day-ttl">帰国！ お疲れ様でした 🎉</span><span class="day-loc">🇯🇵 成田着</span></div>
     <ul class="sched">
       <li><span class="t">12:55</span><span class="a">成田国際空港 着 → 入国 → 解散</span></li>
     </ul>
   </div>
-  <div class="foot"><span>EGYPT 2026</span><span>日程 10/14–10/17</span></div>
+
+  <div class="photos" style="margin-top:18px;">
+    <div class="ph"><img src="images/desert-camp.webp" alt="星空"><span class="cap">忘れられない星空</span></div>
+    <div class="ph"><img src="images/nile-cruise.jpg" alt="ナイル"><span class="cap">ナイルの夜</span></div>
+    <div class="ph"><img src="images/pyramid.webp" alt="ピラミッド"><span class="cap">また来よう</span></div>
+  </div>
+  <p class="hgband">𓋹 𓂀 𓆣 𓊖 𓅓 𓃭 𓋹</p>
+  <p class="note" style="text-align:center;">たくさんの思い出を持ち帰ろう。良い旅を！</p>
+  <div class="foot"><span>EGYPT 2026</span><span>日程 10/16–10/17</span></div>
 </section>
 
-<!-- 6. 宿泊・費用 -->
+<!-- 8. 宿泊・費用 -->
 <section class="sheet">
   <p class="kicker">Hotels &amp; Budget</p>
   <h2 class="sec-title">宿泊先と費用</h2>
+  <div class="sec-rule"><span class="hg">🏨</span></div>
 
   <h3 style="font-family:'Montserrat';font-size:12px;color:var(--gold-d);letter-spacing:.08em;margin:0 0 6px;">🏨 宿泊先（予約済み）</h3>
   <table>
@@ -344,10 +429,19 @@
   <div class="foot"><span>EGYPT 2026</span><span>宿泊・費用</span></div>
 </section>
 
-<!-- 7. 巡るスポット -->
+<!-- 9. 巡るスポット -->
 <section class="sheet">
   <p class="kicker">Spots in Order</p>
   <h2 class="sec-title">巡る遺跡・スポット一覧（スケジュール順）</h2>
+  <div class="sec-rule"><span class="hg">𓊖</span></div>
+
+  <div class="mosaic">
+    <div class="ph"><img src="images/sphinx.jpg" alt="スフィンクス"><span class="cap">ピラミッド</span></div>
+    <div class="ph"><img src="images/desert.jpg" alt="白砂漠"><span class="cap">白砂漠</span></div>
+    <div class="ph"><img src="images/valley-kings.jpg" alt="王家の谷"><span class="cap">王家の谷</span></div>
+    <div class="ph"><img src="images/gem-tut.jpg" alt="GEM"><span class="cap">GEM</span></div>
+  </div>
+
   <table>
     <tr><th>日付</th><th>スポット</th><th>ひとこと</th></tr>
     <tr><td class="day-cell">10/9</td><td class="nm">ギザのピラミッド＆スフィンクス</td><td>敷地540EGP（内部別途）。ラクダ乗りも</td></tr>
@@ -369,10 +463,11 @@
   <div class="foot"><span>EGYPT 2026</span><span>巡るスポット</span></div>
 </section>
 
-<!-- 8. フレーズ・チップ -->
+<!-- 10. フレーズ・チップ -->
 <section class="sheet">
   <p class="kicker">Arabic &amp; Tips</p>
   <h2 class="sec-title">よく使うアラビア語 ＆ チップの目安</h2>
+  <div class="sec-rule"><span class="hg">𓂀</span></div>
   <table>
     <tr><th>日本語</th><th>アラビア語</th><th>読み方</th></tr>
     <tr><td class="nm">こんにちは</td><td class="ar">السلام عليكم</td><td class="roma">as-salāmu ʿalaykum</td></tr>
@@ -405,10 +500,11 @@
   <div class="foot"><span>EGYPT 2026</span><span>フレーズ・チップ</span></div>
 </section>
 
-<!-- 9. 持ち物・緊急連絡先 -->
+<!-- 11. 持ち物・緊急連絡先 -->
 <section class="sheet">
   <p class="kicker">Packing &amp; Emergency</p>
   <h2 class="sec-title">持ち物チェック ＆ 緊急連絡先</h2>
+  <div class="sec-rule"><span class="hg">🎒</span></div>
 
   <div class="cols">
     <div class="box">
