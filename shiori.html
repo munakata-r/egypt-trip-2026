@@ -55,10 +55,10 @@
   .sec-rule::after{ content:""; flex:1; height:1px; background:var(--line); }
 
   /* ── 表紙（全面写真・A5） ── */
-  .cover-sheet{ padding:0; color:#fff; display:flex; container-type:inline-size; }
+  .cover-sheet{ padding:0; color:#fff; display:flex; }
   .cover-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
-  /* ── 表紙（プレミアム：金装飾＋飾り罫＋カルトゥーシュ） ── */
+  /* ── 表紙（プレミアム：金装飾＋飾り罫＋カルトゥーシュ） ── mm指定で印刷安定 ── */
   .front .cover-img{ object-position:center 30%; }
   .cv-ov{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(10,7,2,.20) 0%, rgba(10,7,2,.06) 32%, rgba(12,8,3,.80) 66%, rgba(12,8,3,.95) 100%); }
   /* 背景＝ツタンカーメン正面（フルブリード＋文字は下に集約） */
@@ -67,26 +67,26 @@
   .front.tut .cv-ov{ background:linear-gradient(180deg, rgba(10,7,2,.42) 0%, rgba(10,7,2,.20) 42%, rgba(10,7,2,.72) 66%, rgba(8,5,2,.97) 86%, #050302 100%); }
   /* 文字・イラストはすべて顎より下へ集約（サブ文言・ヒエログリフ帯は省略） */
   .front.tut .cv-sub, .front.tut .cv-hg{ display:none; }
-  .front.tut .cv-inner{ padding:0 8cqw 6cqw; }
-  .front.tut .cv-ws{ margin-bottom:1.6cqw; }
-  .front.tut .cv-title{ margin-top:.6cqw; }
-  .front.tut .cv-cartouche{ margin-top:2cqw; }
-  .front.tut .cv-members{ margin-top:2cqw; padding-top:1.6cqw; }
-  .cv-frame{ position:absolute; inset:4.5cqw; border:0.5cqw solid rgba(227,178,74,.9); box-shadow:0 0 0 0.9cqw rgba(227,178,74,.22) inset; z-index:3; pointer-events:none; }
-  .cv-frame::before,.cv-frame::after{ content:"𓊖"; position:absolute; left:50%; transform:translateX(-50%); font-size:3.2cqw; color:var(--gold-l); }
-  .cv-frame::before{ top:-1.9cqw; } .cv-frame::after{ bottom:-1.9cqw; }
-  .cv-inner{ position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:9cqw 8cqw; color:#fff; }
-  .cv-ws{ width:56cqw; height:auto; margin-bottom:2cqw; filter:drop-shadow(0 .4cqw 1cqw rgba(0,0,0,.55)); }
-  .cv-eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.22em; color:var(--gold-l); font-size:2.4cqw; margin:.6cqw 0 0; }
-  .cv-title{ font-family:'Noto Serif JP',serif; font-weight:900; font-size:9cqw; line-height:1.2; margin:1.2cqw 0 0; text-shadow:0 .4cqw 1.6cqw rgba(0,0,0,.7); }
-  .cv-sub{ font-family:'Noto Serif JP',serif; font-size:3cqw; color:#f3e7cf; margin:1.6cqw 0 0; text-shadow:0 1px 6px rgba(0,0,0,.7); }
-  .cv-cartouche{ margin:3cqw 0 0; border:.5cqw solid var(--gold-l); border-radius:999px; padding:1.2cqw 5cqw; font-family:'Montserrat',sans-serif; font-weight:800; font-size:4.4cqw; color:var(--gold-l); background:rgba(16,10,3,.4); position:relative; }
-  .cv-cartouche::before,.cv-cartouche::after{ content:""; position:absolute; top:50%; transform:translateY(-50%); width:.5cqw; height:60%; background:var(--gold-l); }
-  .cv-cartouche::before{ left:2.1cqw; } .cv-cartouche::after{ right:2.1cqw; }
-  .cv-hg{ color:var(--gold-l); font-size:3.4cqw; letter-spacing:.24em; margin:2.4cqw 0 0; }
-  .cv-members{ margin-top:2.4cqw; padding-top:2cqw; border-top:1px solid rgba(227,178,74,.4); width:90%; }
-  .cv-lbl{ display:block; font-family:'Montserrat',sans-serif; font-size:2.1cqw; letter-spacing:.2em; color:var(--gold-l); font-weight:700; }
-  .cv-names{ display:block; font-family:'Noto Serif JP',serif; font-size:2.95cqw; margin-top:1cqw; color:#fff; text-shadow:0 1px 5px rgba(0,0,0,.7); }
+  .front.tut .cv-inner{ padding:0 11.8mm 8.9mm; }
+  .front.tut .cv-ws{ margin-bottom:2.4mm; }
+  .front.tut .cv-title{ margin-top:0.9mm; }
+  .front.tut .cv-cartouche{ margin-top:3mm; }
+  .front.tut .cv-members{ margin-top:3mm; padding-top:2.4mm; }
+  .cv-frame{ position:absolute; inset:6.7mm; border:0.75mm solid rgba(227,178,74,.9); box-shadow:0 0 0 1.3mm rgba(227,178,74,.22) inset; z-index:3; pointer-events:none; }
+  .cv-frame::before,.cv-frame::after{ content:"𓊖"; position:absolute; left:50%; transform:translateX(-50%); font-size:4.7mm; color:var(--gold-l); }
+  .cv-frame::before{ top:-2.8mm; } .cv-frame::after{ bottom:-2.8mm; }
+  .cv-inner{ position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; text-align:center; padding:13.3mm 11.8mm; color:#fff; }
+  .cv-ws{ width:83mm; height:auto; margin-bottom:3mm; filter:drop-shadow(0 .6mm 1.5mm rgba(0,0,0,.55)); }
+  .cv-eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.22em; color:var(--gold-l); font-size:3.6mm; margin:0.9mm 0 0; }
+  .cv-title{ font-family:'Noto Serif JP',serif; font-weight:900; font-size:13.3mm; line-height:1.2; margin:1.8mm 0 0; text-shadow:0 .6mm 2.4mm rgba(0,0,0,.7); }
+  .cv-sub{ font-family:'Noto Serif JP',serif; font-size:4.4mm; color:#f3e7cf; margin:2.4mm 0 0; text-shadow:0 1px 6px rgba(0,0,0,.7); }
+  .cv-cartouche{ margin:4.4mm 0 0; border:.75mm solid var(--gold-l); border-radius:999px; padding:1.8mm 7.4mm; font-family:'Montserrat',sans-serif; font-weight:800; font-size:6.5mm; color:var(--gold-l); background:rgba(16,10,3,.4); position:relative; }
+  .cv-cartouche::before,.cv-cartouche::after{ content:""; position:absolute; top:50%; transform:translateY(-50%); width:.75mm; height:60%; background:var(--gold-l); }
+  .cv-cartouche::before{ left:3.1mm; } .cv-cartouche::after{ right:3.1mm; }
+  .cv-hg{ color:var(--gold-l); font-size:5mm; letter-spacing:.24em; margin:3.6mm 0 0; }
+  .cv-members{ margin-top:3.6mm; padding-top:3mm; border-top:1px solid rgba(227,178,74,.4); width:90%; }
+  .cv-lbl{ display:block; font-family:'Montserrat',sans-serif; font-size:3.1mm; letter-spacing:.2em; color:var(--gold-l); font-weight:700; }
+  .cv-names{ display:block; font-family:'Noto Serif JP',serif; font-size:4.4mm; margin-top:1.5mm; color:#fff; text-shadow:0 1px 5px rgba(0,0,0,.7); }
   .cover-ov{ position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,14,6,.60) 0%, rgba(20,14,6,.30) 42%, rgba(20,14,6,.88) 100%); }
   .cover-content{ position:relative; z-index:2; margin:auto; text-align:center; padding:0 12mm; width:100%; }
   .cover-content .eyebrow{ font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:.26em; color:var(--gold-l); font-size:10.5px; }
@@ -160,15 +160,14 @@
   .lead{ font-size:10.5px; color:var(--ink); margin:0 0 9px; }
   .hgband{ text-align:center; color:var(--gold); font-size:13px; letter-spacing:.35em; margin:8px 0 0; opacity:.6; }
 
-  /* ── 印刷：A4横に A5を2ページ並べる（2面付け） ── */
+  /* ── 印刷：各ページA5・1枚ずつ（全ブラウザ対応） ── */
   @media print{
     body{ background:#fff; }
     .toolbar{ display:none !important; }
-    @page{ size:A4 landscape; margin:0; }
-    .pair{ display:flex !important; width:297mm; height:210mm; overflow:hidden; page-break-after:always; break-after:page; }
-    .pair:last-child{ page-break-after:auto; }
-    .sheet{ width:148.5mm; height:210mm; min-height:0; margin:0; padding:10mm 11mm; box-shadow:none; }
-    .sheet:first-child{ border-right:1px dashed #c4bba6; }
+    @page{ size:A5 portrait; margin:0; }
+    .pair{ display:contents !important; }
+    .sheet{ width:148mm; height:210mm; min-height:0; margin:0; padding:10mm 11mm; box-shadow:none; overflow:hidden; page-break-after:always; break-after:page; }
+    .pair:last-child .sheet:last-child{ page-break-after:auto; break-after:auto; }
     .cover-sheet{ padding:0; }
   }
   @media (max-width:760px){
@@ -185,7 +184,7 @@
 <body>
 
 <div class="toolbar">
-  <p>🖨 <b>A5冊子</b>：ブラウザの印刷で <b>用紙A4・向き「横」</b>を選ぶと、A4に2ページ並びます → <b>真ん中の点線で切って順に重ねる</b>とA5しおりに（PDF保存もOK）</p>
+  <p>🖨 <b>各ページA5</b>：「印刷」→「PDFで保存」でA5サイズのしおりになります（コンビニ印刷OK）。<b>紙を節約</b>したい時は印刷設定で <b>「1枚あたりのページ数 = 2」</b> を選ぶとA4に2ページ並びます。</p>
   <button class="tb-btn" onclick="window.print()">印刷 / PDFで保存</button>
   <a class="tb-btn ghost" href="index.html">← サイトに戻る</a>
 </div>
