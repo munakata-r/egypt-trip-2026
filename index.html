@@ -884,6 +884,7 @@ body.theme-night .toc-list li a.current { color: #f3ead4; }
 .tkt-yen { display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; color: var(--text-light); margin-top: 3px; white-space: nowrap; }
 .tkt-free { color: #2E7D32; font-weight: 700; }
 .tkt-hour { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.tkt-day { white-space: nowrap; font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
 .tkt-memo { font-size: 12px; color: var(--text-light); }
 .tkt-note { font-size: 12px; color: var(--text-light); margin-top: 12px; line-height: 1.7; }
 body.theme-night .tkt-table th { background: #2a2010; color: #f0e6d2; }
@@ -1730,31 +1731,34 @@ body.theme-night .todo-task { color: var(--text); }
   </div>
 </section>
 
-<!-- チケット・開館時間 早見表 -->
+<!-- 巡るスポット一覧（スケジュール順） -->
 <section class="section" style="padding-top:0">
-  <p class="section-label">🏷️ 現地リファレンス</p>
-  <h2 class="section-heading">チケット・開館時間 早見表</h2>
+  <p class="section-label">🗺️ 巡るスポット</p>
+  <h2 class="section-heading">巡る遺跡・スポット一覧（スケジュール順）</h2>
   <div class="tkt-wrap">
     <table class="tkt-table">
       <thead>
-        <tr><th>名所</th><th>入場料（目安）</th><th>開館時間</th><th>メモ</th></tr>
+        <tr><th>日付</th><th>スポット</th><th>ひとこと</th></tr>
       </thead>
       <tbody>
-        <tr><td class="tkt-name">ギザのピラミッド（敷地）</td><td class="tkt-price" data-egp="540">540 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">7:00–17:00</td><td class="tkt-memo">内部は別料金（クフ王 約900EGP）</td></tr>
-        <tr><td class="tkt-name">グランド・エジプシャン博物館（GEM）</td><td class="tkt-price" data-egp="1200">1,200 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">8:30–18:00</td><td class="tkt-memo">大型展示・所要2〜3時間</td></tr>
-        <tr><td class="tkt-name">王家の谷</td><td class="tkt-price" data-egp="750">750 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">3墓まで／ツタンカーメン墓は別途</td></tr>
-        <tr><td class="tkt-name">ハトシェプスト女王葬祭殿</td><td class="tkt-price" data-egp="360">360 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–17:00</td><td class="tkt-memo">日陰が少ない・午前推奨</td></tr>
-        <tr><td class="tkt-name">カルナック神殿</td><td class="tkt-price" data-egp="450">450 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–17:30</td><td class="tkt-memo">広大・所要2時間ほど</td></tr>
-        <tr><td class="tkt-name">ルクソール神殿</td><td class="tkt-price" data-egp="400">400 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">6:00–22:00</td><td class="tkt-memo">夜のライトアップが◎</td></tr>
-        <tr><td class="tkt-name">メムノンの巨像</td><td class="tkt-free">無料</td><td class="tkt-hour">終日</td><td class="tkt-memo">道路沿い・短時間</td></tr>
-        <tr><td class="tkt-name">エジプト考古学博物館（タハリール）</td><td class="tkt-price" data-egp="550">550 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">9:00–19:00</td><td class="tkt-memo">旧博物館・ミイラ室は別途</td></tr>
-        <tr><td class="tkt-name">ハンギング・チャーチ（コプト）</td><td class="tkt-free">無料</td><td class="tkt-hour">9:00–16:00</td><td class="tkt-memo">露出に配慮した服装で</td></tr>
-        <tr><td class="tkt-name">ハン・エル＝ハリーリ市場</td><td class="tkt-free">無料</td><td class="tkt-hour">店舗による</td><td class="tkt-memo">夕方〜夜が賑わう</td></tr>
-        <tr><td class="tkt-name">カイロ・タワー</td><td class="tkt-price" data-egp="300">300 EGP<span class="tkt-yen"></span></td><td class="tkt-hour">9:00–24:00</td><td class="tkt-memo">夜景スポット</td></tr>
+        <tr><td class="tkt-day">10/9</td><td class="tkt-name">ギザのピラミッド＆スフィンクス</td><td class="tkt-memo">敷地 540EGP（内部は別途）。ラクダ乗りも</td></tr>
+        <tr><td class="tkt-day">10/10</td><td class="tkt-name">黒砂漠・クリスタルマウンテン・アガバト山・白砂漠</td><td class="tkt-memo">4WDで砂漠を巡る（ツアー料金に込み）</td></tr>
+        <tr><td class="tkt-day">10/11</td><td class="tkt-name">砂漠の鉱泉（オアシス）</td><td class="tkt-memo">希望者のみ。天然の鉱泉（設備なし）</td></tr>
+        <tr><td class="tkt-day">10/12</td><td class="tkt-name">カルナック神殿</td><td class="tkt-memo">450EGP。広大・所要2時間</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">ルクソール神殿</td><td class="tkt-memo">400EGP。夜のライトアップが◎</td></tr>
+        <tr><td class="tkt-day">10/13</td><td class="tkt-name">王家の谷</td><td class="tkt-memo">750EGP（3墓）。ツタンカーメン墓は別途</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">ハトシェプスト女王葬祭殿</td><td class="tkt-memo">360EGP。午前推奨</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">メムノンの巨像</td><td class="tkt-memo">無料。道路沿い・短時間</td></tr>
+        <tr><td class="tkt-day">10/14</td><td class="tkt-name">大エジプト博物館（GEM）</td><td class="tkt-memo">1,200EGP。ツタンカーメン黄金マスク等</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">ナイル川ディナークルーズ</td><td class="tkt-memo">夕食・生演奏付き（夜景クルーズ）</td></tr>
+        <tr><td class="tkt-day">10/15</td><td class="tkt-name">コプト地区（ハンギング・チャーチ）</td><td class="tkt-memo">無料。露出に配慮した服装で</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">エジプト考古学博物館（旧／タハリール）</td><td class="tkt-memo">550EGP。ミイラ室は別途</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">ハン・エル＝ハリーリ市場</td><td class="tkt-memo">無料。夕方〜夜が賑わう</td></tr>
+        <tr><td class="tkt-day"></td><td class="tkt-name">カイロ・タワー</td><td class="tkt-memo">300EGP。夜景スポット</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="tkt-note">⚠️ 料金・時間は2025年時点の目安です。エジプトの入場料は改定が多く、現地で変わる場合があります。学生割引（国際学生証）あり。円換算は「💱 お金」セクションのレートでどうぞ。</p>
+  <p class="tkt-note">⚠️ 入場料は2025年時点の目安（EGP）。改定が多いため現地で変わる場合あり。円換算は「💱 お金」セクションでどうぞ。</p>
 </section>
 
 <!-- MEMO -->
@@ -2636,7 +2640,7 @@ function dayMapInit(container) {
     '🎬 旅の予告編': '🎬 行き先の動画',
     '💰 予算': '💰 費用・予算',
     '💱 お金': '💱 通貨換算・チップ',
-    '🏷️ 現地リファレンス': '🏷️ チケット料金・開館時間',
+    '🗺️ 巡るスポット': '🗺️ 巡る遺跡・スポット（順番）',
     '📝 グループメモ': '📝 集合・連絡メモ',
     '🆘 もしもの時': '🆘 緊急連絡先',
     '𓂀 ファラオの遊び': '𓂀 名前をヒエログリフに',
