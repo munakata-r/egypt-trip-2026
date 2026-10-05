@@ -61,9 +61,14 @@
   /* ── 表紙（プレミアム：金装飾＋飾り罫＋カルトゥーシュ） ── */
   .front .cover-img{ object-position:center 30%; }
   .cv-ov{ position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(10,7,2,.20) 0%, rgba(10,7,2,.06) 32%, rgba(12,8,3,.80) 66%, rgba(12,8,3,.95) 100%); }
-  /* 背景＝ツタンカーメン黄金マスク用（顔を上に出し、下は濃いめ） */
-  .front.tut .cover-img{ object-position:center 20%; }
-  .front.tut .cv-ov{ background:linear-gradient(180deg, rgba(10,7,2,.34) 0%, rgba(10,7,2,.15) 34%, rgba(10,7,2,.85) 66%, rgba(8,5,2,.97) 100%); }
+  /* 背景＝ツタンカーメン：マスク全体を上に表示し、文字は下の黒帯に */
+  .front.tut{ background:#000; }
+  .front.tut .cover-img{ height:55%; bottom:auto; object-fit:contain; object-position:center top; }
+  .front.tut .cv-ov{ background:linear-gradient(180deg, transparent 0%, transparent 50%, rgba(0,0,0,.5) 54%, #000 58%, #000 100%); }
+  .front.tut .cv-inner{ justify-content:flex-end; padding:0 8cqw 7cqw; }
+  .front.tut .cv-sub, .front.tut .cv-hg{ display:none; }
+  .front.tut .cv-ws{ margin-bottom:2.4cqw; }
+  .front.tut .cv-eyebrow{ margin-top:0; }
   .cv-frame{ position:absolute; inset:4.5cqw; border:0.5cqw solid rgba(227,178,74,.9); box-shadow:0 0 0 0.9cqw rgba(227,178,74,.22) inset; z-index:3; pointer-events:none; }
   .cv-frame::before,.cv-frame::after{ content:"𓊖"; position:absolute; left:50%; transform:translateX(-50%); font-size:3.2cqw; color:var(--gold-l); }
   .cv-frame::before{ top:-1.9cqw; } .cv-frame::after{ bottom:-1.9cqw; }
