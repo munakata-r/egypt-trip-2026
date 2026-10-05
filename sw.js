@@ -1,9 +1,10 @@
 /* エジプト旅行2026 — Service Worker（オフライン対応） */
-const CACHE = 'egypt2026-v35';
+const CACHE = 'egypt2026-v46';
 /* 同一オリジンのコアファイルを事前キャッシュ（相対パス＝サブディレクトリ配信に対応） */
 const CORE = [
   './',
   './index.html',
+  './shiori.html',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -33,10 +34,10 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  /* ナビゲーション（ページ遷移）はネット優先 → 失敗時はキャッシュのindex.htmlを返す */
+  /* ナビゲーション（ページ遷移）はネット優先 → 失敗時は該当ページ or index.htmlを返す */
   if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(req).catch(() => caches.match('./index.html').then((r) => r || caches.match('./')))
+      fetch(req).catch(() => caches.match(req).then((r) => r || caches.match('./index.html')).then((r) => r || caches.match('./')))
     );
     return;
   }
