@@ -39,11 +39,12 @@
   .sheet{
     width:148mm; min-height:210mm; margin:9mm auto; padding:9mm 10mm;
     background:var(--paper); box-shadow:0 5px 18px rgba(0,0,0,.25); position:relative; overflow:hidden;
+    display:flex; flex-direction:column;
   }
   .sheet .foot{
-    position:absolute; left:12mm; right:12mm; bottom:7mm;
+    margin-top:auto; padding-top:5px;
     display:flex; justify-content:space-between; font-size:8.5px; color:var(--sub);
-    border-top:1px solid var(--line); padding-top:4px; font-family:'Montserrat',sans-serif; letter-spacing:.04em;
+    border-top:1px solid var(--line); font-family:'Montserrat',sans-serif; letter-spacing:.04em;
   }
 
   h1,h2,h3{ font-family:'Noto Serif JP',serif; margin:0; }
@@ -108,10 +109,10 @@
   .day-ttl{ font-family:'Noto Serif JP',serif; font-weight:700; font-size:12px; color:var(--ink); }
   .day-loc{ margin-left:auto; font-size:9.5px; color:var(--lapis); white-space:nowrap; }
   .photos{ display:flex; gap:5px; margin:0 0 7px; }
-  .photos .ph{ flex:1; height:24mm; border-radius:5px; overflow:hidden; border:1px solid var(--line); position:relative; }
+  .photos .ph{ flex:1; height:21mm; border-radius:5px; overflow:hidden; border:1px solid var(--line); position:relative; }
   /* ページを埋めるTipリスト */
-  .tips2{ list-style:none; margin:0; padding:0; font-size:10.5px; }
-  .tips2 li{ padding:3px 0; display:flex; gap:7px; line-height:1.5; color:var(--ink); }
+  .tips2{ list-style:none; margin:0; padding:0; font-size:9.8px; }
+  .tips2 li{ padding:2.2px 0; display:flex; gap:6px; line-height:1.45; color:var(--ink); }
   .tips2 li::before{ content:"▸"; color:var(--gold); font-weight:800; }
   .tips2 b{ color:var(--gold-d); }
   .photos.big .ph{ height:34mm; }
@@ -144,8 +145,8 @@
   .mosaic .ph .cap{ position:absolute; left:0; right:0; bottom:0; font-size:7.5px; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.7), transparent); padding:8px 4px 2px; font-weight:600; }
 
   .cols{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .box{ border:1px solid var(--line); border-radius:6px; padding:9px 11px; break-inside:avoid; }
-  .box h3{ font-size:11px; color:var(--lapis); font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.06em; margin-bottom:6px; }
+  .box{ border:1px solid var(--line); border-radius:6px; padding:7px 10px; break-inside:avoid; }
+  .box h3{ font-size:11px; color:var(--lapis); font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.06em; margin-bottom:4px; }
   .chk{ list-style:none; margin:0; padding:0; font-size:10px; }
   .chk li{ padding:2.5px 0; display:flex; gap:6px; align-items:flex-start; }
   .chk li::before{ content:"☐"; color:var(--gold); font-size:12px; line-height:1.2; }
@@ -193,7 +194,7 @@
     .pair:last-child .sheet:last-child{ page-break-after:auto; break-after:auto; }
     .cover-sheet{ padding:0; }
   }
-  @media (max-width:760px){
+  @media screen and (max-width:760px){
     .sheet{ width:auto; margin:0 0 10px; padding:18px 15px 34px; min-height:0; box-shadow:none; }
     .cols,.sos{ grid-template-columns:1fr; }
     .mosaic{ grid-template-columns:repeat(2,1fr); }
@@ -270,8 +271,7 @@
       <li><b>言語</b>：アラビア語。観光地では英語も通じる。あいさつは「サラーム」。</li>
       <li><b>通貨</b>：エジプトポンド(EGP)。チップは少額のドル/EGP紙幣が便利。</li>
       <li><b>電圧・プラグ</b>：220V・C タイプ（変換プラグ必須）。</li>
-      <li><b>気候</b>：10月は日中30℃前後・朝晩は涼しい。砂漠は寒暖差大。</li>
-      <li><b>水</b>：生水は避けてミネラルウォーター。胃腸薬を持参すると安心。</li>
+      <li><b>気候</b>：10月は日中30℃前後・朝晩は涼しい（砂漠は寒暖差大）。生水は避けて。</li>
     </ul>
   </div>
   <div class="foot"><span>EGYPT 2026</span><span>概要・フライト</span></div>
@@ -421,15 +421,7 @@
       <li><span class="t">18:30</span><span class="a">夕食 — ハンム（ハト料理）<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
-  <div class="box" style="margin-top:9px;">
-    <h3>🏛️ ルクソール 豆知識</h3>
-    <ul class="tips2">
-      <li><b>東岸＝生者の街</b>（神殿）／<b>西岸＝死者の街</b>（王家の谷）。ナイルで二分される。</li>
-      <li><b>王家の谷</b>：基本3墓。ツタンカーメン墓は別料金だが必見。墓内の写真は要確認。</li>
-      <li><b>暑さ対策</b>：午前が勝負。日陰が少ないので帽子・水・塩分タブレットを。</li>
-      <li><b>熱気球</b>（オプション）：日の出前に離陸、西岸を空から。早朝・要予約。</li>
-    </ul>
-  </div>
+  <p class="note">🏛️ <b>東岸＝生者の街</b>（神殿）／<b>西岸＝死者の街</b>（王家の谷）。王家の谷は基本3墓＋ツタンカーメン墓は別料金で必見。日陰が少ないので午前が勝負（帽子・水・塩分）。</p>
   <div class="foot"><span>EGYPT 2026</span><span>日程 10/12–10/13</span></div>
 </section>
 
@@ -474,8 +466,7 @@
   <div class="box" style="margin-top:9px;">
     <h3>🕌 GEM・クルーズのポイント</h3>
     <ul class="tips2">
-      <li><b>大エジプト博物館(GEM)</b>：世界最大級。ツタンカーメン黄金マスクは必見、所要2〜3時間。</li>
-      <li><b>チケット</b>：事前購入がスムーズ。館内が広いので歩きやすい靴で。</li>
+      <li><b>大エジプト博物館(GEM)</b>：世界最大級。黄金マスクは必見・所要2〜3h。事前購入がスムーズ。</li>
       <li><b>ディナークルーズ</b>：生演奏・ベリーダンス付き。ドリンクは別料金のことが多い。</li>
       <li><b>コプト地区</b>：教会は<b>肌の露出を控えた服装</b>で、静かに見学を。</li>
     </ul>
