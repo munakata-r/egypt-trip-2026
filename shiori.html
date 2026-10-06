@@ -191,7 +191,9 @@
     .toolbar{ display:none !important; }
     @page{ size:A5 portrait; margin:0; }
     .pair{ display:contents !important; }
-    .sheet{ width:148mm; height:210mm; min-height:0; margin:0; padding:7mm 8mm; box-shadow:none; overflow:hidden; page-break-after:always; break-after:page; }
+    .sheet{ width:148mm; height:210mm; min-height:0; margin:0; padding:9mm 8mm 7mm 8mm; box-shadow:none; overflow:hidden; page-break-after:always; break-after:page; }
+    /* 中綴じの綴じ側（右ページ）の左端が隠れないよう、内容を少し右へ寄せる */
+    .sheet.gut{ padding-left:14mm; padding-right:4mm; }
     .pair:last-child .sheet:last-child{ page-break-after:auto; break-after:auto; }
     .cover-sheet{ padding:0; }
   }
@@ -576,7 +578,7 @@
 <div class="pair">
 
 <!-- 巡るスポット -->
-<section class="sheet">
+<section class="sheet gut">
   <p class="kicker">Spots in Order</p>
   <h2 class="sec-title">巡る遺跡・スポット（順番）</h2>
   <div class="sec-rule"><span class="hg">𓊖</span></div>
@@ -677,7 +679,7 @@
 <div class="pair">
 
 <!-- 持ち物 -->
-<section class="sheet">
+<section class="sheet gut">
   <p class="kicker">Packing List</p>
   <h2 class="sec-title">持ち物チェック</h2>
   <div class="sec-rule"><span class="hg">🎒</span></div>
@@ -778,7 +780,7 @@
 <div class="pair">
 
 <!-- グルメ図鑑 -->
-<section class="sheet">
+<section class="sheet gut">
   <p class="kicker">Egyptian Food</p>
   <h2 class="sec-title">食べておきたいエジプト飯</h2>
   <div class="sec-rule"><span class="hg">🍽️</span></div>
@@ -835,7 +837,7 @@
 <div class="pair">
 
 <!-- 旅のルート -->
-<section class="sheet">
+<section class="sheet gut">
   <p class="kicker">Route Map</p>
   <h2 class="sec-title">旅のルート（9泊10日）</h2>
   <div class="sec-rule"><span class="hg">🗺️</span></div>
