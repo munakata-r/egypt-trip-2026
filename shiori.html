@@ -194,6 +194,17 @@
     .sheet{ width:148mm; height:210mm; min-height:0; margin:0; padding:9mm 8mm 7mm 8mm; box-shadow:none; overflow:hidden; page-break-after:always; break-after:page; }
     /* 中綴じの綴じ側（右ページ）の左端が隠れないよう、内容を少し右へ寄せる */
     .sheet.gut{ padding-left:14mm; padding-right:4mm; }
+    /* 内容が多くフッターが下がりすぎるページを少し圧縮 */
+    .sheet.tight .box{ padding:5px 9px; }
+    .sheet.tight .box h3{ margin-bottom:3px; }
+    .sheet.tight .tips2{ font-size:9.3px; }
+    .sheet.tight .tips2 li{ padding:1.5px 0; }
+    .sheet.tight td{ padding:3.3px 6px; }
+    .sheet.tight th{ padding:3px 6px; }
+    .sheet.tight .chk li{ padding:1.8px 0; }
+    .sheet.tight .photos .ph{ height:22mm; }
+    .sheet.tight .sos .card{ padding:5px 9px; }
+    .sheet.tight .note{ margin-top:6px; }
     .pair:last-child .sheet:last-child{ page-break-after:auto; break-after:auto; }
     .cover-sheet{ padding:0; }
   }
@@ -292,7 +303,7 @@
   <div class="sec-rule"><span class="hg">𓊖</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/8</span><span class="day-wd">THU</span><span class="day-ttl">出発（機内泊）</span><span class="day-loc">🇯🇵 成田/関西</span></div>
+    <div class="day-head"><span class="day-badge">10/8</span><span class="day-wd">THU</span><span class="day-ttl">出発（機内泊）</span><span class="day-loc">✈ 機内泊</span></div>
     <ul class="sched">
       <li><span class="t">〜22:00</span><span class="a">成田空港 集合・チェックイン</span></li>
       <li><span class="t">22:25</span><span class="a">成田発 <span class="tagp">QR807</span>（東京組）</span></li>
@@ -301,7 +312,7 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/9</span><span class="day-wd">FRI</span><span class="day-ttl">カイロ到着→ギザのピラミッド</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/9</span><span class="day-wd">FRI</span><span class="day-ttl">カイロ到着→ギザのピラミッド</span><span class="day-loc">🏨 New Gardenia（ギザ）</span></div>
     <div class="photos">
       <div class="ph"><img src="images/pyramid.webp" alt=""><span class="cap">ピラミッド</span></div>
       <div class="ph"><img src="images/sphinx.jpg" alt=""><span class="cap">スフィンクス</span></div>
@@ -338,7 +349,7 @@
   <div class="sec-rule"><span class="hg">𓃭</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/10</span><span class="day-wd">SAT</span><span class="day-ttl">白砂漠キャンプ Day 1</span><span class="day-loc">🏜️ 砂漠</span></div>
+    <div class="day-head"><span class="day-badge">10/10</span><span class="day-wd">SAT</span><span class="day-ttl">白砂漠キャンプ Day 1</span><span class="day-loc">🏕 白砂漠キャンプ泊</span></div>
     <div class="photos">
       <div class="ph"><img src="images/desert.jpg" alt=""><span class="cap">白砂漠</span></div>
       <div class="ph"><img src="images/desert-camp.webp" alt=""><span class="cap">キャンプ</span></div>
@@ -355,7 +366,7 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/11</span><span class="day-wd">SUN</span><span class="day-ttl">砂漠の朝→カイロ帰着</span><span class="day-loc">🏜️→カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/11</span><span class="day-wd">SUN</span><span class="day-ttl">砂漠の朝→カイロ帰着</span><span class="day-loc">🏨 El Mesaadya（カイロ）</span></div>
     <ul class="sched">
       <li><span class="t">06:00</span><span class="a">砂漠の日の出鑑賞 🌅<span class="d">砂漠で迎える朝日は旅のハイライト。冷えるので防寒を。</span></span></li>
       <li><span class="t">07:00</span><span class="a">朝食 — キャンプ<span class="tagf">現地飯</span></span></li>
@@ -390,7 +401,7 @@
   <div class="sec-rule"><span class="hg">𓉴</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/12</span><span class="day-wd">MON</span><span class="day-ttl">ルクソール移動→2大神殿</span><span class="day-loc">🏛️ ルクソール</span></div>
+    <div class="day-head"><span class="day-badge">10/12</span><span class="day-wd">MON</span><span class="day-ttl">ルクソール移動→2大神殿</span><span class="day-loc">🏨 Pyramisa Luxor</span></div>
     <div class="photos">
       <div class="ph"><img src="images/horus-temple.jpg" alt=""><span class="cap">カルナック</span></div>
       <div class="ph"><img src="images/luxor-temple.jpg" alt=""><span class="cap">ルクソール神殿</span></div>
@@ -407,7 +418,7 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/13</span><span class="day-wd">TUE</span><span class="day-ttl">西岸めぐり→東岸さんぽ</span><span class="day-loc">🏛️ 西岸</span></div>
+    <div class="day-head"><span class="day-badge">10/13</span><span class="day-wd">TUE</span><span class="day-ttl">西岸めぐり→東岸さんぽ</span><span class="day-loc">🏨 Pyramisa Luxor</span></div>
     <div class="photos">
       <div class="ph"><img src="images/valley-kings.jpg" alt=""><span class="cap">王家の谷</span></div>
       <div class="ph"><img src="images/hatshepsut.jpg" alt=""><span class="cap">ハトシェプスト</span></div>
@@ -434,7 +445,7 @@
   <div class="sec-rule"><span class="hg">𓅓</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/14</span><span class="day-wd">WED</span><span class="day-ttl">カイロ帰着→GEM→クルーズ</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/14</span><span class="day-wd">WED</span><span class="day-ttl">カイロ帰着→GEM→クルーズ</span><span class="day-loc">🏨 Royal Town（カイロ）</span></div>
     <div class="photos">
       <div class="ph"><img src="images/gem-tut.jpg" alt=""><span class="cap">大エジプト博物館</span></div>
       <div class="ph"><img src="images/ツタンカーメン.jpg" alt=""><span class="cap">黄金のマスク</span></div>
@@ -450,7 +461,7 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/15</span><span class="day-wd">THU</span><span class="day-ttl">最終日 — コプト・考古学博物館</span><span class="day-loc">🇪🇬 カイロ</span></div>
+    <div class="day-head"><span class="day-badge">10/15</span><span class="day-wd">THU</span><span class="day-ttl">最終日 — コプト・考古学博物館</span><span class="day-loc">🏨 Royal Town（カイロ）</span></div>
     <div class="photos">
       <div class="ph"><img src="images/coptic.jpg" alt=""><span class="cap">コプト地区</span></div>
       <div class="ph"><img src="images/khan-khalili.jpg" alt=""><span class="cap">ハン市場</span></div>
@@ -488,7 +499,7 @@
   <div class="sec-rule"><span class="hg">✈</span></div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/16</span><span class="day-wd">FRI</span><span class="day-ttl">帰国日→ドーハ乗継</span><span class="day-loc">カイロ→ドーハ</span></div>
+    <div class="day-head"><span class="day-badge">10/16</span><span class="day-wd">FRI</span><span class="day-ttl">帰国日→ドーハ乗継</span><span class="day-loc">✈ 機内泊</span></div>
     <ul class="sched">
       <li><span class="t">09:00</span><span class="a">起床・朝食・チェックアウト<span class="d">荷造りの最終チェック。余った現地通貨は使い切るか土産に。</span></span></li>
       <li><span class="t">12:00</span><span class="a">カイロ国際空港へ <em>出発2h前目安</em><span class="d">混雑するので余裕を持って。入口でもX線検査あり。</span></span></li>
@@ -498,7 +509,7 @@
   </div>
 
   <div class="day">
-    <div class="day-head"><span class="day-badge">10/17</span><span class="day-wd">SAT</span><span class="day-ttl">帰国！ お疲れ様でした 🎉</span><span class="day-loc">🇯🇵 成田着</span></div>
+    <div class="day-head"><span class="day-badge">10/17</span><span class="day-wd">SAT</span><span class="day-ttl">帰国！ お疲れ様でした 🎉</span><span class="day-loc">🏠 帰国・解散</span></div>
     <ul class="sched">
       <li><span class="t">12:55</span><span class="a">成田着 → 入国 → 解散</span></li>
     </ul>
@@ -526,7 +537,7 @@
 </section>
 
 <!-- 宿泊・費用 -->
-<section class="sheet">
+<section class="sheet tight">
   <p class="kicker">Hotels &amp; Budget</p>
   <h2 class="sec-title">宿泊先と費用</h2>
   <div class="sec-rule"><span class="hg">🏨</span></div>
@@ -578,7 +589,7 @@
 <div class="pair">
 
 <!-- 巡るスポット -->
-<section class="sheet gut">
+<section class="sheet gut tight">
   <p class="kicker">Spots in Order</p>
   <h2 class="sec-title">巡る遺跡・スポット（順番）</h2>
   <div class="sec-rule"><span class="hg">𓊖</span></div>
@@ -679,7 +690,7 @@
 <div class="pair">
 
 <!-- 持ち物 -->
-<section class="sheet gut">
+<section class="sheet gut tight">
   <p class="kicker">Packing List</p>
   <h2 class="sec-title">持ち物チェック</h2>
   <div class="sec-rule"><span class="hg">🎒</span></div>
@@ -745,7 +756,7 @@
 </section>
 
 <!-- 緊急連絡先 -->
-<section class="sheet">
+<section class="sheet tight">
   <p class="kicker">Emergency</p>
   <h2 class="sec-title">緊急連絡先</h2>
   <div class="sec-rule"><span class="hg">🆘</span></div>
@@ -862,13 +873,6 @@
       <li><b>国内線</b>：カイロ⇆ルクソールは約1時間。早めの空港到着を。</li>
       <li><b>砂漠</b>：ツアーの4WDで送迎。長距離は車内で休息を。</li>
       <li><b>横断の注意</b>：カイロの道路横断は要注意。現地の人に合わせて渡る。</li>
-    </ul>
-  </div>
-  <div class="box" style="margin-top:9px;">
-    <h3>🗺️ 周遊のかたち</h3>
-    <ul class="tips2">
-      <li>カイロを拠点に、<b>砂漠（西）</b>と<b>ルクソール（南・空路）</b>を往復する周遊型。</li>
-      <li>移動が多い日（10/10・10/12・10/14）は<b>早起き</b>。前夜に荷造りを。</li>
     </ul>
   </div>
   <div class="foot"><span>EGYPT 2026</span><span>旅のルート</span></div>
