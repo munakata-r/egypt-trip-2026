@@ -205,6 +205,12 @@
     .sheet.tight .photos .ph{ height:22mm; }
     .sheet.tight .sos .card{ padding:5px 9px; }
     .sheet.tight .note{ margin-top:6px; }
+    /* 旅ビンゴ 3×3 */
+    .bingo{ display:grid; grid-template-columns:repeat(3,1fr); gap:3px; margin-top:5px; }
+    .bingo .c{ border:1px solid var(--line); border-radius:6px; min-height:18mm;
+      display:flex; align-items:center; justify-content:center; text-align:center;
+      font-size:8.6px; line-height:1.25; padding:3px 4px; color:var(--ink); }
+    .bingo .c.free{ background:var(--papyrus); border-color:var(--gold-l); color:var(--gold-d); font-weight:700; }
     .pair:last-child .sheet:last-child{ page-break-after:auto; break-after:auto; }
     .cover-sheet{ padding:0; }
   }
@@ -835,15 +841,31 @@
   <div class="sec-rule"><span class="hg">🎯</span></div>
 
   <div class="box">
-    <h3>🎯 極秘ミッション</h3>
-    <p class="note" style="margin:0 0 6px">旅の間にこなす“自分だけの秘密ミッション”を3つ。こっそり達成していこう。全部クリアで「エジプトMVP」の称号＆みんなからお土産を1品おごってもらえる！</p>
-    <div class="writelines" style="height:50mm;"></div>
+    <h3>🎯 エジプト旅ビンゴ</h3>
+    <p class="note" style="margin:0 0 4px">達成したマスを塗りつぶそう。タテ・ヨコ・ナナメ1列そろえたら「ビンゴ！」宣言。旅の終わりに一番マスを埋めた人がチャンピオン＝みんなからお土産1品！</p>
+    <div class="bingo">
+      <div class="c">ラクダに乗る</div>
+      <div class="c">猫を5匹見つける</div>
+      <div class="c">ピラミッドでジャンプ写真</div>
+      <div class="c">屋台メシに挑戦</div>
+      <div class="c free">⭐ 全員で集合写真</div>
+      <div class="c">「シュクラン」を言う</div>
+      <div class="c">現地の人と一緒に写真</div>
+      <div class="c">値切りで買い物成功</div>
+      <div class="c">砂漠で満天の星空</div>
+    </div>
   </div>
 
   <div class="box">
     <h3>🤫 秘密の合言葉</h3>
     <p class="note" style="margin:0 0 6px">各自に“つい言っちゃいそうな合言葉（罠）”が1つある。旅の最後までに本人がうっかり言ったら<b>罰ゲーム＝最終日の晩餐をみんなにおごり！</b>　言わせることに成功した人の勝ち。自分の言葉はナイショ、仲間の言葉はさりげなく誘導しよう！</p>
-    <div class="writelines" style="height:47mm;"></div>
+    <div class="writelines" style="height:20mm;"></div>
+  </div>
+
+  <div class="box">
+    <h3>📸 旅メモ</h3>
+    <p class="note" style="margin:0 0 5px">ビンゴのベスト瞬間・名場面・ハプニングを記録しよう</p>
+    <div class="writelines" style="height:26mm;"></div>
   </div>
 
   <div class="foot"><span>EGYPT 2026</span><span>お楽しみ企画</span></div>
