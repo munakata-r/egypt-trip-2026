@@ -39,11 +39,12 @@
   .sheet{
     width:148mm; min-height:210mm; margin:9mm auto; padding:9mm 10mm;
     background:var(--paper); box-shadow:0 5px 18px rgba(0,0,0,.25); position:relative; overflow:hidden;
+    display:flex; flex-direction:column;
   }
   .sheet .foot{
-    position:absolute; left:12mm; right:12mm; bottom:7mm;
+    margin-top:auto; padding-top:5px;
     display:flex; justify-content:space-between; font-size:8.5px; color:var(--sub);
-    border-top:1px solid var(--line); padding-top:4px; font-family:'Montserrat',sans-serif; letter-spacing:.04em;
+    border-top:1px solid var(--line); font-family:'Montserrat',sans-serif; letter-spacing:.04em;
   }
 
   h1,h2,h3{ font-family:'Noto Serif JP',serif; margin:0; }
@@ -108,7 +109,13 @@
   .day-ttl{ font-family:'Noto Serif JP',serif; font-weight:700; font-size:12px; color:var(--ink); }
   .day-loc{ margin-left:auto; font-size:9.5px; color:var(--lapis); white-space:nowrap; }
   .photos{ display:flex; gap:5px; margin:0 0 7px; }
-  .photos .ph{ flex:1; height:18mm; border-radius:5px; overflow:hidden; border:1px solid var(--line); position:relative; }
+  .photos .ph{ flex:1; height:27mm; border-radius:5px; overflow:hidden; border:1px solid var(--line); position:relative; }
+  /* ページを埋めるTipリスト */
+  .tips2{ list-style:none; margin:0; padding:0; font-size:9.8px; }
+  .tips2 li{ padding:2.2px 0; display:flex; gap:6px; line-height:1.45; color:var(--ink); }
+  .tips2 li::before{ content:"▸"; color:var(--gold); font-weight:800; }
+  .tips2 b{ color:var(--gold-d); }
+  .photos.big .ph{ height:42mm; }
   .photos .ph img{ width:100%; height:100%; object-fit:cover; }
   .photos .ph .cap{ position:absolute; left:0; right:0; bottom:0; font-size:7.5px; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.68), transparent); padding:7px 4px 2px; font-weight:600; }
   .sched{ list-style:none; margin:0; padding:0; }
@@ -116,6 +123,7 @@
   .sched .t{ font-family:'Montserrat',sans-serif; font-weight:700; color:var(--gold-d); min-width:46px; text-align:right; white-space:nowrap; font-size:9.5px; padding-top:1px; }
   .sched .a{ color:var(--ink); }
   .sched .a em{ font-style:normal; color:var(--sub); font-size:9.5px; }
+  .sched .a .d{ display:block; color:var(--sub); font-size:9.3px; line-height:1.35; margin-top:1px; }
   .tagf{ display:inline-block; background:#eef3e6; color:var(--green); font-size:8px; font-weight:700; padding:0 5px; border-radius:3px; margin-left:4px; font-family:'Montserrat',sans-serif; }
   .tagp{ display:inline-block; background:#e7eef6; color:var(--lapis); font-size:8px; font-weight:700; padding:0 5px; border-radius:3px; margin-left:4px; font-family:'Montserrat',sans-serif; }
 
@@ -138,8 +146,8 @@
   .mosaic .ph .cap{ position:absolute; left:0; right:0; bottom:0; font-size:7.5px; color:#fff; background:linear-gradient(0deg, rgba(0,0,0,.7), transparent); padding:8px 4px 2px; font-weight:600; }
 
   .cols{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .box{ border:1px solid var(--line); border-radius:6px; padding:9px 11px; break-inside:avoid; }
-  .box h3{ font-size:11px; color:var(--lapis); font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.06em; margin-bottom:6px; }
+  .box{ border:1px solid var(--line); border-radius:6px; padding:7px 10px; break-inside:avoid; }
+  .box h3{ font-size:11px; color:var(--lapis); font-family:'Montserrat',sans-serif; font-weight:800; letter-spacing:.06em; margin-bottom:4px; }
   .chk{ list-style:none; margin:0; padding:0; font-size:10px; }
   .chk li{ padding:2.5px 0; display:flex; gap:6px; align-items:flex-start; }
   .chk li::before{ content:"☐"; color:var(--gold); font-size:12px; line-height:1.2; }
@@ -187,7 +195,7 @@
     .pair:last-child .sheet:last-child{ page-break-after:auto; break-after:auto; }
     .cover-sheet{ padding:0; }
   }
-  @media (max-width:760px){
+  @media screen and (max-width:760px){
     .sheet{ width:auto; margin:0 0 10px; padding:18px 15px 34px; min-height:0; box-shadow:none; }
     .cols,.sos{ grid-template-columns:1fr; }
     .mosaic{ grid-template-columns:repeat(2,1fr); }
@@ -257,6 +265,16 @@
     <tr><td class="nm">復路 ②</td><td class="num">QR808</td><td>DOH 10/16 20:35</td><td>NRT 翌12:55</td></tr>
   </table>
   <p class="note">※ 時刻は予定。出発前に最終確認を。10/8・10/16 は機内泊。</p>
+  <div class="box" style="margin-top:10px;">
+    <h3>🧭 エジプト 旅のキホン</h3>
+    <ul class="tips2">
+      <li><b>時差</b>：日本 −7時間（日本18:00＝カイロ11:00）。</li>
+      <li><b>言語</b>：アラビア語。観光地では英語も通じる。あいさつは「サラーム」。</li>
+      <li><b>通貨</b>：エジプトポンド(EGP)。チップは少額のドル/EGP紙幣が便利。</li>
+      <li><b>電圧・プラグ</b>：220V・C タイプ（変換プラグ必須）。</li>
+      <li><b>気候</b>：10月は日中30℃前後・朝晩は涼しい（砂漠は寒暖差大）。生水は避けて。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>概要・フライト</span></div>
 </section>
 
@@ -288,13 +306,24 @@
       <div class="ph"><img src="images/camel.jpg" alt=""><span class="cap">ラクダ乗り</span></div>
     </div>
     <ul class="sched">
-      <li><span class="t">11:00</span><span class="a">カイロ着・全員合流 <em>入国・両替・SIM</em></span></li>
-      <li><span class="t">12:30</span><span class="a">New Gardenia（ギザ）に荷物預け</span></li>
-      <li><span class="t">13:00</span><span class="a">昼食 — コシャリ<span class="tagf">現地飯</span></span></li>
-      <li><span class="t">14:00</span><span class="a">ギザのピラミッド＆スフィンクス</span></li>
-      <li><span class="t">16:30</span><span class="a">ギザ散策 — ラクダ乗り・写真</span></li>
-      <li><span class="t">19:30</span><span class="a">夕食 — コフタ・ターメイヤ<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">11:00</span><span class="a">カイロ着・全員合流<span class="d">入国審査 → 荷物受取 → 両替・SIM購入。タクシーで市内へ（約1時間）。</span></span></li>
+      <li><span class="t">12:30</span><span class="a">New Gardenia（ギザ）に荷物預け<span class="d">部屋に入れなくても荷物だけ預けてすぐ出発。</span></span></li>
+      <li><span class="t">13:00</span><span class="a">昼食 — コシャリ<span class="tagf">現地飯</span><span class="d">米・マカロニ・豆にトマトソースと揚げ玉ねぎ。国民食。</span></span></li>
+      <li><span class="t">14:00</span><span class="a">ギザのピラミッド＆スフィンクス<span class="d">クフ王・カフラー王・メンカウラー王の3大ピラミッド。内部は別料金。</span></span></li>
+      <li><span class="t">16:30</span><span class="a">ギザ散策 — ラクダ乗り・写真<span class="d">パノラマ地点で記念撮影。ラクダは乗る前に料金交渉を。</span></span></li>
+      <li><span class="t">19:30</span><span class="a">夕食 — コフタ・ターメイヤ<span class="tagf">現地飯</span><span class="d">炭火のひき肉グリルとエジプト式ファラフェル。</span></span></li>
       <li><span class="t">21:00</span><span class="a">帰着 <em>屋上からピラミッドのライトアップ</em></span></li>
+    </ul>
+  </div>
+  <div class="box" style="margin-top:9px;">
+    <h3>💡 到着日のポイント</h3>
+    <ul class="tips2">
+      <li><b>入国</b>：アライバルビザ US$25（空港で取得）。パスポート残存6か月以上。</li>
+      <li><b>両替・SIM</b>：空港で最低限だけ両替。SIMは Vodafone / Orange が安定。</li>
+      <li><b>チップ</b>：少額のドル/EGP紙幣を用意。写真を撮られてチップを求められることも。</li>
+      <li><b>ピラミッド</b>：ラクダ・馬車は<b>乗る前に料金を確定</b>。帽子・日焼け止め・水必須。</li>
+      <li><b>服装</b>：モスク等では肌の露出を控えめに。羽織り＆歩きやすい靴で。</li>
+      <li><b>合流</b>：東京組（QR）と大阪組（EK）はカイロ空港で合流。到着時刻の差に注意。</li>
     </ul>
   </div>
   <div class="foot"><span>EGYPT 2026</span><span>日程 10/8–10/9</span></div>
@@ -317,21 +346,31 @@
       <li><span class="t">07:00</span><span class="a">New Gardenia 出発 <em>料金は車内前払い・大荷物はオアシス預け</em></span></li>
       <li><span class="t">午前</span><span class="a">バハレイヤ・オアシスへ（約4h）</span></li>
       <li><span class="t">昼</span><span class="a">オアシス着・昼食<span class="tagf">現地飯</span></span></li>
-      <li><span class="t">午後</span><span class="a">4WDで 砂丘・黒砂漠・クリスタルMt.</span></li>
-      <li><span class="t">夕方</span><span class="a">アガバト山</span></li>
-      <li><span class="t">夜</span><span class="a">白砂漠→キャンプ泊・夕食＆星空<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">午後</span><span class="a">4WDで 砂丘・黒砂漠・クリスタルMt.<span class="d">砂丘越え→玄武岩の黒砂漠→水晶が散らばるクリスタルマウンテン。</span></span></li>
+      <li><span class="t">夕方</span><span class="a">アガバト山<span class="d">白砂漠と黒砂漠の間に広がる奇景。夕暮れが美しい絶景ポイント。</span></span></li>
+      <li><span class="t">夜</span><span class="a">白砂漠→キャンプ泊・夕食＆星空<span class="tagf">現地飯</span><span class="d">キノコ岩・鶏岩など白い奇岩群。焚き火で夕食、満天の星。</span></span></li>
     </ul>
   </div>
 
   <div class="day">
     <div class="day-head"><span class="day-badge">10/11</span><span class="day-wd">SUN</span><span class="day-ttl">砂漠の朝→カイロ帰着</span><span class="day-loc">🏜️→カイロ</span></div>
     <ul class="sched">
-      <li><span class="t">06:00</span><span class="a">砂漠の日の出鑑賞 🌅</span></li>
+      <li><span class="t">06:00</span><span class="a">砂漠の日の出鑑賞 🌅<span class="d">砂漠で迎える朝日は旅のハイライト。冷えるので防寒を。</span></span></li>
       <li><span class="t">07:00</span><span class="a">朝食 — キャンプ<span class="tagf">現地飯</span></span></li>
-      <li><span class="t">08:30</span><span class="a">砂漠を出発（希望者は鉱泉）</span></li>
+      <li><span class="t">08:30</span><span class="a">砂漠を出発（希望者は鉱泉）<span class="d">鉱泉は設備なし・当日の状態次第。オアシス経由でカイロへ。</span></span></li>
       <li><span class="t">昼</span><span class="a">オアシスで昼食（サンドイッチ）<span class="tagf">現地飯</span></span></li>
       <li><span class="t">16:30</span><span class="a">El Mesaadya（カイロ）着・チェックイン</span></li>
       <li><span class="t">夜</span><span class="a">夕食（各自）<span class="tagf">現地飯</span></span></li>
+    </ul>
+  </div>
+  <div class="box" style="margin-top:9px;">
+    <h3>🏜️ 砂漠キャンプの楽しみ方・注意</h3>
+    <ul class="tips2">
+      <li><b>星空</b>：光害ゼロで天の川が見える。寝袋に入って寝転ぶのが最高🌌</li>
+      <li><b>アクティビティ</b>：サンドボード・ラクダ・温泉（鉱泉）。希望は<b>出発時にスタッフへ</b>。</li>
+      <li><b>防寒</b>：夜は15℃前後まで冷える。上着・毛布は遠慮なく追加を。</li>
+      <li><b>持ち物</b>：懐中電灯・水着/タオル・日焼け止め・リップ。砂埃対策のスカーフも。</li>
+      <li><b>料金</b>：ツアー代 $290/人 は<b>車内で前払い</b>。大きな荷物はオアシスで施錠預かり。</li>
     </ul>
   </div>
   <div class="foot"><span>EGYPT 2026</span><span>日程 10/10–10/11</span></div>
@@ -359,9 +398,9 @@
       <li><span class="t">08:25</span><span class="a">カイロ発 <span class="tagp">NP071</span>→09:30 ルクソール着</span></li>
       <li><span class="t">10:00</span><span class="a">Pyramisa Luxor チェックイン</span></li>
       <li><span class="t">13:00</span><span class="a">昼食 — マフシー等<span class="tagf">現地飯</span></span></li>
-      <li><span class="t">14:00</span><span class="a">カルナック神殿 <em>所要2h・450EGP</em></span></li>
-      <li><span class="t">17:00</span><span class="a">ルクソール神殿 <em>夜景・350EGP</em></span></li>
-      <li><span class="t">19:00</span><span class="a">夕食 — ナイル川沿い<span class="tagf">現地飯</span></span></li>
+      <li><span class="t">14:00</span><span class="a">カルナック神殿 <em>所要2h・450EGP</em><span class="d">世界最大の神殿群。スフィンクス参道・大列柱室は圧巻。</span></span></li>
+      <li><span class="t">17:00</span><span class="a">ルクソール神殿 <em>夜景・350EGP</em><span class="d">夜のライトアップが幻想的。〜21時まで開放。</span></span></li>
+      <li><span class="t">19:00</span><span class="a">夕食 — ナイル川沿い<span class="tagf">現地飯</span><span class="d">ナイルパーチのグリルなど。川風が心地よい。</span></span></li>
     </ul>
   </div>
 
@@ -382,6 +421,7 @@
       <li><span class="t">18:30</span><span class="a">夕食 — ハンム（ハト料理）<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
+  <p class="note">🏛️ <b>東岸＝生者の街</b>（神殿）／<b>西岸＝死者の街</b>（王家の谷）。王家の谷は基本3墓＋ツタンカーメン墓は別料金で必見。日陰が少ないので午前が勝負（帽子・水・塩分）。</p>
   <div class="foot"><span>EGYPT 2026</span><span>日程 10/12–10/13</span></div>
 </section>
 
@@ -423,6 +463,14 @@
       <li><span class="t">19:30</span><span class="a">夕食 — 旅の締めくくり<span class="tagf">現地飯</span></span></li>
     </ul>
   </div>
+  <div class="box" style="margin-top:9px;">
+    <h3>🕌 GEM・クルーズのポイント</h3>
+    <ul class="tips2">
+      <li><b>大エジプト博物館(GEM)</b>：世界最大級。黄金マスクは必見・所要2〜3h。事前購入がスムーズ。</li>
+      <li><b>ディナークルーズ</b>：生演奏・ベリーダンス付き。ドリンクは別料金のことが多い。</li>
+      <li><b>コプト地区</b>：教会は<b>肌の露出を控えた服装</b>で、静かに見学を。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>日程 10/14–10/15</span></div>
 </section>
 
@@ -440,10 +488,10 @@
   <div class="day">
     <div class="day-head"><span class="day-badge">10/16</span><span class="day-wd">FRI</span><span class="day-ttl">帰国日→ドーハ乗継</span><span class="day-loc">カイロ→ドーハ</span></div>
     <ul class="sched">
-      <li><span class="t">09:00</span><span class="a">起床・朝食・チェックアウト</span></li>
-      <li><span class="t">12:00</span><span class="a">カイロ国際空港へ <em>出発2h前目安</em></span></li>
+      <li><span class="t">09:00</span><span class="a">起床・朝食・チェックアウト<span class="d">荷造りの最終チェック。余った現地通貨は使い切るか土産に。</span></span></li>
+      <li><span class="t">12:00</span><span class="a">カイロ国際空港へ <em>出発2h前目安</em><span class="d">混雑するので余裕を持って。入口でもX線検査あり。</span></span></li>
       <li><span class="t">14:05</span><span class="a">カイロ発 <span class="tagp">QR1304</span>→17:10 ドーハ着</span></li>
-      <li><span class="t">20:35</span><span class="a">ドーハ発 <span class="tagp">QR808</span>（機内泊）</span></li>
+      <li><span class="t">20:35</span><span class="a">ドーハ発 <span class="tagp">QR808</span>（機内泊）<span class="d">乗継は約3.5時間。ハマド空港でひと休み。</span></span></li>
     </ul>
   </div>
 
@@ -454,13 +502,24 @@
     </ul>
   </div>
 
-  <div class="photos" style="margin-top:12px;">
+  <div class="box" style="margin-top:9px;">
+    <h3>✈ 帰国前チェック＆お土産</h3>
+    <ul class="tips2">
+      <li><b>余った現地通貨</b>：EGPは国外で両替しにくい。空港で使い切るか土産・チップに。</li>
+      <li><b>お土産</b>：パピルス・アラバスター・スパイス・紅茶(カルカデ)・精油。市場は値切り前提。</li>
+      <li><b>液体物</b>：香水・精油は機内持込制限に注意（預け荷物へ）。</li>
+      <li><b>空港</b>：カイロ空港は混雑。出発<b>3時間前</b>到着が安心。入口でもX線検査あり。</li>
+      <li><b>ドーハ乗継</b>：待ち時間は約3時間半。ハマド空港はラウンジ・シャワー・仮眠スペースあり。</li>
+      <li><b>機内</b>：乾燥するので水分補給を。時差ボケ対策に機内でしっかり睡眠を。</li>
+    </ul>
+  </div>
+  <div class="photos big" style="margin-top:9px;">
     <div class="ph"><img src="images/desert-camp.webp" alt=""><span class="cap">忘れられない星空</span></div>
     <div class="ph"><img src="images/nile-cruise.jpg" alt=""><span class="cap">ナイルの夜</span></div>
     <div class="ph"><img src="images/pyramid.webp" alt=""><span class="cap">また来よう</span></div>
   </div>
-  <p class="hgband">𓋹 𓂀 𓆣 𓊖 𓅓 𓋹</p>
-  <p class="note" style="text-align:center;">たくさんの思い出を持ち帰ろう。良い旅を！</p>
+  <p class="hgband" style="margin-top:10px;">𓋹 𓂀 𓆣 𓊖 𓅓 𓋹</p>
+  <p class="note" style="text-align:center; font-size:11px;">9泊10日、たくさんの思い出を持ち帰ろう。おつかれさま、そして ありがとう！</p>
   <div class="foot"><span>EGYPT 2026</span><span>日程 10/16–10/17</span></div>
 </section>
 
@@ -491,6 +550,23 @@
     <tr><td class="nm" style="color:var(--gold-d)">総額（単身）</td><td>入場料・食費・チップ別</td><td class="num" style="font-size:13px;color:var(--gold-d)">¥334,440</td></tr>
   </table>
   <p class="note">※ 円換算は $1≒¥155 目安。入場料・飲食・チップは現地払いで別途。</p>
+  <div class="box" style="margin-top:10px;">
+    <h3>🏨 ホテルのポイント</h3>
+    <ul class="tips2">
+      <li><b>チェックイン</b>：パスポート提示。デポジット（保証金）を求められることも。</li>
+      <li><b>Wi-Fi・朝食</b>：予約内容を確認。砂漠キャンプはWi-Fiなし・電源も限られる。</li>
+    </ul>
+  </div>
+  <div class="box" style="margin-top:9px;">
+    <h3>🛏️ 泊まるホテル メモ</h3>
+    <ul class="tips2">
+      <li><b>New Gardenia（ギザ）</b>：屋上からピラミッドが見えるルーフトップ。10/9泊。</li>
+      <li><b>白砂漠キャンプ</b>：テント・毛布・寝袋あり。Wi-Fi/電源なし。10/10泊。</li>
+      <li><b>El Mesaadya（ヘリオポリス）</b>：空港寄り。砂漠帰り＆ルクソール前夜。10/11泊。</li>
+      <li><b>Pyramisa Luxor</b>：ナイル沿いの大型ホテル。10/12–13泊。</li>
+      <li><b>Royal Town（タハリール）</b>：博物館・市場に近い中心部。10/14–15泊。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>宿泊・費用</span></div>
 </section>
 
@@ -522,6 +598,19 @@
     <tr><td class="day-cell"></td><td class="nm">ハン・エル＝ハリーリ市場</td><td>夕方〜夜</td></tr>
     <tr><td class="day-cell"></td><td class="nm">カイロ・タワー</td><td>300EGP・夜景</td></tr>
   </table>
+  <div class="photos" style="margin-top:10px;">
+    <div class="ph"><img src="images/sphinx.jpg" alt=""><span class="cap">ピラミッド</span></div>
+    <div class="ph"><img src="images/valley-kings.jpg" alt=""><span class="cap">王家の谷</span></div>
+    <div class="ph"><img src="images/gem-tut.jpg" alt=""><span class="cap">GEM</span></div>
+    <div class="ph"><img src="images/coptic.jpg" alt=""><span class="cap">コプト地区</span></div>
+  </div>
+  <div class="photos" style="margin-top:7px;">
+    <div class="ph"><img src="images/hatshepsut.jpg" alt=""><span class="cap">ハトシェプスト</span></div>
+    <div class="ph"><img src="images/luxor-temple.jpg" alt=""><span class="cap">ルクソール神殿</span></div>
+    <div class="ph"><img src="images/khan-khalili.jpg" alt=""><span class="cap">ハン市場</span></div>
+    <div class="ph"><img src="images/nile-cruise.jpg" alt=""><span class="cap">ナイルクルーズ</span></div>
+  </div>
+  <p class="note">💡 入場はほぼ現金(EGP)。学生証(ISIC)で割引あり。午前の観光が快適。墓内はフラッシュ禁止。</p>
   <div class="foot"><span>EGYPT 2026</span><span>巡るスポット</span></div>
 </section>
 
@@ -559,6 +648,25 @@
       <div>・入場料・飲食・チップは現地払いで別途</div>
       <div>・高額紙幣は崩しにくいので、小額紙幣を多めに持つと安心</div>
     </div>
+  </div>
+  <div class="box" style="margin-top:10px;">
+    <h3>🧾 物価の目安（EGP）</h3>
+    <ul class="tips2">
+      <li>ミネラルウォーター500ml … 10〜15 ／ コーヒー … 40〜70</li>
+      <li>コシャリ1食 … 40〜60 ／ ローカル食堂の食事 … 80〜150</li>
+      <li>タクシー短距離 … 50〜100（乗る前に交渉 or Uber/Careem）</li>
+      <li>お土産（パピルス小）… 100〜300（市場は値切り前提）</li>
+    </ul>
+  </div>
+  <div class="box" style="margin-top:9px;">
+    <h3>💳 支払い・両替・値切りのコツ</h3>
+    <ul class="tips2">
+      <li><b>両替</b>：空港・銀行・公式両替所で。街の怪しい業者は避ける。少額ずつ。</li>
+      <li><b>カード</b>：ホテル・大型店はVISA/Master可。屋台・タクシー・市場は現金。</li>
+      <li><b>ATM</b>：都市部に多い。手数料に注意、1回の引出上限あり。</li>
+      <li><b>値切り</b>：市場は提示額の半額から交渉。笑顔で、しつこくなくが基本。</li>
+      <li><b>小銭</b>：$1札やEGP小額を多めに。チップ・トイレ・ポーターで頻繁に使う。</li>
+    </ul>
   </div>
   <div class="foot"><span>EGYPT 2026</span><span>お金・チップ</span></div>
 </section>
@@ -604,6 +712,33 @@
       <dd>料金は送迎車内で前払い／温泉・サンドボード等の希望は出発時にスタッフへ／ドライヤーは砂漠ツアーは貸出対象外。</dd>
     </dl>
   </div>
+  <div class="box" style="margin-top:10px;">
+    <h3>✨ あると便利</h3>
+    <ul class="chk" style="columns:2; column-gap:18px;">
+      <li>ジップ袋（小分け・防砂）</li>
+      <li>ウェットティッシュ多め</li>
+      <li>胃腸薬・整腸剤</li>
+      <li>マスク（砂埃対策）</li>
+      <li>サングラス予備</li>
+      <li>圧縮袋・エコバッグ</li>
+      <li>予備バッテリー</li>
+      <li>少額ドル紙幣（$1札）</li>
+      <li>折りたたみ日傘</li>
+      <li>リップ・保湿クリーム</li>
+      <li>のど飴・携帯トイレ紙</li>
+      <li>南京錠（荷物施錠用）</li>
+    </ul>
+  </div>
+  <p class="note">※ 砂漠キャンプの大荷物はオアシスで施錠預かり。貴重品は必ず手元に。</p>
+  <div class="box" style="margin-top:9px;">
+    <h3>👕 服装のヒント</h3>
+    <ul class="tips2">
+      <li><b>日中</b>：通気性の良い長袖・長ズボンが日焼け＆砂埃対策に◎。歩きやすい靴。</li>
+      <li><b>モスク・教会</b>：肌の露出を控えめに。女性はスカーフがあると安心。</li>
+      <li><b>砂漠の夜</b>：15℃前後まで冷える。フリース・ダウンなど防寒を1枚。</li>
+      <li><b>サンダル</b>：ホテル・キャンプでの移動に便利。砂が入っても楽。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>持ち物</span></div>
 </section>
 
@@ -626,6 +761,14 @@
     <p class="plain" style="line-height:2.1;">保険会社：＿＿＿＿＿＿＿＿＿＿＿＿<br>証券番号：＿＿＿＿＿＿＿＿＿＿＿＿<br>緊急連絡：＿＿＿＿＿＿＿＿＿＿＿＿</p>
   </div>
   <p class="note">📵 番号・住所は出発前に最新情報を確認してください。良い旅を！ 𓋹</p>
+  <div class="box" style="margin-top:9px;">
+    <h3>🩺 体調不良・トラブル時</h3>
+    <ul class="tips2">
+      <li><b>お腹</b>：生水・氷・生野菜に注意。経口補水・整腸剤を携帯。</li>
+      <li><b>受診</b>：まずナギーor保険会社に連絡。大きな私立病院が安心（キャッシュレス可の場合も）。</li>
+      <li><b>盗難・紛失</b>：パスポートは大使館、カードはすぐ会社へ連絡し停止。控えは紙＋スマホに。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>緊急連絡先</span></div>
 </section>
 
@@ -652,9 +795,23 @@
     <li><span class="fn">マフシー</span><span class="fd">米を野菜に詰めて煮込んだ家庭料理</span></li>
     <li><span class="fn">ハマーム</span><span class="fd">鳩の詰め物料理。ルクソール名物に挑戦</span></li>
     <li><span class="fn">ウム・アリ</span><span class="fd">温かいパイ風ミルクデザート。締めに最高</span></li>
+    <li><span class="fn">モロヘイヤ</span><span class="fd">とろみのある緑のスープ。ごはん・パンと</span></li>
+    <li><span class="fn">ハワウシ</span><span class="fd">スパイス挽肉を詰めて焼いたエジプト風パン</span></li>
+    <li><span class="fn">サイヤディーヤ</span><span class="fd">魚の炊き込みごはん。沿岸・ナイルの名物</span></li>
+    <li><span class="fn">バーミヤ</span><span class="fd">オクラのトマト煮込み。やさしい家庭の味</span></li>
+    <li><span class="fn">アエーシ</span><span class="fd">エジプトの薄い丸パン。何にでも合う主食</span></li>
     <li><span class="fn">シャイ / カルカデ</span><span class="fd">甘い紅茶 / ハイビスカスティー</span></li>
   </ul>
   <p class="note">※ 屋台・市場は現金（EGP）で。飲み物は食事と別会計のことが多い。</p>
+  <div class="box" style="margin-top:10px;">
+    <h3>🥤 ドリンク＆スイーツ</h3>
+    <ul class="tips2">
+      <li><b>シャイ</b>（甘い紅茶）／<b>カルカデ</b>（ハイビスカス、冷温どちらも）</li>
+      <li><b>サトウキビジュース</b>：屋台の定番、激甘でチャージ。<b>ミントレモン</b>も爽快。</li>
+      <li><b>ウム・アリ</b>／<b>バスブーサ</b>：温パイ系・セモリナの甘いスイーツ。</li>
+      <li>※生搾りは衛生に注意。心配なら市販ボトル飲料が安心。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>グルメ図鑑</span></div>
 </section>
 
@@ -696,6 +853,22 @@
     <div class="rnode"><span class="rico">🗾</span><div class="rinfo"><b>日本（成田）</b><span>10/17 帰国 🎉</span></div></div>
   </div>
   <p class="note">総飛行距離 約24,000km・訪問スポット16か所・世界遺産エリア3件。カイロを拠点に、砂漠→ルクソール→カイロと巡る周遊ルート。</p>
+  <div class="box" style="margin-top:8px;">
+    <h3>🚕 移動のポイント</h3>
+    <ul class="tips2">
+      <li><b>市内</b>：配車アプリ Uber / Careem が安心（料金明朗）。流しのタクシーは交渉制。</li>
+      <li><b>国内線</b>：カイロ⇆ルクソールは約1時間。早めの空港到着を。</li>
+      <li><b>砂漠</b>：ツアーの4WDで送迎。長距離は車内で休息を。</li>
+      <li><b>横断の注意</b>：カイロの道路横断は要注意。現地の人に合わせて渡る。</li>
+    </ul>
+  </div>
+  <div class="box" style="margin-top:9px;">
+    <h3>🗺️ 周遊のかたち</h3>
+    <ul class="tips2">
+      <li>カイロを拠点に、<b>砂漠（西）</b>と<b>ルクソール（南・空路）</b>を往復する周遊型。</li>
+      <li>移動が多い日（10/10・10/12・10/14）は<b>早起き</b>。前夜に荷造りを。</li>
+    </ul>
+  </div>
   <div class="foot"><span>EGYPT 2026</span><span>旅のルート</span></div>
 </section>
 
